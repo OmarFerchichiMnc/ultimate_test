@@ -1,0 +1,46 @@
+app:
+  base_url: https://qa.staging.adad.io
+  headless: false
+  slow_mo_ms: 0
+  navigation_timeout_ms: 30000
+
+auth:
+  url: https://security.staging.adad.io/realms/QA/protocol/openid-connect/token
+  client_id: adad-front
+
+sftp:
+  host: 127.0.0.1
+  port: 2025
+
+database:
+  host: localhost
+  database: staging
+  user: qa_adad_25
+  port: 5554
+  schema: "QA"
+
+ssm:
+  enabled: false
+  bastion_tag: adad-ec2-bastion
+  region: eu-north-1
+  local_port: "5554"
+  remote_port: "5432"
+  remote_host: db.dev.adad.internal
+  aws_profile: default
+  sftp_local_port: "2025"
+  sftp_remote_port: "2022"
+  sftp_remote_host: 10.10.2.175
+
+test_files:
+  sale_settlement_molecule:
+    correct:
+      sale_file: Sale_GLOBAL_10.csv
+      sale_file_path: docs/test_files/sale_settlement_molecule/correct/
+      payment_date_range: 01/01/2025 - 31/01/2025
+      settlement_file: Settlement_GLOBAL_10.csv
+      settlement_file_path: docs/test_files/sale_settlement_molecule/correct/
+      settlement_date_range: 01/03/2025 - 31/03/2025
+
+adad_paths:
+  sales: /adad/QA/Sale/GLOBAL
+  settlement_global: /adad/QA/Settlement/GLOBAL

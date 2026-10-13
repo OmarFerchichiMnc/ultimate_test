@@ -1,0 +1,14 @@
+node_modules/
+dist/
+playwright-report/
+test-results/
+playwright/.auth/
+blob-report/
+.env
+logs/
+reports/
+*.log
+.DS_Store
+.idea/
+.vscode/
+.pptx-venv/
