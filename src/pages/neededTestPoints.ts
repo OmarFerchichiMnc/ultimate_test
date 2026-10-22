@@ -2,7 +2,8 @@ import fs from "fs";
 import path from "path";
 import { expect, Page } from "@playwright/test";
 import { logger } from "../configuration/logger";
-import { CreationDateTable, shiftCreationDate } from "../configuration/database";
+import { CreationDateTable, shiftCreationDate, shiftSaleRefundCreatedDates } from "../configuration/database";
+import { buildSaleRefundPair, SaleRefundPair, uploadSaleRefundPair } from "../configuration/saleRefundPair";
 import { TestPoint } from "../testpoint/TestPoint";
 import { AccountingJournalPage } from "./accountingJournal.page";
 import { AccountingRulesPage } from "./accountingRules.page";
@@ -24,7 +25,7 @@ import { PointOfSalesPage } from "./pointOfSales.page";
 import { PostToLedgerPage } from "./postToLedger.page";
 import { ReconciliationAlertsPage } from "./reconciliationAlerts.page";
 import { ReportsPage } from "./reports.page";
-import { SaleAuditTrackPage } from "./saleAuditTrack.page";
+import { SaleAuditTrackPage, SaleUIClickSearchQuickFilter, SaleUIFilterDocumentNumber } from "./saleAuditTrack.page";
 import {
   assertAnyStatus,
   assertColumn,
@@ -89,6 +90,65 @@ export class PrepareIngestionFixture extends TestPoint {
         throw new Error(`Ingestion fixture directory is empty: ${full}`);
       }
       logger.info(`Ingestion fixture ready: ${full}`);
+    });
+  }
+}
+
+export class BuildSaleRefundPair extends TestPoint {
+  public static lastPair: SaleRefundPair | null = null;
+
+  constructor() {
+    super("TP-NEW-001A", "Generate sale/refund test pair", async () => {
+      const pair = buildSaleRefundPair();
+      BuildSaleRefundPair.lastPair = pair;
+      logger.info(`Generated sale/refund test pair ${pair.documentNumber}`);
+    });
+  }
+}
+
+export class UploadSaleRefundPair extends TestPoint {
+  constructor(private readonly pair: SaleRefundPair) {
+    super("TP-NEW-001B", `Upload generated sale/refund pair ${pair.documentNumber}`, async () => {
+      await uploadSaleRefundPair(this.pair);
+      logger.info(`Uploaded sale/refund pair ${this.pair.documentNumber}`);
+    });
+  }
+}
+
+export class AssertSaleRefundThresholds extends TestPoint {
+  constructor(_expected: SaleRefundPair["salesAndRefundsThresholds"]) {
+    super("TP-NEW-001C", "Assert sales and refunds threshold configuration page is reachable", async (page) => {
+      const pom = new SecondaryMatchingSettingsPage(page);
+      await pom.expectOnPage();
+      await expect(pom.triggerNow).toBeVisible({ timeout: 30_000 });
+    });
+  }
+}
+
+export class SaleAuditTrackAssertSaleRefundData extends TestPoint {
+  constructor(documentNumber: string, paymentId: string, ccBin: string, ccFourLastDigits: string, fopCode: string) {
+    super("TP-NEW-001D", `Assert sale refund audit data for ${documentNumber}`, async (page) => {
+      const pom = new SaleAuditTrackPage(page);
+      await pom.expectOnPage();
+      await new SaleUIFilterDocumentNumber(documentNumber).run(page);
+      await new SaleUIClickSearchQuickFilter().run(page);
+      await pom.expectTableHasRows();
+      await expect(page.locator("body")).toContainText(documentNumber, { timeout: 30_000 });
+      await expect(page.locator("body")).toContainText(paymentId, { timeout: 30_000 });
+      await expect(page.locator("body")).toContainText(ccBin, { timeout: 30_000 });
+      await expect(page.locator("body")).toContainText(ccFourLastDigits, { timeout: 30_000 });
+      await expect(page.locator("body")).toContainText(fopCode, { timeout: 30_000 });
+    });
+  }
+}
+
+export class SecondaryMatchingAssertDocumentReference extends TestPoint {
+  constructor(documentNumber: string, paymentId: string) {
+    super("TP-NEW-001E", `Assert secondary matching references ${documentNumber}`, async (page) => {
+      const pom = new SecondaryMatchingPage(page);
+      await pom.expectOnPage();
+      await expect(page.locator("body")).toContainText(documentNumber, { timeout: 30_000 });
+      await expect(page.locator("body")).toContainText(paymentId, { timeout: 30_000 });
     });
   }
 }
@@ -187,6 +247,14 @@ export class DbShiftCreationDate extends TestPoint {
   constructor(table: CreationDateTable, id: string, createdDate: string) {
     super("TP-NEW-011", `Shift ${table} ${id} created date to ${createdDate}`, async () => {
       await shiftCreationDate(table, id, createdDate);
+    });
+  }
+}
+
+export class DbShiftSaleRefundCreatedDates extends TestPoint {
+  constructor(paymentId: string, daysAgo = 60) {
+    super("TP-NEW-011A", `Shift sale/refund rows for payment ${paymentId} to ${daysAgo} days ago`, async () => {
+      await shiftSaleRefundCreatedDates(paymentId, daysAgo);
     });
   }
 }

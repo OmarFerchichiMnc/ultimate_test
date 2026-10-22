@@ -256,6 +256,16 @@ export async function shiftCreationDate(table: CreationDateTable, id: string, cr
   ]);
 }
 
+export async function shiftSaleRefundCreatedDates(paymentId: string, daysAgo = 60): Promise<void> {
+  const cutoff = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000).toISOString();
+  await fetchRows(
+    `UPDATE "${schema}"."sale"
+     SET created_date = $1::timestamptz
+     WHERE payment_id::text = $2`,
+    [cutoff, paymentId],
+  );
+}
+
 export function dateRangeCovering(values: unknown[]): string {
   const times = values.map((value) => utcDay(value).getTime());
   return `${formatUiDate(new Date(Math.min(...times)))} - ${formatUiDate(new Date(Math.max(...times)))}`;
