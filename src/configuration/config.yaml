@@ -41,6 +41,22 @@ test_files:
       settlement_file_path: docs/test_files/sale_settlement_molecule/correct/
       settlement_date_range: 01/03/2025 - 31/03/2025
 
+# Runtime test data generation (port of adad-scripts/files-generator)
+generation:
+  output_dir: docs/test_files/generated
+  file_suffix: "10"
+  transaction_count: 10
+  payment_date: today          # yyyy-mm-dd or "today" (UTC)
+  awb_prefix_code: "212"
+  airline: 8X
+  accounting_currency: EUR
+  office_id: "20300744"
+  merchant_id: "11223344"
+  sale_datasource: Sale
+  settlement_datasource: Settlement
+  bank_deposit_datasource: BankDeposit
+  file_reception_configuration: GLOBAL
+
 adad_paths:
   sales: /adad/QA/Sale/GLOBAL
   settlement_global: /adad/QA/Settlement/GLOBAL

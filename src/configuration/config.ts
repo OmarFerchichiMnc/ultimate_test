@@ -21,6 +21,7 @@ function envBool(name: string, fallback: boolean): boolean {
 }
 
 const molecule = yamlConfig.test_files.sale_settlement_molecule.correct;
+const generation = (yamlConfig.generation ?? {}) as Record<string, any>;
 
 export const config = {
   projectRoot: PROJECT_ROOT,
@@ -76,6 +77,21 @@ export const config = {
     settlementFileName: molecule.settlement_file as string,
     settlementFile: path.join(PROJECT_ROOT, molecule.settlement_file_path, molecule.settlement_file),
     settlementDateRange: molecule.settlement_date_range as string,
+  },
+  generation: {
+    outputDir: path.resolve(PROJECT_ROOT, env("GEN_OUTPUT_DIR", generation.output_dir ?? "docs/test_files/generated")),
+    fileSuffix: env("GEN_FILE_SUFFIX", String(generation.file_suffix ?? "10")),
+    transactionCount: Number(env("GEN_TRANSACTION_COUNT", String(generation.transaction_count ?? 10))),
+    paymentDate: env("GEN_PAYMENT_DATE", String(generation.payment_date ?? "today")),
+    awbPrefixCode: String(generation.awb_prefix_code ?? "212"),
+    airline: String(generation.airline ?? "8X"),
+    accountingCurrency: env("GEN_ACCOUNTING_CURRENCY", String(generation.accounting_currency ?? "EUR")),
+    officeId: String(generation.office_id ?? "20300744"),
+    merchantId: String(generation.merchant_id ?? "11223344"),
+    saleDatasource: String(generation.sale_datasource ?? "Sale"),
+    settlementDatasource: String(generation.settlement_datasource ?? "Settlement"),
+    bankDepositDatasource: String(generation.bank_deposit_datasource ?? "BankDeposit"),
+    fileReceptionConfiguration: String(generation.file_reception_configuration ?? "GLOBAL"),
   },
   adadPaths: {
     sales: yamlConfig.adad_paths.sales as string,

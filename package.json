@@ -11,6 +11,9 @@
     "test:filters": "playwright test tests/filters",
     "test:navigation": "playwright test tests/navigation",
     "test:testpoints": "playwright test tests/testpoints",
+    "test:scenarios": "playwright test tests/scenarios",
+    "test:generator": "playwright test tests/framework/fileGenerator.spec.ts",
+    "scenarios:generate": "npx -y tsx scripts/split-scenarios.ts",
     "report": "playwright show-report reports/latest/html",
     "pack:execution": "node scripts/pack-execution.js",
     "codegen": "playwright codegen"

@@ -162,21 +162,49 @@ export class FileDashboardAssertIngestionStatus extends TestPoint {
 }
 
 export class FileDashboardAssertTotalTransactions extends TestPoint {
-  constructor(expectedCount: number) {
-    super("TP-NEW-003", `Assert total transactions is ${expectedCount}`, async (page) => {
-      const actual = await assertCount(new FileDashboardPage(page), /total/i, expectedCount);
+  /**
+   * The File Dashboard "Total" cell reads like "10 Eligible: 10 Not Eligible: 0".
+   * `expectedCount` is checked against the total; pass `expectedEligible` to also
+   * require that many eligible rows (and the rest not eligible).
+   */
+  constructor(expectedCount: number, expectedEligible?: number) {
+    const label =
+      expectedEligible === undefined
+        ? `Assert total transactions is ${expectedCount}`
+        : `Assert total transactions is ${expectedCount} (eligible ${expectedEligible})`;
+    super("TP-NEW-003", label, async (page) => {
+      const actual = await cellByHeader(new FileDashboardPage(page), /total/i);
+      const counts = parseTransactionCounts(actual);
+      const errors: string[] = [];
+      if (counts.total !== expectedCount) errors.push(`total ${counts.total ?? "?"} instead of ${expectedCount}`);
+      if (expectedEligible !== undefined) {
+        if (counts.eligible !== expectedEligible) {
+          errors.push(`eligible ${counts.eligible ?? "?"} instead of ${expectedEligible}`);
+        }
+        const expectedNotEligible = expectedCount - expectedEligible;
+        if (counts.notEligible !== undefined && counts.notEligible !== expectedNotEligible) {
+          errors.push(`not eligible ${counts.notEligible} instead of ${expectedNotEligible}`);
+        }
+      }
+      if (errors.length) {
+        throw new Error(`File Dashboard transactions: ${errors.join(", ")} (cell '${actual}')`);
+      }
       logger.info(`Total transactions is ${actual}`);
     });
   }
 }
 
-async function assertCount(pom: BasePage, header: RegExp, expected: number): Promise<string> {
-  const actual = await cellByHeader(pom, header);
-  const parsed = Number(actual.replace(/[^\d.-]/g, ""));
-  if (parsed !== expected) {
-    throw new Error(`Expected ${expected} in ${header}, got '${actual}'`);
-  }
-  return actual;
+export type TransactionCounts = { total?: number; eligible?: number; notEligible?: number };
+
+/** Parses "10 Eligible: 10 Not Eligible: 0" (or a bare "10"). */
+export function parseTransactionCounts(text: string): TransactionCounts {
+  const clean = text.replace(/\s+/g, " ").trim();
+  const num = (match: RegExpMatchArray | null) => (match ? Number(match[1]) : undefined);
+  return {
+    total: num(clean.match(/^(\d+)/)),
+    eligible: num(clean.match(/(?<!not )eligible\s*:?\s*(\d+)/i)),
+    notEligible: num(clean.match(/not eligible\s*:?\s*(\d+)/i)),
+  };
 }
 
 export class FileDashboardFilterIngestionStatus extends TestPoint {
