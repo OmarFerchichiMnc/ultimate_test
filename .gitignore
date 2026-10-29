@@ -12,3 +12,4 @@ reports/
 .idea/
 .vscode/
 .pptx-venv/
+docs/test_files/generated/
