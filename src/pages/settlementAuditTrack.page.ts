@@ -505,3 +505,19 @@ export class SettlementUICheckIfSettlementTableEmpty extends TestPoint {
     });
   }
 }
+
+/**
+ * Quick search reloads the grid asynchronously: wait for the loading spinner to go away,
+ * then for a row carrying the searched document number.
+ */
+export class SettlementUICheckIfSettlementTableHasDocument extends TestPoint {
+  constructor(documentNumber: string, timeoutMs = 60_000) {
+    super("TP", `Check if settlement table contains document ${documentNumber}`, async (page) => {
+      const pom = new SettlementAuditTrackPage(page);
+      await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, { timeout: timeoutMs });
+      const row = pom.tableRows().filter({ hasText: documentNumber }).first();
+      await expect(row, `No settlement row with document number ${documentNumber}`).toBeVisible({ timeout: timeoutMs });
+      logger.info(`Settlement row found: ${((await row.innerText()) || "").replace(/\s*[\t\n]+\s*/g, " | ")}`);
+    });
+  }
+}

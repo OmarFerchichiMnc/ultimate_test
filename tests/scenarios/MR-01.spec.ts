@@ -1,52 +1,55 @@
 import { test } from "../../src/fixtures/auth";
 import { runTestPoints } from "../runTestPoints";
 import { config } from "../../src/configuration/config";
-import { PrepareIngestionFixture, OpenFileDashboardPage, FileDashboardFilterUploadedFile, FileDashboardUIFilterClickSearch, CheckIfFileIngested, FileDashboardAssertIngestionStatus, FileDashboardAssertTotalTransactions, OpenSettlementReconciliationSettingsPage, TriggerNow, OpenMatchedItemsPage, MatchedItemsFilterDateRange, MatchedItemsClickSearch, SaleUICheckIfMatchingDoneCorrectly, MatchedItemsAssertMoleculeStatus, MatchedItemsOpenMolecule, MatchedItemsAssertAtomsLinked, OpenSaleAuditTrackPage, SaleUIFilterDocumentNumber, SaleUIClickSearchQuickFilter, SaleUICheckIfSaleTableNotEmpty, SaleAuditTrackAssertLifecycleEvents, OpenSettlementAuditTrackPage, SettlementUIFilterDocumentNumber, SettlementUIClickSearchQuickFilter, SettlementUICheckIfSettlementTableNotEmpty, SettlementAuditTrackAssertLifecycleEvents } from "../../src/pages";
+import { GenerateScenarioFiles, scenarioDataset } from "../../src/generation";
+import { PrepareIngestionFixture, OpenFileDashboardPage, FileDashboardFilterUploadedFile, FileDashboardUIFilterClickSearch, CheckIfFileIngested, FileDashboardAssertIngestionStatus, FileDashboardAssertTotalTransactions, OpenSettlementReconciliationSettingsPage, TriggerNow, OpenMatchedItemsPage, MatchedItemsFilterDateRange, MatchedItemsClickSearch, MatchedItemsWaitForMatchedItem, MatchedItemsAssertMoleculeStatus, MatchedItemsOpenMolecule, MatchedItemsAssertAtomsLinked, OpenSaleAuditTrackPage, SaleUIFilterDocumentNumber, SaleUIClickSearchQuickFilter, SaleUICheckIfSaleTableHasDocument, SaleAuditTrackAssertLifecycleEvents, OpenSettlementAuditTrackPage, SettlementUIFilterDocumentNumber, SettlementUIClickSearchQuickFilter, SettlementUICheckIfSettlementTableHasDocument, SettlementAuditTrackAssertLifecycleEvents } from "../../src/pages";
 import { BastionSsmForward, PrepareUpload, ExecuteUpload, WaitForFileInjection } from "../../src/configuration/fileInjection";
 
 test.describe("Matching & Reconciliation", () => {
   test("MR-01 Basic 1:1 match, settlement reconciliation, mono-currency", async ({ loggedInPage }) => {
     test.setTimeout(600_000);
+    const data = scenarioDataset("MR-01", { strategy: "documentNumberAndFop" });
     await runTestPoints(loggedInPage, [
-      new PrepareIngestionFixture(config.files.settlementPath),
+      new GenerateScenarioFiles(data),
+      new PrepareIngestionFixture(data.dir),
       new BastionSsmForward(),
-      new PrepareUpload(config.files.salePath, config.adadPaths.sales, config.files.saleFileName),
-      new ExecuteUpload(config.files.salePath, config.adadPaths.sales, config.files.saleFileName),
+      new PrepareUpload(data.dir, config.adadPaths.sales, data.sale.fileName),
+      new ExecuteUpload(data.dir, config.adadPaths.sales, data.sale.fileName),
       new WaitForFileInjection(),
       new OpenFileDashboardPage(),
-      new FileDashboardFilterUploadedFile(config.files.saleFileName),
+      new FileDashboardFilterUploadedFile(data.sale.fileName),
       new FileDashboardUIFilterClickSearch(),
-      new CheckIfFileIngested(config.files.saleFileName),
+      new CheckIfFileIngested(data.sale.fileName),
       new FileDashboardAssertIngestionStatus("Accepted"),
-      new FileDashboardAssertTotalTransactions(20),
+      new FileDashboardAssertTotalTransactions(data.sale.count, data.sale.eligible),
       new BastionSsmForward(),
-      new PrepareUpload(config.files.settlementPath, config.adadPaths.settlement, config.files.settlementFileName),
-      new ExecuteUpload(config.files.settlementPath, config.adadPaths.settlement, config.files.settlementFileName),
+      new PrepareUpload(data.dir, config.adadPaths.settlement, data.settlement.fileName),
+      new ExecuteUpload(data.dir, config.adadPaths.settlement, data.settlement.fileName),
       new WaitForFileInjection(),
       new OpenFileDashboardPage(),
-      new FileDashboardFilterUploadedFile(config.files.settlementFileName),
+      new FileDashboardFilterUploadedFile(data.settlement.fileName),
       new FileDashboardUIFilterClickSearch(),
-      new CheckIfFileIngested(config.files.settlementFileName),
+      new CheckIfFileIngested(data.settlement.fileName),
       new FileDashboardAssertIngestionStatus("Accepted"),
-      new FileDashboardAssertTotalTransactions(20),
+      new FileDashboardAssertTotalTransactions(data.settlement.count, data.settlement.eligible),
       new OpenSettlementReconciliationSettingsPage(),
       new TriggerNow(),
       new OpenMatchedItemsPage(),
-      new MatchedItemsFilterDateRange("01/01/2026 - 31/01/2026"),
+      new MatchedItemsFilterDateRange(data.paymentDateRange),
       new MatchedItemsClickSearch(),
-      new SaleUICheckIfMatchingDoneCorrectly("0.00"),
-      new MatchedItemsAssertMoleculeStatus("Complete"),
+      new MatchedItemsWaitForMatchedItem(`${data.currency} 0.00`),
+      new MatchedItemsAssertMoleculeStatus("COMPLETE"),
       new MatchedItemsOpenMolecule(),
       new MatchedItemsAssertAtomsLinked("0.00"),
       new OpenSaleAuditTrackPage(),
-      new SaleUIFilterDocumentNumber("2129690954587"),
+      new SaleUIFilterDocumentNumber(data.documentNumber),
       new SaleUIClickSearchQuickFilter(),
-      new SaleUICheckIfSaleTableNotEmpty(),
+      new SaleUICheckIfSaleTableHasDocument(data.documentNumber),
       new SaleAuditTrackAssertLifecycleEvents([]),
       new OpenSettlementAuditTrackPage(),
-      new SettlementUIFilterDocumentNumber("2129690954587"),
+      new SettlementUIFilterDocumentNumber(data.documentNumber),
       new SettlementUIClickSearchQuickFilter(),
-      new SettlementUICheckIfSettlementTableNotEmpty(),
+      new SettlementUICheckIfSettlementTableHasDocument(data.documentNumber),
       new SettlementAuditTrackAssertLifecycleEvents([]),
     ]);
   });

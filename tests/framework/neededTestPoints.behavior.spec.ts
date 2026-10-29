@@ -83,7 +83,19 @@ test.describe("scenario TestPoints on local pages", () => {
   test("FileDashboardAssertTotalTransactions compares the count", async ({ page }) => {
     await mount(page, "/etl-files", grid(["File Name", "Status", "Total transactions"], [["Sale.csv", "Accepted", "10"]]));
     await new FileDashboardAssertTotalTransactions(10).run(page);
-    await expect(new FileDashboardAssertTotalTransactions(9).run(page)).rejects.toThrow("Expected 9");
+    await expect(new FileDashboardAssertTotalTransactions(9).run(page)).rejects.toThrow("total 10 instead of 9");
+  });
+
+  test("FileDashboardAssertTotalTransactions reads the eligible breakdown", async ({ page }) => {
+    await mount(
+      page,
+      "/etl-files",
+      grid(["File Name", "Status", "Total transactions"], [["Sale.csv", "Accepted", "10 Eligible: 10 Not Eligible: 0"]]),
+    );
+    await new FileDashboardAssertTotalTransactions(10).run(page);
+    await new FileDashboardAssertTotalTransactions(10, 10).run(page);
+    await expect(new FileDashboardAssertTotalTransactions(10, 9).run(page)).rejects.toThrow("eligible 10 instead of 9");
+    await expect(new FileDashboardAssertTotalTransactions(11).run(page)).rejects.toThrow("total 10 instead of 11");
   });
 
   test("export assertions use the file downloaded earlier on the same page", async ({ page }) => {

@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { TestPoint } from "../testpoint/TestPoint";
 import { logger } from "../configuration/logger";
@@ -286,6 +286,38 @@ export class SaleUICheckIfMatchingDoneCorrectly extends TestPoint {
       const pom = new MatchedItemsPage(page);
       await pom.expectOnPage();
       await pom.expectTableContains(expected, 2);
+    });
+  }
+}
+
+/**
+ * Matching runs asynchronously after "Trigger Now", and the grid reloads after Search.
+ * Wait for the matched-items grid (not the date picker) to finish loading, and re-run Search
+ * until a matched item with a zero discrepancy (e.g. "EUR 0.00") shows up.
+ */
+export class MatchedItemsWaitForMatchedItem extends TestPoint {
+  constructor(expected: string, timeoutMs = 180_000) {
+    super("TP", "Check if file matching done correctly", async (page) => {
+      const pom = new MatchedItemsPage(page);
+      await pom.expectOnPage();
+      const grid = page.getByRole("table").filter({ has: page.getByRole("columnheader", { name: "Matched Item's ID" }) }).first();
+      const deadline = Date.now() + timeoutMs;
+      for (let attempt = 1; ; attempt += 1) {
+        await expect(grid).toBeVisible();
+        await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, { timeout: 30_000 });
+        const rows = await grid.getByRole("row").filter({ has: page.getByRole("cell") }).allInnerTexts();
+        rows.forEach((row, i) => logger.info(`Attempt ${attempt} row ${i + 1}: ${row.replace(/\s*[\t\n]+\s*/g, " | ")}`));
+        const found = rows.some((row) => row.split(/[\t\n]+/).map((cell) => cell.trim()).includes(expected));
+        if (found) {
+          logger.info(`Found '${expected}' in matched items (attempt ${attempt})`);
+          return;
+        }
+        if (Date.now() > deadline) {
+          throw new Error(`Value '${expected}' not found in matched items after ${attempt} attempt(s)`);
+        }
+        await page.waitForTimeout(10_000);
+        await pom.search.click();
+      }
     });
   }
 }
