@@ -16,7 +16,11 @@ export type MatchingStrategy =
   | "cardAndApprovalCode"
   /** Different document number and card, same PNR reference. */
   | "pnrReference"
-  /** Groups of sales sharing card BIN + last 4 + approval code (N:N molecules). */
+  /**
+   * N:N molecules on PNR (QA rule 3 "Many Sales / Many Settlements : Same pnr"): every sale and
+   * settlement of a group shares one PNR, while document numbers and cards differ between the two
+   * sides so rule 1 (document number + FOP) and rule 4 (card BIN + last 4) cannot match first.
+   */
   | "manyToMany"
   /** Every sale is settled by two settlements carrying half the amount each. */
   | "oneToMany"
@@ -62,8 +66,14 @@ export type BaseTransaction = {
   approvalCode: string;
   fopCode: string;
   fopSubCode: string;
+  /** Payment currency: identical on the sale and the settlement. */
   currency: string;
+  /** Amount in payment currency. */
   amount: string;
+  /** Sale file currency; defaults to the payment currency (multi-currency: a different one). */
+  saleCurrency?: string;
+  /** Settlement file currency; defaults to the payment currency (multi-currency: a different one). */
+  settlementCurrency?: string;
   paymentDate: string;
   alternateOfficeId: string;
   pspMid: string;
@@ -152,6 +162,26 @@ export const BANK_DEPOSIT_HEADERS = [
 ] as const;
 
 const MULTI_CURRENCIES = ["EUR", "USD", "GBP"];
+/** Reference rates, units per 1 EUR, used to convert payment amounts into sale / settlement currencies. */
+const FX_PER_EUR: Record<string, number> = { EUR: 1, USD: 1.08, GBP: 0.85 };
+
+function fxRate(from: string, to: string): number {
+  const a = FX_PER_EUR[from];
+  const b = FX_PER_EUR[to];
+  if (a === undefined || b === undefined) {
+    throw new Error(`No reference rate for ${from} -> ${to}`);
+  }
+  return b / a;
+}
+
+function convert(amount: string, from: string, to: string): string {
+  return (Number(amount) * fxRate(from, to)).toFixed(2);
+}
+
+/** Formats a rate without trailing zeros (e.g. 1.270588). */
+function rateText(from: string, to: string): string {
+  return String(Number(fxRate(from, to).toFixed(6)));
+}
 const FOP_CODES: Array<[string, string]> = [
   ["CCVI", "EXTASO"],
   ["CCCA", "EXTAAX"],
@@ -343,20 +373,18 @@ function buildPairs(
       const atomsPerMolecule = Math.min(5, Math.max(2, count));
       const groups = Math.max(1, Math.floor(count / atomsPerMolecule));
       for (let g = 0; g < groups; g += 1) {
-        const leader = fresh(g);
+        const pnrReference = uniquePnr();
         for (let a = 0; a < atomsPerMolecule; a += 1) {
-          const sale =
-            a === 0
-              ? leader
-              : cloneWith(fresh(g), {
-                  currency: leader.currency,
-                  ccBin: leader.ccBin,
-                  ccFourLastDigits: leader.ccFourLastDigits,
-                  approvalCode: leader.approvalCode,
-                });
+          const sale = cloneWith(fresh(g), { pnrReference });
           sales.push(sale);
+          const other = fresh(g);
           settlements.push(
-            cloneWith(sale, { documentNumber: uniqueDocument(settings.awbPrefixCode), pnrReference: uniquePnr() }),
+            cloneWith(sale, {
+              documentNumber: other.documentNumber,
+              ccBin: other.ccBin,
+              ccFourLastDigits: other.ccFourLastDigits,
+              approvalCode: other.approvalCode,
+            }),
           );
         }
       }
@@ -429,8 +457,8 @@ export function saleRow(t: BaseTransaction, settings: GenerationSettings, transa
     periodFrom: "2023-05-13",
     periodTo: "2024-05-13",
     reportingSystemIdentifier: "",
-    grossAmountInSaleCurrency: t.amount,
-    saleCurrency: t.currency,
+    grossAmountInSaleCurrency: convert(t.amount, t.currency, t.saleCurrency ?? t.currency),
+    saleCurrency: t.saleCurrency ?? t.currency,
     originalFirstIssuanceDate: "",
     fopSubCode: t.fopSubCode,
     alternateOfficeId: t.alternateOfficeId,
@@ -440,6 +468,8 @@ export function saleRow(t: BaseTransaction, settings: GenerationSettings, transa
 }
 
 export function settlementRow(t: BaseTransaction, settings: GenerationSettings): Record<string, string> {
+  const settlementCurrency = t.settlementCurrency ?? t.currency;
+  const settledAmount = convert(t.amount, t.currency, settlementCurrency);
   return {
     pnrReference: t.pnrReference,
     documentNumber: t.documentNumber,
@@ -459,7 +489,7 @@ export function settlementRow(t: BaseTransaction, settings: GenerationSettings):
     providerReceptionDate: t.paymentDate,
     airline: settings.airline,
     orderId: "",
-    mcpFxRate: "1",
+    mcpFxRate: rateText(t.currency, settlementCurrency),
     paymentId: "",
     arn: "",
     customerProfileId: "",
@@ -471,13 +501,13 @@ export function settlementRow(t: BaseTransaction, settings: GenerationSettings):
     installmentCount: "",
     installmentNumber: "",
     paymentCurrency: t.currency,
-    settlementCurrency: t.currency,
+    settlementCurrency,
     firstInstallmentAmountInPaymentCurrency: "",
     firstInstallmentAmountInSettlementCurrency: "",
     grossAmountInPaymentCurrency: t.amount,
-    grossAmountInSettlementCurrency: t.amount,
+    grossAmountInSettlementCurrency: settledAmount,
     netAmountInPaymentCurrency: t.amount,
-    netAmountInSettlementCurrency: t.amount,
+    netAmountInSettlementCurrency: settledAmount,
     discountRateAmountInPaymentCurrency: "0",
     discountRateAmountInSettlementCurrency: "0",
     interchangeFeeAmountInPaymentCurrency: "",
@@ -501,9 +531,10 @@ export function settlementRow(t: BaseTransaction, settings: GenerationSettings):
 export function bankDepositRows(settlements: BaseTransaction[], settings: GenerationSettings): Record<string, string>[] {
   const groups = new Map<string, { currency: string; date: string; cents: number }>();
   for (const s of settlements) {
-    const key = `${s.currency}|${s.paymentDate}`;
-    const current = groups.get(key) ?? { currency: s.currency, date: s.paymentDate, cents: 0 };
-    current.cents += Math.round(Number(s.amount) * 100);
+    const currency = s.settlementCurrency ?? s.currency;
+    const key = `${currency}|${s.paymentDate}`;
+    const current = groups.get(key) ?? { currency, date: s.paymentDate, cents: 0 };
+    current.cents += Math.round(Number(convert(s.amount, s.currency, currency)) * 100);
     groups.set(key, current);
   }
   return [...groups.values()].map((g) => ({
@@ -609,10 +640,26 @@ export function planDataset(options: GenerationOptions, settings = generationSet
     throw new Error(`transactionCount must be a positive integer, got ${count}`);
   }
   const paymentDate = resolvePaymentDate(options.paymentDate, settings.paymentDate);
-  const currencyFor = (i: number) =>
-    options.multiCurrency ? MULTI_CURRENCIES[i % MULTI_CURRENCIES.length] : settings.accountingCurrency;
+  // Payment currency is the same for every transaction (and on both sides of a match).
+  const currencyFor = () => settings.accountingCurrency;
 
-  const { sales, settlements } = buildPairs(strategy, count, settings, paymentDate, currencyFor);
+  const built = buildPairs(strategy, count, settings, paymentDate, currencyFor);
+  let { sales, settlements } = built;
+  if (options.multiCurrency) {
+    // Multi-currency: same payment currency, but the sale and the settlement are booked in
+    // two other currencies (different from the payment currency and from each other).
+    const others = MULTI_CURRENCIES.filter((c) => c !== settings.accountingCurrency);
+    if (others.length < 2) {
+      throw new Error(`Multi-currency needs two currencies other than ${settings.accountingCurrency}`);
+    }
+    const byDocument = new Map<string, number>();
+    const indexOf = (t: BaseTransaction) => {
+      if (!byDocument.has(t.documentNumber)) byDocument.set(t.documentNumber, byDocument.size);
+      return byDocument.get(t.documentNumber)!;
+    };
+    sales = sales.map((t) => cloneWith(t, { saleCurrency: others[indexOf(t) % 2] }));
+    settlements = settlements.map((t) => cloneWith(t, { settlementCurrency: others[(indexOf(t) + 1) % 2] }));
+  }
 
   let saleRows = sales.map((s) => saleRow(s, settings));
   if (options.withRefunds) {

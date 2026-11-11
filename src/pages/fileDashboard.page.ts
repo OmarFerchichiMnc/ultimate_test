@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import { TestPoint } from "../testpoint/TestPoint";
 import { logger } from "../configuration/logger";
@@ -299,6 +299,23 @@ export class CheckIfFileIngested extends TestPoint {
       const pom = new FileDashboardPage(page);
       await pom.expectOnPage();
       await pom.expectTableContains(fileName, 2);
+    });
+  }
+}
+
+/**
+ * Search reloads the file grid asynchronously, so its row count can change while it is read.
+ * Wait for the loading spinner to go away, then for the row carrying the uploaded file name.
+ */
+export class FileDashboardWaitForFile extends TestPoint {
+  constructor(fileName: string, timeoutMs = 60_000) {
+    super("TP0510", "Check if file ingested within file dashboard page", async (page) => {
+      const pom = new FileDashboardPage(page);
+      await pom.expectOnPage();
+      await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, { timeout: timeoutMs });
+      const row = pom.tableRows().filter({ hasText: fileName }).first();
+      await expect(row, `No file dashboard row for ${fileName}`).toBeVisible({ timeout: timeoutMs });
+      logger.info(`File row found: ${((await row.innerText()) || "").replace(/\s*[\t\n]+\s*/g, " | ")}`);
     });
   }
 }
