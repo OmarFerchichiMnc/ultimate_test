@@ -648,15 +648,21 @@ export function planDataset(options: GenerationOptions, settings = generationSet
   if (options.multiCurrency) {
     // Multi-currency: same payment currency, but the sale and the settlement are booked in
     // two other currencies (different from the payment currency and from each other).
+    // Inside one molecule every sale has the same sale currency and every settlement the same
+    // settlement currency: mixed sale (or settlement) currencies in a molecule is an exception.
     const others = MULTI_CURRENCIES.filter((c) => c !== settings.accountingCurrency);
     if (others.length < 2) {
       throw new Error(`Multi-currency needs two currencies other than ${settings.accountingCurrency}`);
     }
-    const byDocument = new Map<string, number>();
+    // Key shared by every atom of one molecule: PNR for N:N groups, document number otherwise.
+    const moleculeKey = (t: BaseTransaction) => (strategy === "manyToMany" ? t.pnrReference : t.documentNumber);
+    const molecules = new Map<string, number>();
     const indexOf = (t: BaseTransaction) => {
-      if (!byDocument.has(t.documentNumber)) byDocument.set(t.documentNumber, byDocument.size);
-      return byDocument.get(t.documentNumber)!;
+      const key = moleculeKey(t);
+      if (!molecules.has(key)) molecules.set(key, molecules.size);
+      return molecules.get(key)!;
     };
+    sales.forEach(indexOf);
     sales = sales.map((t) => cloneWith(t, { saleCurrency: others[indexOf(t) % 2] }));
     settlements = settlements.map((t) => cloneWith(t, { settlementCurrency: others[(indexOf(t) + 1) % 2] }));
   }
