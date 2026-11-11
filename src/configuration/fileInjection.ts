@@ -69,7 +69,7 @@ export class WaitForFileInjection extends TestPoint {
   constructor() {
     super("TP0004", "Wait for file injection", async () => {
       logger.info("Waiting for ingestion");
-      await wait(120_000);
+      await wait(300_000);
       logger.info("Done waiting");
     });
   }
@@ -82,6 +82,16 @@ export class InjectFile extends TestPoint {
       await new PrepareUpload(filePath, remotePath, fileName).run(page);
       await new ExecuteUpload(filePath, remotePath, fileName).run(page);
       await new WaitForFileInjection().run(page);
+    });
+  }
+}
+
+export class WaitForThirtySeconds extends TestPoint {
+  constructor() {
+    super("TP0004", "Wait for file injection", async () => {
+      logger.info("Waiting for ingestion");
+      await wait(30_000);
+      logger.info("Done waiting");
     });
   }
 }
