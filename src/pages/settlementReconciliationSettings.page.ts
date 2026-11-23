@@ -6,10 +6,7 @@ import { logger } from "../configuration/logger";
 export class SettlementReconciliationSettingsPage extends BasePage {
   static readonly path = "/settlement-reconciliation-settings";
   static testPoints(): TestPoint[] {
-    return [
-      new OpenSettlementReconciliationSettingsPage(),
-      new InspectSettlementReconciliationSettingsTriggerNow(),
-    ];
+    return [new OpenSettlementReconciliationSettingsPage(), new InspectSettlementReconciliationSettingsTriggerNow()];
   }
 
   readonly triggerNow: Locator;
@@ -34,10 +31,13 @@ export class InspectSettlementReconciliationSettingsTriggerNow extends TestPoint
   constructor() {
     super(
       "TP-BTN-SETTLEMENT_RECONCILIATION_SETTINGS-01",
-      "Inspect (do not click) \"Trigger now\" on /settlement-reconciliation-settings",
+      'Inspect (do not click) "Trigger now" on /settlement-reconciliation-settings',
       async (page) => {
         const pom = new SettlementReconciliationSettingsPage(page);
-        await pom.expectVisible(pom.triggerNow, "TP-BTN-SETTLEMENT_RECONCILIATION_SETTINGS-01 Trigger now on /settlement-reconciliation-settings");
+        await pom.expectVisible(
+          pom.triggerNow,
+          "TP-BTN-SETTLEMENT_RECONCILIATION_SETTINGS-01 Trigger now on /settlement-reconciliation-settings",
+        );
         logger.info(`Skipping click for destructive control TP-BTN-SETTLEMENT_RECONCILIATION_SETTINGS-01: Trigger now`);
       },
       "*****",

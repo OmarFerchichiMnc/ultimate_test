@@ -39,7 +39,7 @@ export class InspectImbalancedItemsDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-IMBALANCED_ITEMS-01",
-      "Inspect \"pi pi-calendar\" on /imbalanced-items",
+      'Inspect "pi pi-calendar" on /imbalanced-items',
       async (page) => {
         const pom = new ImbalancedItemsPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-IMBALANCED_ITEMS-01 pi pi-calendar on /imbalanced-items");
@@ -54,7 +54,7 @@ export class InspectImbalancedItemsSelectItemType extends TestPoint {
   constructor() {
     super(
       "TP-BTN-IMBALANCED_ITEMS-02",
-      "Inspect \"Select item type\" on /imbalanced-items",
+      'Inspect "Select item type" on /imbalanced-items',
       async (page) => {
         const pom = new ImbalancedItemsPage(page);
         await pom.expectVisible(pom.selectItemType, "TP-BTN-IMBALANCED_ITEMS-02 Select item type on /imbalanced-items");
@@ -69,7 +69,7 @@ export class InspectImbalancedItemsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-IMBALANCED_ITEMS-03",
-      "Inspect \"Search\" on /imbalanced-items",
+      'Inspect "Search" on /imbalanced-items',
       async (page) => {
         const pom = new ImbalancedItemsPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-IMBALANCED_ITEMS-03 Search on /imbalanced-items");
@@ -79,4 +79,3 @@ export class InspectImbalancedItemsSearch extends TestPoint {
     );
   }
 }
-

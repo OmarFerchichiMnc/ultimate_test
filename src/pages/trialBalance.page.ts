@@ -39,7 +39,7 @@ export class InspectTrialBalanceDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-TRIAL_BALANCE-01",
-      "Inspect \"pi pi-calendar\" on /trial-balance",
+      'Inspect "pi pi-calendar" on /trial-balance',
       async (page) => {
         const pom = new TrialBalancePage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-TRIAL_BALANCE-01 pi pi-calendar on /trial-balance");
@@ -54,10 +54,13 @@ export class InspectTrialBalanceSelectAccountNumber extends TestPoint {
   constructor() {
     super(
       "TP-BTN-TRIAL_BALANCE-02",
-      "Inspect \"Select account number\" on /trial-balance",
+      'Inspect "Select account number" on /trial-balance',
       async (page) => {
         const pom = new TrialBalancePage(page);
-        await pom.expectVisible(pom.selectAccountNumber, "TP-BTN-TRIAL_BALANCE-02 Select account number on /trial-balance");
+        await pom.expectVisible(
+          pom.selectAccountNumber,
+          "TP-BTN-TRIAL_BALANCE-02 Select account number on /trial-balance",
+        );
       },
       "*****",
       "ready",
@@ -69,7 +72,7 @@ export class InspectTrialBalanceSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-TRIAL_BALANCE-03",
-      "Inspect \"Search\" on /trial-balance",
+      'Inspect "Search" on /trial-balance',
       async (page) => {
         const pom = new TrialBalancePage(page);
         await pom.expectVisible(pom.search, "TP-BTN-TRIAL_BALANCE-03 Search on /trial-balance");
@@ -79,4 +82,3 @@ export class InspectTrialBalanceSearch extends TestPoint {
     );
   }
 }
-

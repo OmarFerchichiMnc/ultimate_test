@@ -40,7 +40,7 @@ export class InspectGeneralSettingsRefresh extends TestPoint {
   constructor() {
     super(
       "TP-BTN-GENERAL_SETTINGS-01",
-      "Inspect \"Refresh\" on /general-settings",
+      'Inspect "Refresh" on /general-settings',
       async (page) => {
         const pom = new GeneralSettingsPage(page);
         await pom.expectVisible(pom.refresh, "TP-BTN-GENERAL_SETTINGS-01 Refresh on /general-settings");
@@ -55,7 +55,7 @@ export class InspectGeneralSettingsTriggerNow extends TestPoint {
   constructor() {
     super(
       "TP-BTN-GENERAL_SETTINGS-02",
-      "Inspect (do not click) \"Trigger now\" on /general-settings",
+      'Inspect (do not click) "Trigger now" on /general-settings',
       async (page) => {
         const pom = new GeneralSettingsPage(page);
         await pom.expectVisible(pom.triggerNow, "TP-BTN-GENERAL_SETTINGS-02 Trigger now on /general-settings");
@@ -71,7 +71,7 @@ export class InspectGeneralSettingsGenerateNow extends TestPoint {
   constructor() {
     super(
       "TP-BTN-GENERAL_SETTINGS-03",
-      "Inspect (do not click) \"Generate now\" on /general-settings",
+      'Inspect (do not click) "Generate now" on /general-settings',
       async (page) => {
         const pom = new GeneralSettingsPage(page);
         await pom.expectVisible(pom.generateNow, "TP-BTN-GENERAL_SETTINGS-03 Generate now on /general-settings");
@@ -82,4 +82,3 @@ export class InspectGeneralSettingsGenerateNow extends TestPoint {
     );
   }
 }
-

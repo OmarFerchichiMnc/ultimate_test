@@ -48,7 +48,7 @@ export class InspectSettlementDisputesDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTLEMENT_DISPUTES-01",
-      "Inspect \"pi pi-calendar\" on /settlement-disputes",
+      'Inspect "pi pi-calendar" on /settlement-disputes',
       async (page) => {
         const pom = new SettlementDisputesPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-SETTLEMENT_DISPUTES-01 pi pi-calendar on /settlement-disputes");
@@ -63,10 +63,13 @@ export class InspectSettlementDisputesSelectCustomerAcquirer extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTLEMENT_DISPUTES-02",
-      "Inspect \"Select Customer/Acquirer\" on /settlement-disputes",
+      'Inspect "Select Customer/Acquirer" on /settlement-disputes',
       async (page) => {
         const pom = new SettlementDisputesPage(page);
-        await pom.expectVisible(pom.selectCustomerAcquirer, "TP-BTN-SETTLEMENT_DISPUTES-02 Select Customer/Acquirer on /settlement-disputes");
+        await pom.expectVisible(
+          pom.selectCustomerAcquirer,
+          "TP-BTN-SETTLEMENT_DISPUTES-02 Select Customer/Acquirer on /settlement-disputes",
+        );
       },
       "*****",
       "ready",
@@ -78,10 +81,13 @@ export class InspectSettlementDisputesSelectStatus extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTLEMENT_DISPUTES-03",
-      "Inspect \"Select status\" on /settlement-disputes",
+      'Inspect "Select status" on /settlement-disputes',
       async (page) => {
         const pom = new SettlementDisputesPage(page);
-        await pom.expectVisible(pom.selectStatus, "TP-BTN-SETTLEMENT_DISPUTES-03 Select status on /settlement-disputes");
+        await pom.expectVisible(
+          pom.selectStatus,
+          "TP-BTN-SETTLEMENT_DISPUTES-03 Select status on /settlement-disputes",
+        );
       },
       "*****",
       "ready",
@@ -93,10 +99,13 @@ export class InspectSettlementDisputesDisputeAmount extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTLEMENT_DISPUTES-04",
-      "Inspect \"Dispute Amount\" on /settlement-disputes",
+      'Inspect "Dispute Amount" on /settlement-disputes',
       async (page) => {
         const pom = new SettlementDisputesPage(page);
-        await pom.expectVisible(pom.disputeAmount, "TP-BTN-SETTLEMENT_DISPUTES-04 Dispute Amount on /settlement-disputes");
+        await pom.expectVisible(
+          pom.disputeAmount,
+          "TP-BTN-SETTLEMENT_DISPUTES-04 Dispute Amount on /settlement-disputes",
+        );
       },
       "*****",
       "ready",
@@ -108,10 +117,13 @@ export class InspectSettlementDisputesExtraFiltersButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTLEMENT_DISPUTES-05",
-      "Inspect \"pi pi-filter\" on /settlement-disputes",
+      'Inspect "pi pi-filter" on /settlement-disputes',
       async (page) => {
         const pom = new SettlementDisputesPage(page);
-        await pom.expectVisible(pom.extraFiltersButton, "TP-BTN-SETTLEMENT_DISPUTES-05 pi pi-filter on /settlement-disputes");
+        await pom.expectVisible(
+          pom.extraFiltersButton,
+          "TP-BTN-SETTLEMENT_DISPUTES-05 pi pi-filter on /settlement-disputes",
+        );
       },
       "*****",
       "ready",
@@ -123,7 +135,7 @@ export class InspectSettlementDisputesSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTLEMENT_DISPUTES-06",
-      "Inspect \"Search\" on /settlement-disputes",
+      'Inspect "Search" on /settlement-disputes',
       async (page) => {
         const pom = new SettlementDisputesPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-SETTLEMENT_DISPUTES-06 Search on /settlement-disputes");
@@ -133,4 +145,3 @@ export class InspectSettlementDisputesSearch extends TestPoint {
     );
   }
 }
-

@@ -48,10 +48,13 @@ export class InspectSecondaryMatchingRulesList extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-01",
-      "Inspect \"pi pi-list\" on /matching-rules/secondary-matching",
+      'Inspect "pi pi-list" on /matching-rules/secondary-matching',
       async (page) => {
         const pom = new SecondaryMatchingRulesPage(page);
-        await pom.expectVisible(pom.list, "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-01 pi pi-list on /matching-rules/secondary-matching");
+        await pom.expectVisible(
+          pom.list,
+          "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-01 pi pi-list on /matching-rules/secondary-matching",
+        );
       },
       "*****",
       "ready",
@@ -63,10 +66,13 @@ export class InspectSecondaryMatchingRulesPaginatorFirst extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-02",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /matching-rules/secondary-matching",
+      'Inspect "paginator:pi pi-angle-double-left" on /matching-rules/secondary-matching',
       async (page) => {
         const pom = new SecondaryMatchingRulesPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-02 paginator:pi pi-angle-double-left on /matching-rules/secondary-matching");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-02 paginator:pi pi-angle-double-left on /matching-rules/secondary-matching",
+        );
       },
       "*****",
       "ready",
@@ -78,10 +84,13 @@ export class InspectSecondaryMatchingRulesPaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-03",
-      "Inspect \"paginator:pi pi-angle-left\" on /matching-rules/secondary-matching",
+      'Inspect "paginator:pi pi-angle-left" on /matching-rules/secondary-matching',
       async (page) => {
         const pom = new SecondaryMatchingRulesPage(page);
-        await pom.expectVisible(pom.paginatorPrev, "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-03 paginator:pi pi-angle-left on /matching-rules/secondary-matching");
+        await pom.expectVisible(
+          pom.paginatorPrev,
+          "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-03 paginator:pi pi-angle-left on /matching-rules/secondary-matching",
+        );
       },
       "*****",
       "ready",
@@ -93,10 +102,13 @@ export class InspectSecondaryMatchingRulesPaginatorPage1 extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-04",
-      "Inspect \"paginator:1\" on /matching-rules/secondary-matching",
+      'Inspect "paginator:1" on /matching-rules/secondary-matching',
       async (page) => {
         const pom = new SecondaryMatchingRulesPage(page);
-        await pom.expectVisible(pom.paginatorPage1, "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-04 paginator:1 on /matching-rules/secondary-matching");
+        await pom.expectVisible(
+          pom.paginatorPage1,
+          "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-04 paginator:1 on /matching-rules/secondary-matching",
+        );
       },
       "*****",
       "ready",
@@ -108,10 +120,13 @@ export class InspectSecondaryMatchingRulesPaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-05",
-      "Inspect \"paginator:pi pi-angle-right\" on /matching-rules/secondary-matching",
+      'Inspect "paginator:pi pi-angle-right" on /matching-rules/secondary-matching',
       async (page) => {
         const pom = new SecondaryMatchingRulesPage(page);
-        await pom.expectVisible(pom.paginatorNext, "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-05 paginator:pi pi-angle-right on /matching-rules/secondary-matching");
+        await pom.expectVisible(
+          pom.paginatorNext,
+          "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-05 paginator:pi pi-angle-right on /matching-rules/secondary-matching",
+        );
       },
       "*****",
       "ready",
@@ -123,14 +138,16 @@ export class InspectSecondaryMatchingRulesPaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-06",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /matching-rules/secondary-matching",
+      'Inspect "paginator:pi pi-angle-double-right" on /matching-rules/secondary-matching',
       async (page) => {
         const pom = new SecondaryMatchingRulesPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-06 paginator:pi pi-angle-double-right on /matching-rules/secondary-matching");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-MATCHING_RULES_SECONDARY_MATCHING-06 paginator:pi pi-angle-double-right on /matching-rules/secondary-matching",
+        );
       },
       "*****",
       "ready",
     );
   }
 }
-

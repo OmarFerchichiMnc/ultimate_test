@@ -39,7 +39,7 @@ export class InspectInstallmentsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-INSTALLMENTS-01",
-      "Inspect \"Search\" on /installments",
+      'Inspect "Search" on /installments',
       async (page) => {
         const pom = new InstallmentsPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-INSTALLMENTS-01 Search on /installments");
@@ -54,10 +54,13 @@ export class InspectInstallmentsPendingForInstallmentsTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-INSTALLMENTS-02",
-      "Inspect \"Pending for Installments\" on /installments",
+      'Inspect "Pending for Installments" on /installments',
       async (page) => {
         const pom = new InstallmentsPage(page);
-        await pom.expectVisible(pom.pendingForInstallmentsTab, "TP-BTN-INSTALLMENTS-02 Pending for Installments on /installments");
+        await pom.expectVisible(
+          pom.pendingForInstallmentsTab,
+          "TP-BTN-INSTALLMENTS-02 Pending for Installments on /installments",
+        );
       },
       "*****",
       "ready",
@@ -69,14 +72,16 @@ export class InspectInstallmentsCompletedInstallmentsTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-INSTALLMENTS-03",
-      "Inspect \"Completed Installments\" on /installments",
+      'Inspect "Completed Installments" on /installments',
       async (page) => {
         const pom = new InstallmentsPage(page);
-        await pom.expectVisible(pom.completedInstallmentsTab, "TP-BTN-INSTALLMENTS-03 Completed Installments on /installments");
+        await pom.expectVisible(
+          pom.completedInstallmentsTab,
+          "TP-BTN-INSTALLMENTS-03 Completed Installments on /installments",
+        );
       },
       "*****",
       "ready",
     );
   }
 }
-

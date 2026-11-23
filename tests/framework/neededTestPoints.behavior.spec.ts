@@ -75,13 +75,21 @@ test.describe("scenario TestPoints without a browser", () => {
 
 test.describe("scenario TestPoints on local pages", () => {
   test("FileDashboardAssertIngestionStatus reads the status column", async ({ page }) => {
-    await mount(page, "/etl-files", grid(["File Name", "Status", "Total transactions"], [["Sale.csv", "Accepted", "10"]]));
+    await mount(
+      page,
+      "/etl-files",
+      grid(["File Name", "Status", "Total transactions"], [["Sale.csv", "Accepted", "10"]]),
+    );
     await new FileDashboardAssertIngestionStatus("Accepted").run(page);
     await expect(new FileDashboardAssertIngestionStatus("Rejected").run(page)).rejects.toThrow("got 'Accepted'");
   });
 
   test("FileDashboardAssertTotalTransactions compares the count", async ({ page }) => {
-    await mount(page, "/etl-files", grid(["File Name", "Status", "Total transactions"], [["Sale.csv", "Accepted", "10"]]));
+    await mount(
+      page,
+      "/etl-files",
+      grid(["File Name", "Status", "Total transactions"], [["Sale.csv", "Accepted", "10"]]),
+    );
     await new FileDashboardAssertTotalTransactions(10).run(page);
     await expect(new FileDashboardAssertTotalTransactions(9).run(page)).rejects.toThrow("total 10 instead of 9");
   });
@@ -90,7 +98,10 @@ test.describe("scenario TestPoints on local pages", () => {
     await mount(
       page,
       "/etl-files",
-      grid(["File Name", "Status", "Total transactions"], [["Sale.csv", "Accepted", "10 Eligible: 10 Not Eligible: 0"]]),
+      grid(
+        ["File Name", "Status", "Total transactions"],
+        [["Sale.csv", "Accepted", "10 Eligible: 10 Not Eligible: 0"]],
+      ),
     );
     await new FileDashboardAssertTotalTransactions(10).run(page);
     await new FileDashboardAssertTotalTransactions(10, 10).run(page);
@@ -118,7 +129,9 @@ test.describe("scenario TestPoints on local pages", () => {
       grid(["File Name", "Status"], [["Sale.csv", "Accepted"]]) + exportButton("x,y\nz,w\n"),
     );
     await new FileDashboardClickExport().run(page);
-    await expect(new FileDashboardAssertExportContent().run(page)).rejects.toThrow("does not contain the first grid row");
+    await expect(new FileDashboardAssertExportContent().run(page)).rejects.toThrow(
+      "does not contain the first grid row",
+    );
   });
 
   test("PendingItemsAssertOnHold needs both the status and the message", async ({ page }) => {
@@ -130,7 +143,7 @@ test.describe("scenario TestPoints on local pages", () => {
     await mount(
       page,
       "/pending-items",
-      `${grid(["Id", "Action"], [["S1", '<button onclick="document.getElementById(\'confirm\').hidden = false">Delete</button>']])}
+      `${grid(["Id", "Action"], [["S1", "<button onclick=\"document.getElementById('confirm').hidden = false\">Delete</button>"]])}
        <div id="confirm" hidden><button onclick="document.querySelector('tbody tr').remove(); document.body.dataset.deleted = 'yes'">Yes</button></div>`,
     );
     await new PendingItemsDeleteFirstItem().run(page);

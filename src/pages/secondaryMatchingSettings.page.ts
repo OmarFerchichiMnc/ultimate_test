@@ -6,10 +6,7 @@ import { logger } from "../configuration/logger";
 export class SecondaryMatchingSettingsPage extends BasePage {
   static readonly path = "/secondary-matching-settings";
   static testPoints(): TestPoint[] {
-    return [
-      new OpenSecondaryMatchingSettingsPage(),
-      new InspectSecondaryMatchingSettingsTriggerNow(),
-    ];
+    return [new OpenSecondaryMatchingSettingsPage(), new InspectSecondaryMatchingSettingsTriggerNow()];
   }
 
   readonly triggerNow: Locator;
@@ -34,10 +31,13 @@ export class InspectSecondaryMatchingSettingsTriggerNow extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SECONDARY_MATCHING_SETTINGS-01",
-      "Inspect (do not click) \"Trigger now\" on /secondary-matching-settings",
+      'Inspect (do not click) "Trigger now" on /secondary-matching-settings',
       async (page) => {
         const pom = new SecondaryMatchingSettingsPage(page);
-        await pom.expectVisible(pom.triggerNow, "TP-BTN-SECONDARY_MATCHING_SETTINGS-01 Trigger now on /secondary-matching-settings");
+        await pom.expectVisible(
+          pom.triggerNow,
+          "TP-BTN-SECONDARY_MATCHING_SETTINGS-01 Trigger now on /secondary-matching-settings",
+        );
         logger.info(`Skipping click for destructive control TP-BTN-SECONDARY_MATCHING_SETTINGS-01: Trigger now`);
       },
       "*****",
@@ -45,4 +45,3 @@ export class InspectSecondaryMatchingSettingsTriggerNow extends TestPoint {
     );
   }
 }
-

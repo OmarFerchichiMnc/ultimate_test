@@ -39,10 +39,13 @@ export class InspectCashForecastDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-DASHBOARD_CASH_FORECAST-01",
-      "Inspect \"pi pi-calendar\" on /dashboard/cash-forecast",
+      'Inspect "pi pi-calendar" on /dashboard/cash-forecast',
       async (page) => {
         const pom = new CashForecastPage(page);
-        await pom.expectVisible(pom.dateRange, "TP-BTN-DASHBOARD_CASH_FORECAST-01 pi pi-calendar on /dashboard/cash-forecast");
+        await pom.expectVisible(
+          pom.dateRange,
+          "TP-BTN-DASHBOARD_CASH_FORECAST-01 pi pi-calendar on /dashboard/cash-forecast",
+        );
       },
       "*****",
       "ready",
@@ -54,10 +57,13 @@ export class InspectCashForecastSelectCustomerAcquirer extends TestPoint {
   constructor() {
     super(
       "TP-BTN-DASHBOARD_CASH_FORECAST-02",
-      "Inspect \"Select Customer/Acquirer\" on /dashboard/cash-forecast",
+      'Inspect "Select Customer/Acquirer" on /dashboard/cash-forecast',
       async (page) => {
         const pom = new CashForecastPage(page);
-        await pom.expectVisible(pom.selectCustomerAcquirer, "TP-BTN-DASHBOARD_CASH_FORECAST-02 Select Customer/Acquirer on /dashboard/cash-forecast");
+        await pom.expectVisible(
+          pom.selectCustomerAcquirer,
+          "TP-BTN-DASHBOARD_CASH_FORECAST-02 Select Customer/Acquirer on /dashboard/cash-forecast",
+        );
       },
       "*****",
       "ready",
@@ -69,7 +75,7 @@ export class InspectCashForecastSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-DASHBOARD_CASH_FORECAST-03",
-      "Inspect \"Search\" on /dashboard/cash-forecast",
+      'Inspect "Search" on /dashboard/cash-forecast',
       async (page) => {
         const pom = new CashForecastPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-DASHBOARD_CASH_FORECAST-03 Search on /dashboard/cash-forecast");
@@ -79,4 +85,3 @@ export class InspectCashForecastSearch extends TestPoint {
     );
   }
 }
-

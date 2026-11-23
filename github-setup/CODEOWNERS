@@ -1,0 +1,22 @@
+# Code owners: GitHub asks these people to review every pull request that touches their paths.
+# With "Require review from Code Owners" on in the main branch protection, their approval is mandatory.
+# The last matching line wins. Add teammates' GitHub logins (or a team, e.g. @org/qa-team) as they join.
+
+# Default owner for everything.
+*                                   @OmarFerchichiMnc
+
+# Framework core and shared tooling: changes here affect every test.
+/src/testpoint/                     @OmarFerchichiMnc
+/tests/runTestPoints.ts             @OmarFerchichiMnc
+/src/configuration/                 @OmarFerchichiMnc
+/src/generation/                    @OmarFerchichiMnc
+/scripts/                           @OmarFerchichiMnc
+/playwright.config.ts               @OmarFerchichiMnc
+/package.json                       @OmarFerchichiMnc
+/package-lock.json                  @OmarFerchichiMnc
+/eslint.config.mjs                  @OmarFerchichiMnc
+/.github/                           @OmarFerchichiMnc
+
+# Per-domain owners: give each domain to the person who maintains it, for example
+# /src/testpoints/matchedItems.ts   @teammate-login
+# /src/pages/matchedItems.page.ts   @teammate-login

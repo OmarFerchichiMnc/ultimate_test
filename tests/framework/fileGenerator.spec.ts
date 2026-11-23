@@ -86,11 +86,12 @@ test.describe("file generator", () => {
     });
   });
 
-  test("many-to-many groups share card keys", () => {
+  test("many-to-many groups share a PNR", () => {
+    // N:N molecules are keyed on the PNR (see moleculeKey in fileGenerator.ts): 10 atoms -> 2 groups of 5.
     const data = planDataset({ scenarioId: "T", strategy: "manyToMany" }, settings());
     expect(data.sales).toHaveLength(10);
-    const keys = new Set(data.sales.map((s) => `${s.ccBin}-${s.ccFourLastDigits}-${s.approvalCode}`));
-    expect(keys.size).toBe(2);
+    expect(new Set(data.sales.map((s) => s.pnrReference)).size).toBe(2);
+    data.sales.forEach((sale, i) => expect(data.settlements[i].pnrReference).toBe(sale.pnrReference));
   });
 
   test("one-to-many and many-to-one split amounts without losing cents", () => {
@@ -109,20 +110,34 @@ test.describe("file generator", () => {
   });
 
   test("bank deposit sums settlements per currency and date", () => {
+    // Multi-currency books settlements in the two currencies other than EUR, so one deposit each.
     const data = planDataset({ scenarioId: "T", multiCurrency: true, transactionCount: 6 }, settings());
     const deposits = rows(data.bankDeposit.csv);
-    expect(deposits).toHaveLength(3);
-    const total = (list: { amount: string }[]) => list.reduce((sum, t) => sum + Math.round(Number(t.amount) * 100), 0);
-    const depositTotal = deposits.reduce((sum, d) => sum + Math.round(Number(d.amountInDepositCurrency) * 100), 0);
-    expect(depositTotal).toBe(total(data.settlements));
+    const settled = rows(data.settlement.csv);
+    const cents = (value: string) => Math.round(Number(value) * 100);
+    const expected = new Map<string, number>();
+    for (const s of settled) {
+      const key = `${s.settlementCurrency}|${s.paymentDate}`;
+      expected.set(key, (expected.get(key) ?? 0) + cents(s.netAmountInSettlementCurrency));
+    }
+    expect(deposits).toHaveLength(expected.size);
+    for (const d of deposits) {
+      expect(cents(d.amountInDepositCurrency), `${d.depositCurrency} deposit`).toBe(
+        expected.get(`${d.depositCurrency}|${d.depositDate}`),
+      );
+    }
   });
 
   test("variants produce the intended bad data", () => {
     const s = settings();
     expect(rows(planDataset({ scenarioId: "T", variant: "duplicateTransaction" }, s).sale.csv)).toHaveLength(11);
-    expect(rows(planDataset({ scenarioId: "T", variant: "unknownFop" }, s).sale.csv)[0].alternateFormOfPaymentCode).toBe("ZZZZ");
+    expect(
+      rows(planDataset({ scenarioId: "T", variant: "unknownFop" }, s).sale.csv)[0].alternateFormOfPaymentCode,
+    ).toBe("ZZZZ");
     expect(rows(planDataset({ scenarioId: "T", variant: "missingMerchant" }, s).settlement.csv)[0].merchantId).toBe("");
-    expect(planDataset({ scenarioId: "T", variant: "corruptedStructure" }, s).sale.csv.split("\n")[0]).not.toContain("documentNumber");
+    expect(planDataset({ scenarioId: "T", variant: "corruptedStructure" }, s).sale.csv.split("\n")[0]).not.toContain(
+      "documentNumber",
+    );
     const discrepancy = planDataset({ scenarioId: "T", variant: "amountDiscrepancy" }, s);
     expect(rows(discrepancy.settlement.csv)[0].grossAmountInSettlementCurrency).not.toBe(discrepancy.sales[0].amount);
     const refunds = rows(planDataset({ scenarioId: "T", withRefunds: true }, s).sale.csv);
@@ -141,7 +156,9 @@ test.describe("file generator", () => {
   });
 
   test("scenario profiles", () => {
-    expect(profileFor("MR-03", "Many-to-many match, settlement reconciliation, mono-currency")).toEqual({ strategy: "manyToMany" });
+    expect(profileFor("MR-03", "Many-to-many match, settlement reconciliation, mono-currency")).toEqual({
+      strategy: "manyToMany",
+    });
     expect(profileFor("MR-02", "Basic 1:1 match, settlement reconciliation, multi-currency").multiCurrency).toBe(true);
     expect(profileFor("DI-10", "Missing master data (FOP)").variant).toBe("unknownFop");
     expect(profileFor("MR-28", "Settlement sealing with discrepancy").variant).toBe("amountDiscrepancy");

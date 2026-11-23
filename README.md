@@ -20,6 +20,16 @@ Start the DB tunnel before filter tests:
 
 Tests then use `localhost:5554` → `db.dev.adad.internal:5432`, database `staging`, schema `QA`.
 
+## Working in a team
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before your first pull request. Before pushing:
+
+```sh
+npm run verify        # typecheck, lint, format check, scenario sync, framework tests (what CI runs)
+npm run format        # fix formatting
+npm run lint:fix      # fix lint findings that can be fixed automatically
+```
+
 ## Run
 
 ```sh
@@ -39,7 +49,7 @@ Scenarios that upload files no longer reuse the static CSVs in `docs/test_files/
 ```ts
 const data = scenarioDataset("MR-01", { strategy: "documentNumberAndFop" });
 await runTestPoints(page, [
-  new GenerateScenarioFiles(data),                       // writes docs/test_files/generated/<run>/
+  new GenerateScenarioFiles(data), // writes docs/test_files/generated/<run>/
   new ExecuteUpload(data.dir, config.adadPaths.sales, data.sale.fileName),
   new FileDashboardAssertTotalTransactions(data.sale.count),
   new SaleUIFilterDocumentNumber(data.documentNumber),
@@ -51,13 +61,14 @@ await runTestPoints(page, [
 - Options: `multiCurrency`, `withRefunds`, `transactionCount`, `paymentDate`.
 - Defaults (count, payment date, airline, office id, merchant id...) live under `generation:` in `src/configuration/config.yaml`; `GEN_PAYMENT_DATE`, `GEN_TRANSACTION_COUNT`, `GEN_ACCOUNTING_CURRENCY` and `GEN_OUTPUT_DIR` override them.
 - Each generated folder has a `manifest.json` with the keys used. The folder is git-ignored.
-- `tests/scenarios/*.spec.ts` are generated from `docs/test_scenarios/adad_test_scenarios.csv`: run `npm run scenarios:generate`. The strategy/variant for each scenario is chosen in `src/generation/scenarioProfiles.ts`.
+- `tests/scenarios/*.spec.ts` are generated from `docs/test_scenarios/adad_test_scenarios.csv`: run `npm run scenarios:generate`. Hand-edited specs are never overwritten: see "Generated scenario specs" in [CONTRIBUTING.md](CONTRIBUTING.md). The strategy/variant for each scenario is chosen in `src/generation/scenarioProfiles.ts`.
 
 ## Layout
 
 ```
 src/
   pages/                  # one .page.ts per route (locators + TestPoints)
+  testpoints/             # scenario TestPoints, one file per domain (matchedItems.ts, accounting.ts, ...)
   testpoint/TestPoint.ts
   generation/             # Sale/Settlement/BankDeposit file generator + GenerateScenarioFiles
   configuration/          # yaml + env, login, DB, SFTP

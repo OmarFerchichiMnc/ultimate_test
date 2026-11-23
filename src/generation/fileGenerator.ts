@@ -129,36 +129,117 @@ export type ScenarioDataset = {
 // ---------------------------------------------------------------------------
 
 export const SALE_HEADERS = [
-  "agentCode", "pnrReference", "passengerName", "passengerType", "documentNumber", "documentType",
-  "transactionCode", "transactionType", "reasonForIssuanceCode", "paymentDate", "alternateFormOfPaymentCode",
-  "approvalCode", "invoiceNumber", "grossAmountInPaymentCurrency", "paymentCurrency", "ccNumber", "ccBin",
-  "ccFourLastDigits", "airline", "company", "orderId", "paymentId", "customerProfileId", "saleChannelType",
-  "officeId", "additionalReferenceKey1", "additionalReferenceKey2", "additionalReferenceKey3", "serviceType",
-  "totalInstallmentCount", "city", "country", "periodFrom", "periodTo", "reportingSystemIdentifier",
-  "grossAmountInSaleCurrency", "saleCurrency", "originalFirstIssuanceDate", "fopSubCode", "alternateOfficeId",
-  "pspMid", "psp",
+  "agentCode",
+  "pnrReference",
+  "passengerName",
+  "passengerType",
+  "documentNumber",
+  "documentType",
+  "transactionCode",
+  "transactionType",
+  "reasonForIssuanceCode",
+  "paymentDate",
+  "alternateFormOfPaymentCode",
+  "approvalCode",
+  "invoiceNumber",
+  "grossAmountInPaymentCurrency",
+  "paymentCurrency",
+  "ccNumber",
+  "ccBin",
+  "ccFourLastDigits",
+  "airline",
+  "company",
+  "orderId",
+  "paymentId",
+  "customerProfileId",
+  "saleChannelType",
+  "officeId",
+  "additionalReferenceKey1",
+  "additionalReferenceKey2",
+  "additionalReferenceKey3",
+  "serviceType",
+  "totalInstallmentCount",
+  "city",
+  "country",
+  "periodFrom",
+  "periodTo",
+  "reportingSystemIdentifier",
+  "grossAmountInSaleCurrency",
+  "saleCurrency",
+  "originalFirstIssuanceDate",
+  "fopSubCode",
+  "alternateOfficeId",
+  "pspMid",
+  "psp",
 ] as const;
 
 export const SETTLEMENT_HEADERS = [
-  "pnrReference", "documentNumber", "documentType", "transactionCode", "transactionType", "settlementDate",
-  "paymentDate", "alternateFormOfPaymentCode", "serviceFeeRate", "ccNumber", "ccBin", "ccFourLastDigits",
-  "approvalCode", "merchantId", "providerName", "providerReceptionDate", "airline", "orderId", "mcpFxRate",
-  "paymentId", "arn", "customerProfileId", "issuanceBank", "additionalReferenceKey1", "additionalReferenceKey2",
-  "additionalReferenceKey3", "isInstallment", "installmentCount", "installmentNumber", "paymentCurrency",
-  "settlementCurrency", "firstInstallmentAmountInPaymentCurrency", "firstInstallmentAmountInSettlementCurrency",
-  "grossAmountInPaymentCurrency", "grossAmountInSettlementCurrency", "netAmountInPaymentCurrency",
-  "netAmountInSettlementCurrency", "discountRateAmountInPaymentCurrency", "discountRateAmountInSettlementCurrency",
-  "interchangeFeeAmountInPaymentCurrency", "interchangeFeeAmountInSettlementCurrency",
-  "acquirerMarkupAmountInPaymentCurrency", "acquirerMarkupAmountInSettlementCurrency",
-  "cardSchemeFeeAmountInPaymentCurrency", "cardSchemeFeeAmountInSettlementCurrency",
-  "totalInstallementAmountInPaymentCurrency", "totalInstallementAmountInSettlementCurrency", "confirmationStatus",
-  "provisionalConfirmedAssociationKey", "originalFirstIssuanceDate", "fopSubCode", "paymentOrderReference",
+  "pnrReference",
+  "documentNumber",
+  "documentType",
+  "transactionCode",
+  "transactionType",
+  "settlementDate",
+  "paymentDate",
+  "alternateFormOfPaymentCode",
+  "serviceFeeRate",
+  "ccNumber",
+  "ccBin",
+  "ccFourLastDigits",
+  "approvalCode",
+  "merchantId",
+  "providerName",
+  "providerReceptionDate",
+  "airline",
+  "orderId",
+  "mcpFxRate",
+  "paymentId",
+  "arn",
+  "customerProfileId",
+  "issuanceBank",
+  "additionalReferenceKey1",
+  "additionalReferenceKey2",
+  "additionalReferenceKey3",
+  "isInstallment",
+  "installmentCount",
+  "installmentNumber",
+  "paymentCurrency",
+  "settlementCurrency",
+  "firstInstallmentAmountInPaymentCurrency",
+  "firstInstallmentAmountInSettlementCurrency",
+  "grossAmountInPaymentCurrency",
+  "grossAmountInSettlementCurrency",
+  "netAmountInPaymentCurrency",
+  "netAmountInSettlementCurrency",
+  "discountRateAmountInPaymentCurrency",
+  "discountRateAmountInSettlementCurrency",
+  "interchangeFeeAmountInPaymentCurrency",
+  "interchangeFeeAmountInSettlementCurrency",
+  "acquirerMarkupAmountInPaymentCurrency",
+  "acquirerMarkupAmountInSettlementCurrency",
+  "cardSchemeFeeAmountInPaymentCurrency",
+  "cardSchemeFeeAmountInSettlementCurrency",
+  "totalInstallementAmountInPaymentCurrency",
+  "totalInstallementAmountInSettlementCurrency",
+  "confirmationStatus",
+  "provisionalConfirmedAssociationKey",
+  "originalFirstIssuanceDate",
+  "fopSubCode",
+  "paymentOrderReference",
   "balanceTransferReference",
 ] as const;
 
 export const BANK_DEPOSIT_HEADERS = [
-  "recordId", "airline", "bankIdentifierCode", "acquirerName", "bankAccountNumber", "amountInDepositCurrency",
-  "depositCurrency", "depositDate", "description", "bankDepositReference",
+  "recordId",
+  "airline",
+  "bankIdentifierCode",
+  "acquirerName",
+  "bankAccountNumber",
+  "amountInDepositCurrency",
+  "depositCurrency",
+  "depositDate",
+  "description",
+  "bankDepositReference",
 ] as const;
 
 const MULTI_CURRENCIES = ["EUR", "USD", "GBP"];
@@ -420,7 +501,11 @@ function buildPairs(
 // Row builders (SaleFileBuilder / SettlementFileBuilder / BankDepositFileBuilder)
 // ---------------------------------------------------------------------------
 
-export function saleRow(t: BaseTransaction, settings: GenerationSettings, transactionType = "SALE"): Record<string, string> {
+export function saleRow(
+  t: BaseTransaction,
+  settings: GenerationSettings,
+  transactionType = "SALE",
+): Record<string, string> {
   return {
     agentCode: settings.officeId,
     pnrReference: t.pnrReference,
@@ -528,7 +613,10 @@ export function settlementRow(t: BaseTransaction, settings: GenerationSettings):
 }
 
 /** One deposit per currency + payment date, summing the settlements (default grouping). */
-export function bankDepositRows(settlements: BaseTransaction[], settings: GenerationSettings): Record<string, string>[] {
+export function bankDepositRows(
+  settlements: BaseTransaction[],
+  settings: GenerationSettings,
+): Record<string, string>[] {
   const groups = new Map<string, { currency: string; date: string; cents: number }>();
   for (const s of settlements) {
     const currency = s.settlementCurrency ?? s.currency;
@@ -556,7 +644,9 @@ function csvCell(value: string): string {
 }
 
 export function toCsv(headers: readonly string[], rows: Record<string, string>[]): string {
-  return [headers.join(","), ...rows.map((row) => headers.map((h) => csvCell(row[h] ?? "")).join(","))].join("\n") + "\n";
+  return (
+    [headers.join(","), ...rows.map((row) => headers.map((h) => csvCell(row[h] ?? "")).join(","))].join("\n") + "\n"
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -672,7 +762,11 @@ export function planDataset(options: GenerationOptions, settings = generationSet
     saleRows = sales.flatMap((s) => [saleRow(s, settings, "SALE"), saleRow(s, settings, "REFUND")]);
   }
   saleRows = applySaleVariant(saleRows, variant);
-  const settlementRows = applySettlementVariant(settlements, settlements.map((s) => settlementRow(s, settings)), variant);
+  const settlementRows = applySettlementVariant(
+    settlements,
+    settlements.map((s) => settlementRow(s, settings)),
+    variant,
+  );
   const depositRows = bankDepositRows(settlements, settings);
 
   const now = new Date();
@@ -683,7 +777,12 @@ export function planDataset(options: GenerationOptions, settings = generationSet
   const saleHeaders =
     variant === "corruptedStructure" ? SALE_HEADERS.filter((h) => h !== "documentNumber") : SALE_HEADERS;
 
-  const file = (kind: GeneratedFile["kind"], datasource: string, headers: readonly string[], rows: Record<string, string>[]) => {
+  const file = (
+    kind: GeneratedFile["kind"],
+    datasource: string,
+    headers: readonly string[],
+    rows: Record<string, string>[],
+  ) => {
     const name = fileName(datasource, settings, stamp);
     return {
       kind,
@@ -722,7 +821,10 @@ export function planDataset(options: GenerationOptions, settings = generationSet
 }
 
 /** Writes every file of the dataset plus a manifest.json describing it. */
-export function writeDataset(dataset: ScenarioDataset, kinds: GeneratedFile["kind"][] = ["sale", "settlement", "bankDeposit"]): string[] {
+export function writeDataset(
+  dataset: ScenarioDataset,
+  kinds: GeneratedFile["kind"][] = ["sale", "settlement", "bankDeposit"],
+): string[] {
   fs.mkdirSync(dataset.dir, { recursive: true });
   const written: string[] = [];
   for (const kind of kinds) {
@@ -740,6 +842,9 @@ export function writeDataset(dataset: ScenarioDataset, kinds: GeneratedFile["kin
 }
 
 /** Convenience for specs: plan + options in one call. */
-export function scenarioDataset(scenarioId: string, options: Omit<GenerationOptions, "scenarioId"> = {}): ScenarioDataset {
+export function scenarioDataset(
+  scenarioId: string,
+  options: Omit<GenerationOptions, "scenarioId"> = {},
+): ScenarioDataset {
   return planDataset({ scenarioId, ...options });
 }

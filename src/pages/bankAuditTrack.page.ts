@@ -82,7 +82,7 @@ export class InspectBankAuditTrackSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_BANK-01",
-      "Inspect \"Search\" on /audit-track/bank",
+      'Inspect "Search" on /audit-track/bank',
       async (page) => {
         const pom = new BankAuditTrackPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-AUDIT_TRACK_BANK-01 Search on /audit-track/bank");
@@ -97,7 +97,7 @@ export class InspectBankAuditTrackDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_BANK-02",
-      "Inspect \"pi pi-calendar\" on /audit-track/bank",
+      'Inspect "pi pi-calendar" on /audit-track/bank',
       async (page) => {
         const pom = new BankAuditTrackPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-AUDIT_TRACK_BANK-02 pi pi-calendar on /audit-track/bank");
@@ -112,10 +112,13 @@ export class InspectBankAuditTrackSelectCustomerAcquirer extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_BANK-03",
-      "Inspect \"Select Customer/Acquirer\" on /audit-track/bank",
+      'Inspect "Select Customer/Acquirer" on /audit-track/bank',
       async (page) => {
         const pom = new BankAuditTrackPage(page);
-        await pom.expectVisible(pom.selectCustomerAcquirer, "TP-BTN-AUDIT_TRACK_BANK-03 Select Customer/Acquirer on /audit-track/bank");
+        await pom.expectVisible(
+          pom.selectCustomerAcquirer,
+          "TP-BTN-AUDIT_TRACK_BANK-03 Select Customer/Acquirer on /audit-track/bank",
+        );
       },
       "*****",
       "ready",
@@ -127,7 +130,7 @@ export class InspectBankAuditTrackExtraFiltersButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_BANK-04",
-      "Inspect \"pi pi-filter\" on /audit-track/bank",
+      'Inspect "pi pi-filter" on /audit-track/bank',
       async (page) => {
         const pom = new BankAuditTrackPage(page);
         await pom.expectVisible(pom.extraFiltersButton, "TP-BTN-AUDIT_TRACK_BANK-04 pi pi-filter on /audit-track/bank");
@@ -277,6 +280,21 @@ export class BankUICheckIfTableEmpty extends TestPoint {
     super("TP", "Check if bank deposit table is empty", async (page) => {
       const pom = new BankAuditTrackPage(page);
       await pom.expectTableEmpty(pom.host);
+    });
+  }
+}
+
+/** Waits for the grid to finish loading, then for a row carrying the searched reference. */
+export class BankUICheckIfTableHasReference extends TestPoint {
+  constructor(reference: string, timeoutMs = 60_000) {
+    super("TP", `Check if bank deposit table contains ${reference}`, async (page) => {
+      const pom = new BankAuditTrackPage(page);
+      await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, {
+        timeout: timeoutMs,
+      });
+      const row = pom.tableRows(pom.host).filter({ hasText: reference }).first();
+      await expect(row, `No bank deposit row for ${reference}`).toBeVisible({ timeout: timeoutMs });
+      logger.info(`bank deposit row found: ${((await row.innerText()) || "").replace(/\s*[\t\n]+\s*/g, " | ")}`);
     });
   }
 }

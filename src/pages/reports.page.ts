@@ -5,11 +5,7 @@ import { TestPoint } from "../testpoint/TestPoint";
 export class ReportsPage extends BasePage {
   static readonly path = "/reports";
   static testPoints(): TestPoint[] {
-    return [
-      new OpenReportsPage(),
-      new InspectReportsDateRange(),
-      new InspectReportsSearch(),
-    ];
+    return [new OpenReportsPage(), new InspectReportsDateRange(), new InspectReportsSearch()];
   }
 
   readonly dateRange: Locator;
@@ -36,7 +32,7 @@ export class InspectReportsDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-REPORTS-01",
-      "Inspect \"pi pi-calendar\" on /reports",
+      'Inspect "pi pi-calendar" on /reports',
       async (page) => {
         const pom = new ReportsPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-REPORTS-01 pi pi-calendar on /reports");
@@ -51,7 +47,7 @@ export class InspectReportsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-REPORTS-02",
-      "Inspect \"Search\" on /reports",
+      'Inspect "Search" on /reports',
       async (page) => {
         const pom = new ReportsPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-REPORTS-02 Search on /reports");
@@ -61,4 +57,3 @@ export class InspectReportsSearch extends TestPoint {
     );
   }
 }
-

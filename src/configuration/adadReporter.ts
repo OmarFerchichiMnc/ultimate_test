@@ -89,7 +89,10 @@ export default class AdadReporter implements Reporter {
   onEnd(result: FullResult): void {
     const logsDir = reportPath("logs");
     const names = fs.existsSync(logsDir)
-      ? fs.readdirSync(logsDir).filter((name) => name.endsWith(".log")).sort()
+      ? fs
+          .readdirSync(logsDir)
+          .filter((name) => name.endsWith(".log"))
+          .sort()
       : [];
     const combined = names
       .map((name) => fs.readFileSync(path.join(logsDir, name), "utf8"))

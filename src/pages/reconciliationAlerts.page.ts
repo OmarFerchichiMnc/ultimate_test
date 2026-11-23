@@ -42,10 +42,13 @@ export class InspectReconciliationAlertsDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-RECONCILIATION_ALERTS-01",
-      "Inspect \"pi pi-calendar\" on /reconciliation-alerts",
+      'Inspect "pi pi-calendar" on /reconciliation-alerts',
       async (page) => {
         const pom = new ReconciliationAlertsPage(page);
-        await pom.expectVisible(pom.dateRange, "TP-BTN-RECONCILIATION_ALERTS-01 pi pi-calendar on /reconciliation-alerts");
+        await pom.expectVisible(
+          pom.dateRange,
+          "TP-BTN-RECONCILIATION_ALERTS-01 pi pi-calendar on /reconciliation-alerts",
+        );
       },
       "*****",
       "ready",
@@ -57,10 +60,13 @@ export class InspectReconciliationAlertsSelectAlertType extends TestPoint {
   constructor() {
     super(
       "TP-BTN-RECONCILIATION_ALERTS-02",
-      "Inspect \"Select alert type\" on /reconciliation-alerts",
+      'Inspect "Select alert type" on /reconciliation-alerts',
       async (page) => {
         const pom = new ReconciliationAlertsPage(page);
-        await pom.expectVisible(pom.selectAlertType, "TP-BTN-RECONCILIATION_ALERTS-02 Select alert type on /reconciliation-alerts");
+        await pom.expectVisible(
+          pom.selectAlertType,
+          "TP-BTN-RECONCILIATION_ALERTS-02 Select alert type on /reconciliation-alerts",
+        );
       },
       "*****",
       "ready",
@@ -72,10 +78,13 @@ export class InspectReconciliationAlertsSelectFopCode extends TestPoint {
   constructor() {
     super(
       "TP-BTN-RECONCILIATION_ALERTS-03",
-      "Inspect \"Select FOP Code\" on /reconciliation-alerts",
+      'Inspect "Select FOP Code" on /reconciliation-alerts',
       async (page) => {
         const pom = new ReconciliationAlertsPage(page);
-        await pom.expectVisible(pom.selectFopCode, "TP-BTN-RECONCILIATION_ALERTS-03 Select FOP Code on /reconciliation-alerts");
+        await pom.expectVisible(
+          pom.selectFopCode,
+          "TP-BTN-RECONCILIATION_ALERTS-03 Select FOP Code on /reconciliation-alerts",
+        );
       },
       "*****",
       "ready",
@@ -87,7 +96,7 @@ export class InspectReconciliationAlertsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-RECONCILIATION_ALERTS-04",
-      "Inspect \"Search\" on /reconciliation-alerts",
+      'Inspect "Search" on /reconciliation-alerts',
       async (page) => {
         const pom = new ReconciliationAlertsPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-RECONCILIATION_ALERTS-04 Search on /reconciliation-alerts");
@@ -97,4 +106,3 @@ export class InspectReconciliationAlertsSearch extends TestPoint {
     );
   }
 }
-

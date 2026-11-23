@@ -25,9 +25,9 @@ export type Scenario = {
   steps: ScenarioStep[];
 };
 
-const DATE = "01/01/2026 - 31/01/2026";
-const PNR = "Q8E3G2";
-const DOCUMENT = "2129690954587";
+export const DATE = "01/01/2026 - 31/01/2026";
+export const PNR = "Q8E3G2";
+export const DOCUMENT = "2129690954587";
 const constructors: Record<string, unknown> = { ...pages, ...fileInjection, ...navigation };
 
 function parseCsv(file: string): ScenarioStep[] {
@@ -67,7 +67,9 @@ function parseCsv(file: string): ScenarioStep[] {
     records.push(row);
   }
   const [header, ...body] = records.filter((record) => record.some((value) => value !== ""));
-  return body.map((values) => Object.fromEntries(header.map((name, index) => [name, values[index] ?? ""])) as ScenarioStep);
+  return body.map(
+    (values) => Object.fromEntries(header.map((name, index) => [name, values[index] ?? ""])) as ScenarioStep,
+  );
 }
 
 export function loadScenarios(): Scenario[] {
@@ -135,7 +137,10 @@ function fileTriple(step: ScenarioStep): [string, string, string] {
 function transactionCount(step: ScenarioStep): number {
   const file = settlementFile(step) ? config.files.settlementFile : config.files.saleFile;
   if (!fs.existsSync(file)) return 1;
-  const lines = fs.readFileSync(file, "utf8").split(/\r?\n/).filter((line) => line.trim());
+  const lines = fs
+    .readFileSync(file, "utf8")
+    .split(/\r?\n/)
+    .filter((line) => line.trim());
   return Math.max(lines.length - 1, 1);
 }
 
@@ -177,62 +182,109 @@ function argumentsFor(step: ScenarioStep): unknown[] {
   const name = step.testpoint_class;
   const [localPath, remotePath, fileName] = fileTriple(step);
   if (name === "PrepareIngestionFixture" || name === "FileDashboardUploadRecoveryFile") return [localPath];
-  if (name === "PrepareUpload" || name === "ExecuteUpload" || name === "InjectFile") return [localPath, remotePath, fileName];
+  if (name === "PrepareUpload" || name === "ExecuteUpload" || name === "InjectFile")
+    return [localPath, remotePath, fileName];
   if (name === "CheckIfFileIngested" || name === "AlertsAssertMissingFile") return [fileName];
   if (name === "FileDashboardUIFilterFileID" || name === "FileDashboardFilterUploadedFile") return [fileName];
   if (name === "FileDashboardAssertTotalTransactions") return [transactionCount(step)];
-  if (name === "FileDashboardAssertIngestionStatus" || name === "FailedTransactionsAssertRecordStatus") return [pickStatus(step)];
+  if (name === "FileDashboardAssertIngestionStatus" || name === "FailedTransactionsAssertRecordStatus")
+    return [pickStatus(step)];
   if (/DateRange$|FilterPaymentDate$|PaymentOrderDateRange$|ExpectedFileReceptionDate$/.test(name)) return [DATE];
   if (name === "AlertsApplyCombinedFilters") return ["File", "Missing"];
   if (name === "PendingItemsSelectDatasourceType" || name === "FileDashboardFilterDatasource") return ["Sale"];
   if (name === "PendingItemsOpenTab") return [pendingTab(step)];
   if (name === "PendingItemsAssertOnHold") return ["Missing FOP"];
-  if (name === "PendingItemsAssertAccepted" || name === "AssertTransactionAccepted") return [pickStatus(step, "Accepted")];
-  if (name === "PendingItemsAssertExpired" || name === "PendingItemsAssertItemOnDeletedTab" || name === "MatchedItemsAssertAtomsPending") return [DOCUMENT];
+  if (name === "PendingItemsAssertAccepted" || name === "AssertTransactionAccepted")
+    return [pickStatus(step, "Accepted")];
+  if (
+    name === "PendingItemsAssertExpired" ||
+    name === "PendingItemsAssertItemOnDeletedTab" ||
+    name === "MatchedItemsAssertAtomsPending"
+  )
+    return [DOCUMENT];
   if (name === "PointOfSalesCreateOffice") return ["OFFICE"];
   if (name === "TransactionSettingsSetExpirationThreshold") return ["adyen", "1"];
   if (name === "CashForecastSelectCustomerAcquirer") return ["adyen"];
   if (name === "CashForecastSelectCurrency") return ["EUR"];
   if (name === "FileDashboardFilterIngestionStatus") return [pickStatus(step)];
   if (name === "FailedTransactionsApplyCombinedFilters") return ["INDIRECT", "Sale"];
-  if (name === "PendingItemsApplyCombinedFilters" || name === "AccountingJournalApplyCombinedFilters") return ["INDIRECT"];
+  if (name === "PendingItemsApplyCombinedFilters" || name === "AccountingJournalApplyCombinedFilters")
+    return ["INDIRECT"];
   if (name === "MatchedItemsApplyCombinedFilters") return [pickStatus(step, "Complete"), "Accepted"];
   if (name === "SaleUICheckIfMatchingDoneCorrectly" || name === "MatchedItemsAssertAtomsLinked") return ["0.00"];
-  if (name === "MatchedItemsAssertMoleculeStatus" || name === "ReconciliationAlertsAssertStatus" || name === "ImbalancedItemsAssertStatus" || name === "AccountingJournalAssertEntry") {
+  if (
+    name === "MatchedItemsAssertMoleculeStatus" ||
+    name === "ReconciliationAlertsAssertStatus" ||
+    name === "ImbalancedItemsAssertStatus" ||
+    name === "AccountingJournalAssertEntry"
+  ) {
     return [pickStatus(step)];
   }
   if (name === "SaleUIFilterDocumentNumber" || name === "SettlementUIFilterDocumentNumber") return [DOCUMENT];
   if (name.endsWith("AssertLifecycleEvents")) return [[]];
   if (name === "DbShiftCreationDate") return [creationTable(step), "1", "2026-01-16T00:00:00Z"];
-  if (name === "SecondaryMatchingAssertMolecule" || name.endsWith("FilterPNROrderReference") || name === "ManualMatchingSaleUIFilterPNROrderReference" || name === "ManualMatchingSettlementUIFilterPNROrderReference") {
+  if (
+    name === "SecondaryMatchingAssertMolecule" ||
+    name.endsWith("FilterPNROrderReference") ||
+    name === "ManualMatchingSaleUIFilterPNROrderReference" ||
+    name === "ManualMatchingSettlementUIFilterPNROrderReference"
+  ) {
     return [PNR];
   }
   if (name === "MatchedItemsSelectReconciliation" || name === "ManualMatchingSelectMode") return [matchingMode(step)];
-  if (name === "PaymentOrderUIFilterPaymentOrderReference" || name === "SettlementUIFilterPaymentOrderReference" || name === "BankUIFilterBankDepositReference" || name === "PaymentOrderUIFilterBankDepositReference") {
+  if (
+    name === "PaymentOrderUIFilterPaymentOrderReference" ||
+    name === "SettlementUIFilterPaymentOrderReference" ||
+    name === "BankUIFilterBankDepositReference" ||
+    name === "PaymentOrderUIFilterBankDepositReference"
+  ) {
     return [PNR];
   }
-  if (name === "ManualMatchingAssertMatchResult") return [pickStatus(step, "Complete"), mentions(step, /partial/i) ? "Partial" : "Accepted"];
+  if (name === "ManualMatchingAssertMatchResult")
+    return [pickStatus(step, "Complete"), mentions(step, /partial/i) ? "Partial" : "Accepted"];
   if (name === "MatchingRulesSetStackPriority") return ["Rule 2", "Rule 3"];
-  if (name === "ReconciliationAlertsFilterMolecule" || name === "GlDetailsAssertGroupHeader" || name === "ReportsAssertCoherence") return ["1"];
+  if (
+    name === "ReconciliationAlertsFilterMolecule" ||
+    name === "GlDetailsAssertGroupHeader" ||
+    name === "ReportsAssertCoherence"
+  )
+    return ["1"];
   if (name === "ReportsFilterAndExport") return ["Sale", "1"];
   if (name === "SaleAuditTrackOpenTab") return [saleTab(step)];
   if (name === "SettlementAuditTrackOpenTab") return [settlementTab(step)];
-  if (name === "SaleUIFilterSaleID" || name === "SettlementUIFilterSettlementID" || name === "PaymentOrderUIFilterPaymentOrderID") return ["1"];
+  if (
+    name === "SaleUIFilterSaleID" ||
+    name === "SettlementUIFilterSettlementID" ||
+    name === "PaymentOrderUIFilterPaymentOrderID"
+  )
+    return ["1"];
   if (name === "SaleUIFilterPaymentID" || name === "SettlementUIFilterPaymentID") return ["1"];
   if (name === "SaleUIFilterCreditCardBIN" || name === "SettlementUIFilterCreditCardBIN") return ["827919"];
-  if (name === "SaleUIFilterCreditCard4LastDegits" || name === "SettlementUIFilterCreditCard4LastDegits") return ["6395"];
+  if (name === "SaleUIFilterCreditCard4LastDegits" || name === "SettlementUIFilterCreditCard4LastDegits")
+    return ["6395"];
   if (name === "SaleUIFilterApprovalCode" || name === "SettlementUIFilterApprovalCode") return ["148256"];
-  if (name === "SaleUIFilterChannelType" || name === "SaleUIFilterCountry") return [name.endsWith("Country") ? "TU" : "INDIRECT"];
-  if (name === "SettlementUIFilterCountry" || name === "PaymentOrderUIFilterCustomerAcquirer" || name === "SettlementUIFilterCustomerAcquirer" || name === "BankUIFilterCustomerAcquirer") {
+  if (name === "SaleUIFilterChannelType" || name === "SaleUIFilterCountry")
+    return [name.endsWith("Country") ? "TU" : "INDIRECT"];
+  if (
+    name === "SettlementUIFilterCountry" ||
+    name === "PaymentOrderUIFilterCustomerAcquirer" ||
+    name === "SettlementUIFilterCustomerAcquirer" ||
+    name === "BankUIFilterCustomerAcquirer"
+  ) {
     return [name.endsWith("Country") ? "TU" : "adyen"];
   }
   if (name.endsWith("FilterFileID")) return [];
   if (name.endsWith("FilterFOPCode")) return ["CCVI"];
   if (name.endsWith("FilterFOPSubCode")) return ["EXTASO"];
-  if (name.endsWith("FilterSettledStatus") || name === "PaymentOrderUIFilterBankedStatus") return [pickStatus(step, "Pending")];
+  if (name.endsWith("FilterSettledStatus") || name === "PaymentOrderUIFilterBankedStatus")
+    return [pickStatus(step, "Pending")];
   if (name === "SaleAuditTrackAssertAppliedRule") return ["Rule_B"];
   if (name === "AccountingRulesSetSamePriority") return ["Rule A", "Rule B"];
-  if (name === "AccountingJournalAssertNoEntry" || name === "UnaccountedEventsAssertAbsent" || name === "SaleAuditTrackAssertAccountingDate") {
+  if (
+    name === "AccountingJournalAssertNoEntry" ||
+    name === "UnaccountedEventsAssertAbsent" ||
+    name === "SaleAuditTrackAssertAccountingDate"
+  ) {
     return [mentions(step, /fee/i) ? "Miscellaneous fee" : "Sale received"];
   }
   if (name === "UnaccountedEventsFilterEvent") return [DATE, "Sale received", "No rule found"];
@@ -244,7 +296,9 @@ function argumentsFor(step: ScenarioStep): unknown[] {
 }
 
 export function emittedClass(step: ScenarioStep): string {
-  return step.testpoint_class === "FileDashboardUIFilterFileID" ? "FileDashboardFilterUploadedFile" : step.testpoint_class;
+  return step.testpoint_class === "FileDashboardUIFilterFileID"
+    ? "FileDashboardFilterUploadedFile"
+    : step.testpoint_class;
 }
 
 export function emittedArgs(step: ScenarioStep): unknown[] {

@@ -119,10 +119,13 @@ export class InspectSettlementAuditTrackSettlementTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SETTLEMENT-01",
-      "Inspect \"Settlement\" on /audit-track/settlement",
+      'Inspect "Settlement" on /audit-track/settlement',
       async (page) => {
         const pom = new SettlementAuditTrackPage(page);
-        await pom.expectVisible(pom.settlementTab, "TP-BTN-AUDIT_TRACK_SETTLEMENT-01 Settlement on /audit-track/settlement");
+        await pom.expectVisible(
+          pom.settlementTab,
+          "TP-BTN-AUDIT_TRACK_SETTLEMENT-01 Settlement on /audit-track/settlement",
+        );
       },
       "*****",
       "ready",
@@ -134,10 +137,13 @@ export class InspectSettlementAuditTrackPaymentOrderTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SETTLEMENT-02",
-      "Inspect \"Payment Order\" on /audit-track/settlement",
+      'Inspect "Payment Order" on /audit-track/settlement',
       async (page) => {
         const pom = new SettlementAuditTrackPage(page);
-        await pom.expectVisible(pom.paymentOrderTab, "TP-BTN-AUDIT_TRACK_SETTLEMENT-02 Payment Order on /audit-track/settlement");
+        await pom.expectVisible(
+          pom.paymentOrderTab,
+          "TP-BTN-AUDIT_TRACK_SETTLEMENT-02 Payment Order on /audit-track/settlement",
+        );
       },
       "*****",
       "ready",
@@ -149,7 +155,7 @@ export class InspectSettlementAuditTrackSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SETTLEMENT-03",
-      "Inspect \"Search\" on /audit-track/settlement",
+      'Inspect "Search" on /audit-track/settlement',
       async (page) => {
         const pom = new SettlementAuditTrackPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-AUDIT_TRACK_SETTLEMENT-03 Search on /audit-track/settlement");
@@ -164,10 +170,13 @@ export class InspectSettlementAuditTrackDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SETTLEMENT-04",
-      "Inspect \"pi pi-calendar\" on /audit-track/settlement",
+      'Inspect "pi pi-calendar" on /audit-track/settlement',
       async (page) => {
         const pom = new SettlementAuditTrackPage(page);
-        await pom.expectVisible(pom.dateRange, "TP-BTN-AUDIT_TRACK_SETTLEMENT-04 pi pi-calendar on /audit-track/settlement");
+        await pom.expectVisible(
+          pom.dateRange,
+          "TP-BTN-AUDIT_TRACK_SETTLEMENT-04 pi pi-calendar on /audit-track/settlement",
+        );
       },
       "*****",
       "ready",
@@ -179,10 +188,13 @@ export class InspectSettlementAuditTrackSelectCustomerAcquirer extends TestPoint
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SETTLEMENT-05",
-      "Inspect \"Select Customer/Acquirer\" on /audit-track/settlement",
+      'Inspect "Select Customer/Acquirer" on /audit-track/settlement',
       async (page) => {
         const pom = new SettlementAuditTrackPage(page);
-        await pom.expectVisible(pom.selectCustomerAcquirer, "TP-BTN-AUDIT_TRACK_SETTLEMENT-05 Select Customer/Acquirer on /audit-track/settlement");
+        await pom.expectVisible(
+          pom.selectCustomerAcquirer,
+          "TP-BTN-AUDIT_TRACK_SETTLEMENT-05 Select Customer/Acquirer on /audit-track/settlement",
+        );
       },
       "*****",
       "ready",
@@ -194,10 +206,13 @@ export class InspectSettlementAuditTrackExtraFiltersButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SETTLEMENT-06",
-      "Inspect \"pi pi-filter\" on /audit-track/settlement",
+      'Inspect "pi pi-filter" on /audit-track/settlement',
       async (page) => {
         const pom = new SettlementAuditTrackPage(page);
-        await pom.expectVisible(pom.extraFiltersButton, "TP-BTN-AUDIT_TRACK_SETTLEMENT-06 pi pi-filter on /audit-track/settlement");
+        await pom.expectVisible(
+          pom.extraFiltersButton,
+          "TP-BTN-AUDIT_TRACK_SETTLEMENT-06 pi pi-filter on /audit-track/settlement",
+        );
       },
       "*****",
       "ready",
@@ -209,10 +224,13 @@ export class InspectSettlementAuditTrackSettlementsTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SETTLEMENT-07",
-      "Inspect \"Settlements\" on /audit-track/settlement",
+      'Inspect "Settlements" on /audit-track/settlement',
       async (page) => {
         const pom = new SettlementAuditTrackPage(page);
-        await pom.expectVisible(pom.settlementsTab, "TP-BTN-AUDIT_TRACK_SETTLEMENT-07 Settlements on /audit-track/settlement");
+        await pom.expectVisible(
+          pom.settlementsTab,
+          "TP-BTN-AUDIT_TRACK_SETTLEMENT-07 Settlements on /audit-track/settlement",
+        );
       },
       "*****",
       "ready",
@@ -224,10 +242,13 @@ export class InspectSettlementAuditTrackRefundedSettlementsTab extends TestPoint
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SETTLEMENT-08",
-      "Inspect \"Refunded Settlements\" on /audit-track/settlement",
+      'Inspect "Refunded Settlements" on /audit-track/settlement',
       async (page) => {
         const pom = new SettlementAuditTrackPage(page);
-        await pom.expectVisible(pom.refundedSettlementsTab, "TP-BTN-AUDIT_TRACK_SETTLEMENT-08 Refunded Settlements on /audit-track/settlement");
+        await pom.expectVisible(
+          pom.refundedSettlementsTab,
+          "TP-BTN-AUDIT_TRACK_SETTLEMENT-08 Refunded Settlements on /audit-track/settlement",
+        );
       },
       "*****",
       "ready",
@@ -239,10 +260,13 @@ export class InspectSettlementAuditTrackDeletedSettlementsTab extends TestPoint 
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SETTLEMENT-09",
-      "Inspect (do not click) \"Deleted Settlements\" on /audit-track/settlement",
+      'Inspect (do not click) "Deleted Settlements" on /audit-track/settlement',
       async (page) => {
         const pom = new SettlementAuditTrackPage(page);
-        await pom.expectVisible(pom.deletedSettlementsTab, "TP-BTN-AUDIT_TRACK_SETTLEMENT-09 Deleted Settlements on /audit-track/settlement");
+        await pom.expectVisible(
+          pom.deletedSettlementsTab,
+          "TP-BTN-AUDIT_TRACK_SETTLEMENT-09 Deleted Settlements on /audit-track/settlement",
+        );
         logger.info(`Skipping click for destructive control TP-BTN-AUDIT_TRACK_SETTLEMENT-09: Deleted Settlements`);
       },
       "*****",
@@ -514,7 +538,9 @@ export class SettlementUICheckIfSettlementTableHasDocument extends TestPoint {
   constructor(documentNumber: string, timeoutMs = 60_000) {
     super("TP", `Check if settlement table contains document ${documentNumber}`, async (page) => {
       const pom = new SettlementAuditTrackPage(page);
-      await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, { timeout: timeoutMs });
+      await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, {
+        timeout: timeoutMs,
+      });
       const row = pom.tableRows().filter({ hasText: documentNumber }).first();
       await expect(row, `No settlement row with document number ${documentNumber}`).toBeVisible({ timeout: timeoutMs });
       logger.info(`Settlement row found: ${((await row.innerText()) || "").replace(/\s*[\t\n]+\s*/g, " | ")}`);

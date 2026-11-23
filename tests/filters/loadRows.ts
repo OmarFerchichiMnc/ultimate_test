@@ -41,10 +41,7 @@ export async function openSettlementAuditTrack(page: Page): Promise<SettlementAu
   return new SettlementAuditTrackPage(page);
 }
 
-export async function openSettlementAuditTrackForMonth(
-  page: Page,
-  range: string,
-): Promise<SettlementAuditTrackPage> {
+export async function openSettlementAuditTrackForMonth(page: Page, range: string): Promise<SettlementAuditTrackPage> {
   await openSettlementAuditTrack(page);
   await new SettlementUIClearQuickFilter().run(page);
   await new SettlementUIFilterPaymentDateRange(range).run(page);

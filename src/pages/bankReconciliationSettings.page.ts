@@ -6,10 +6,7 @@ import { logger } from "../configuration/logger";
 export class BankReconciliationSettingsPage extends BasePage {
   static readonly path = "/bank-reconciliation-settings";
   static testPoints(): TestPoint[] {
-    return [
-      new OpenBankReconciliationSettingsPage(),
-      new InspectBankReconciliationSettingsTriggerNow(),
-    ];
+    return [new OpenBankReconciliationSettingsPage(), new InspectBankReconciliationSettingsTriggerNow()];
   }
 
   readonly triggerNow: Locator;
@@ -34,10 +31,13 @@ export class InspectBankReconciliationSettingsTriggerNow extends TestPoint {
   constructor() {
     super(
       "TP-BTN-BANK_RECONCILIATION_SETTINGS-01",
-      "Inspect (do not click) \"Trigger now\" on /bank-reconciliation-settings",
+      'Inspect (do not click) "Trigger now" on /bank-reconciliation-settings',
       async (page) => {
         const pom = new BankReconciliationSettingsPage(page);
-        await pom.expectVisible(pom.triggerNow, "TP-BTN-BANK_RECONCILIATION_SETTINGS-01 Trigger now on /bank-reconciliation-settings");
+        await pom.expectVisible(
+          pom.triggerNow,
+          "TP-BTN-BANK_RECONCILIATION_SETTINGS-01 Trigger now on /bank-reconciliation-settings",
+        );
         logger.info(`Skipping click for destructive control TP-BTN-BANK_RECONCILIATION_SETTINGS-01: Trigger now`);
       },
       "*****",
@@ -45,4 +45,3 @@ export class InspectBankReconciliationSettingsTriggerNow extends TestPoint {
     );
   }
 }
-

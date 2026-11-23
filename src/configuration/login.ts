@@ -41,7 +41,11 @@ export async function loginToAdad(page: Page): Promise<void> {
   const usernameField = page.locator("#username");
   const appRoot = page.locator("app-root");
 
-  if ((await appRoot.count()) > 0 && (await appRoot.first().isVisible()) && !(await usernameField.isVisible().catch(() => false))) {
+  if (
+    (await appRoot.count()) > 0 &&
+    (await appRoot.first().isVisible()) &&
+    !(await usernameField.isVisible().catch(() => false))
+  ) {
     logger.info("Already logged in");
     return;
   }

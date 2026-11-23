@@ -43,7 +43,7 @@ export class InspectFeeRulesAdyen extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FEE_RULES-01",
-      "Inspect \"adyen\" on /fee-rules",
+      'Inspect "adyen" on /fee-rules',
       async (page) => {
         const pom = new FeeRulesPage(page);
         await pom.expectVisible(pom.adyen, "TP-BTN-FEE_RULES-01 adyen on /fee-rules");
@@ -58,7 +58,7 @@ export class InspectFeeRulesSelectFeeRuleType extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FEE_RULES-02",
-      "Inspect \"Select fee rule type\" on /fee-rules",
+      'Inspect "Select fee rule type" on /fee-rules',
       async (page) => {
         const pom = new FeeRulesPage(page);
         await pom.expectVisible(pom.selectFeeRuleType, "TP-BTN-FEE_RULES-02 Select fee rule type on /fee-rules");
@@ -73,10 +73,13 @@ export class InspectFeeRulesSelectFeeRuleApplicationCondition extends TestPoint 
   constructor() {
     super(
       "TP-BTN-FEE_RULES-03",
-      "Inspect \"Select fee rule application condition\" on /fee-rules",
+      'Inspect "Select fee rule application condition" on /fee-rules',
       async (page) => {
         const pom = new FeeRulesPage(page);
-        await pom.expectVisible(pom.selectFeeRuleApplicationCondition, "TP-BTN-FEE_RULES-03 Select fee rule application condition on /fee-rules");
+        await pom.expectVisible(
+          pom.selectFeeRuleApplicationCondition,
+          "TP-BTN-FEE_RULES-03 Select fee rule application condition on /fee-rules",
+        );
       },
       "*****",
       "ready",
@@ -88,7 +91,7 @@ export class InspectFeeRulesSave extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FEE_RULES-04",
-      "Inspect (do not click) \"Save\" on /fee-rules",
+      'Inspect (do not click) "Save" on /fee-rules',
       async (page) => {
         const pom = new FeeRulesPage(page);
         await pom.expectVisible(pom.save, "TP-BTN-FEE_RULES-04 Save on /fee-rules");
@@ -99,4 +102,3 @@ export class InspectFeeRulesSave extends TestPoint {
     );
   }
 }
-

@@ -89,7 +89,7 @@ export class InjectFile extends TestPoint {
 export class WaitForThirtySeconds extends TestPoint {
   constructor() {
     super("TP0004", "Wait for file injection", async () => {
-      logger.info("Waiting for ingestion");
+      logger.info("Waiting ");
       await wait(30_000);
       logger.info("Done waiting");
     });

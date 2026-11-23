@@ -49,10 +49,13 @@ export class InspectProvisionalMismatchedItemsDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-01",
-      "Inspect \"pi pi-calendar\" on /provisional-mismatched-items",
+      'Inspect "pi pi-calendar" on /provisional-mismatched-items',
       async (page) => {
         const pom = new ProvisionalMismatchedItemsPage(page);
-        await pom.expectVisible(pom.dateRange, "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-01 pi pi-calendar on /provisional-mismatched-items");
+        await pom.expectVisible(
+          pom.dateRange,
+          "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-01 pi pi-calendar on /provisional-mismatched-items",
+        );
       },
       "*****",
       "ready",
@@ -64,10 +67,13 @@ export class InspectProvisionalMismatchedItemsAdyen extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-02",
-      "Inspect \"adyen\" on /provisional-mismatched-items",
+      'Inspect "adyen" on /provisional-mismatched-items',
       async (page) => {
         const pom = new ProvisionalMismatchedItemsPage(page);
-        await pom.expectVisible(pom.adyen, "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-02 adyen on /provisional-mismatched-items");
+        await pom.expectVisible(
+          pom.adyen,
+          "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-02 adyen on /provisional-mismatched-items",
+        );
       },
       "*****",
       "ready",
@@ -79,10 +85,13 @@ export class InspectProvisionalMismatchedItemsExtraFiltersButton extends TestPoi
   constructor() {
     super(
       "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-03",
-      "Inspect \"pi pi-filter\" on /provisional-mismatched-items",
+      'Inspect "pi pi-filter" on /provisional-mismatched-items',
       async (page) => {
         const pom = new ProvisionalMismatchedItemsPage(page);
-        await pom.expectVisible(pom.extraFiltersButton, "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-03 pi pi-filter on /provisional-mismatched-items");
+        await pom.expectVisible(
+          pom.extraFiltersButton,
+          "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-03 pi pi-filter on /provisional-mismatched-items",
+        );
       },
       "*****",
       "ready",
@@ -94,10 +103,13 @@ export class InspectProvisionalMismatchedItemsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-04",
-      "Inspect \"Search\" on /provisional-mismatched-items",
+      'Inspect "Search" on /provisional-mismatched-items',
       async (page) => {
         const pom = new ProvisionalMismatchedItemsPage(page);
-        await pom.expectVisible(pom.search, "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-04 Search on /provisional-mismatched-items");
+        await pom.expectVisible(
+          pom.search,
+          "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-04 Search on /provisional-mismatched-items",
+        );
       },
       "*****",
       "ready",
@@ -109,10 +121,13 @@ export class InspectProvisionalMismatchedItemsProvisionalTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-05",
-      "Inspect \"Provisional\" on /provisional-mismatched-items",
+      'Inspect "Provisional" on /provisional-mismatched-items',
       async (page) => {
         const pom = new ProvisionalMismatchedItemsPage(page);
-        await pom.expectVisible(pom.provisionalTab, "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-05 Provisional on /provisional-mismatched-items");
+        await pom.expectVisible(
+          pom.provisionalTab,
+          "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-05 Provisional on /provisional-mismatched-items",
+        );
       },
       "*****",
       "ready",
@@ -124,10 +139,13 @@ export class InspectProvisionalMismatchedItemsConfirmedTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-06",
-      "Inspect (do not click) \"Confirmed\" on /provisional-mismatched-items",
+      'Inspect (do not click) "Confirmed" on /provisional-mismatched-items',
       async (page) => {
         const pom = new ProvisionalMismatchedItemsPage(page);
-        await pom.expectVisible(pom.confirmedTab, "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-06 Confirmed on /provisional-mismatched-items");
+        await pom.expectVisible(
+          pom.confirmedTab,
+          "TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-06 Confirmed on /provisional-mismatched-items",
+        );
         logger.info(`Skipping click for destructive control TP-BTN-PROVISIONAL_MISMATCHED_ITEMS-06: Confirmed`);
       },
       "*****",
@@ -135,4 +153,3 @@ export class InspectProvisionalMismatchedItemsConfirmedTab extends TestPoint {
     );
   }
 }
-

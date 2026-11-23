@@ -27,7 +27,12 @@ export async function cellByHeader(pom: BasePage, header: string | RegExp, root?
   return pom.firstRowCellByHeader(header, root);
 }
 
-export async function assertColumn(pom: BasePage, header: string | RegExp, expected: string, root?: Locator): Promise<void> {
+export async function assertColumn(
+  pom: BasePage,
+  header: string | RegExp,
+  expected: string,
+  root?: Locator,
+): Promise<void> {
   const actual = await cellByHeader(pom, header, root);
   const same = actual.toLowerCase() === expected.toLowerCase() || actual.toLowerCase().includes(expected.toLowerCase());
   if (!same) {
@@ -37,7 +42,10 @@ export async function assertColumn(pom: BasePage, header: string | RegExp, expec
 }
 
 export async function assertAnyStatus(pom: BasePage, expected: string, root?: Locator): Promise<void> {
-  const options = expected.split(/\s+or\s+/i).map((part) => part.trim()).filter(Boolean);
+  const options = expected
+    .split(/\s+or\s+/i)
+    .map((part) => part.trim())
+    .filter(Boolean);
   const errors: string[] = [];
   for (const option of options) {
     try {
@@ -70,10 +78,7 @@ export async function assertTableOmits(pom: BasePage, text: string, label: strin
 }
 
 export async function downloadExport(pom: BasePage, button: Locator): Promise<string> {
-  const [download] = await Promise.all([
-    pom.page.waitForEvent("download", { timeout: 60_000 }),
-    button.click(),
-  ]);
+  const [download] = await Promise.all([pom.page.waitForEvent("download", { timeout: 60_000 }), button.click()]);
   const target = path.join(os.tmpdir(), `adad-${Date.now()}-${download.suggestedFilename()}`);
   await download.saveAs(target);
   lastExport.set(pom.page, target);
@@ -101,7 +106,10 @@ export function lastExportPath(page: Page): string | undefined {
 
 export async function assertLastExportHasLines(pom: BasePage, minimumLines: number): Promise<void> {
   const filePath = savedExport(pom.page, "No export was downloaded earlier in this scenario");
-  const lines = fs.readFileSync(filePath, "utf8").split(/\r?\n/).filter((line) => line.trim());
+  const lines = fs
+    .readFileSync(filePath, "utf8")
+    .split(/\r?\n/)
+    .filter((line) => line.trim());
   if (lines.length < minimumLines) {
     throw new Error(`Export has ${lines.length} lines, expected at least ${minimumLines}`);
   }
@@ -109,7 +117,12 @@ export async function assertLastExportHasLines(pom: BasePage, minimumLines: numb
 
 export async function clearFilters(pom: BasePage): Promise<void> {
   const clear = pom.page.getByRole("button", { name: /^(clear|reset|reset all)$/i });
-  if (await clear.first().isVisible().catch(() => false)) {
+  if (
+    await clear
+      .first()
+      .isVisible()
+      .catch(() => false)
+  ) {
     await clear.first().click();
     logger.info("Cleared filters with the clear action");
     return;
@@ -138,7 +151,12 @@ export async function confirmAction(pom: BasePage, name: RegExp): Promise<void> 
 
 export async function confirmYes(pom: BasePage): Promise<void> {
   const yes = pom.page.getByRole("button", { name: /^(yes|confirm|ok)$/i });
-  if (await yes.first().isVisible().catch(() => false)) {
+  if (
+    await yes
+      .first()
+      .isVisible()
+      .catch(() => false)
+  ) {
     await yes.first().click();
   }
 }
@@ -150,7 +168,10 @@ export async function assertText(pom: BasePage, text: string, root?: Locator): P
 
 export async function openFirstDetails(pom: BasePage, root?: Locator): Promise<void> {
   const scope = root ?? pom.page;
-  const view = scope.getByRole("button").filter({ has: pom.page.locator(".pi-eye") }).first();
+  const view = scope
+    .getByRole("button")
+    .filter({ has: pom.page.locator(".pi-eye") })
+    .first();
   if (await view.isVisible().catch(() => false)) {
     await view.click();
     return;
@@ -170,5 +191,8 @@ export async function assertDetailsContain(pom: BasePage, fragments: string[], r
 }
 
 export function dropdownByLabel(pom: BasePage, label: RegExp): Locator {
-  return pom.page.locator("p-dropdown, p-multiselect").filter({ has: pom.page.getByText(label) }).first();
+  return pom.page
+    .locator("p-dropdown, p-multiselect")
+    .filter({ has: pom.page.getByText(label) })
+    .first();
 }

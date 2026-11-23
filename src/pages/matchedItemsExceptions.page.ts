@@ -45,10 +45,13 @@ export class InspectMatchedItemsExceptionsSettlementReconciliation extends TestP
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-01",
-      "Inspect \"Settlement Reconciliation\" on /matched-items/exceptions",
+      'Inspect "Settlement Reconciliation" on /matched-items/exceptions',
       async (page) => {
         const pom = new MatchedItemsExceptionsPage(page);
-        await pom.expectVisible(pom.settlementReconciliation, "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-01 Settlement Reconciliation on /matched-items/exceptions");
+        await pom.expectVisible(
+          pom.settlementReconciliation,
+          "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-01 Settlement Reconciliation on /matched-items/exceptions",
+        );
       },
       "*****",
       "ready",
@@ -60,10 +63,13 @@ export class InspectMatchedItemsExceptionsDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-02",
-      "Inspect \"pi pi-calendar\" on /matched-items/exceptions",
+      'Inspect "pi pi-calendar" on /matched-items/exceptions',
       async (page) => {
         const pom = new MatchedItemsExceptionsPage(page);
-        await pom.expectVisible(pom.dateRange, "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-02 pi pi-calendar on /matched-items/exceptions");
+        await pom.expectVisible(
+          pom.dateRange,
+          "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-02 pi pi-calendar on /matched-items/exceptions",
+        );
       },
       "*****",
       "ready",
@@ -75,10 +81,13 @@ export class InspectMatchedItemsExceptionsSelectExceptionReasons extends TestPoi
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-03",
-      "Inspect \"Select exception reasons\" on /matched-items/exceptions",
+      'Inspect "Select exception reasons" on /matched-items/exceptions',
       async (page) => {
         const pom = new MatchedItemsExceptionsPage(page);
-        await pom.expectVisible(pom.selectExceptionReasons, "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-03 Select exception reasons on /matched-items/exceptions");
+        await pom.expectVisible(
+          pom.selectExceptionReasons,
+          "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-03 Select exception reasons on /matched-items/exceptions",
+        );
       },
       "*****",
       "ready",
@@ -90,10 +99,13 @@ export class InspectMatchedItemsExceptionsSelectExceptionStatus extends TestPoin
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-04",
-      "Inspect \"Select exception status\" on /matched-items/exceptions",
+      'Inspect "Select exception status" on /matched-items/exceptions',
       async (page) => {
         const pom = new MatchedItemsExceptionsPage(page);
-        await pom.expectVisible(pom.selectExceptionStatus, "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-04 Select exception status on /matched-items/exceptions");
+        await pom.expectVisible(
+          pom.selectExceptionStatus,
+          "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-04 Select exception status on /matched-items/exceptions",
+        );
       },
       "*****",
       "ready",
@@ -105,7 +117,7 @@ export class InspectMatchedItemsExceptionsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-05",
-      "Inspect \"Search\" on /matched-items/exceptions",
+      'Inspect "Search" on /matched-items/exceptions',
       async (page) => {
         const pom = new MatchedItemsExceptionsPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-MATCHED_ITEMS_EXCEPTIONS-05 Search on /matched-items/exceptions");
@@ -115,4 +127,3 @@ export class InspectMatchedItemsExceptionsSearch extends TestPoint {
     );
   }
 }
-

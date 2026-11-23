@@ -36,11 +36,15 @@ export class SettlementReconciliationRulesPage extends BasePage {
 
 export class OpenSettlementReconciliationRulesPage extends TestPoint {
   constructor() {
-    super("TP-OPEN-MATCHING_RULES_SETTLEMENT_RECONCILIATION", "Open /matching-rules/settlement-reconciliation", async (page) => {
-      const pom = new SettlementReconciliationRulesPage(page);
-      await pom.goto();
-      await pom.expectOnPage();
-    });
+    super(
+      "TP-OPEN-MATCHING_RULES_SETTLEMENT_RECONCILIATION",
+      "Open /matching-rules/settlement-reconciliation",
+      async (page) => {
+        const pom = new SettlementReconciliationRulesPage(page);
+        await pom.goto();
+        await pom.expectOnPage();
+      },
+    );
   }
 }
 
@@ -48,10 +52,13 @@ export class InspectSettlementReconciliationRulesList extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-01",
-      "Inspect \"pi pi-list\" on /matching-rules/settlement-reconciliation",
+      'Inspect "pi pi-list" on /matching-rules/settlement-reconciliation',
       async (page) => {
         const pom = new SettlementReconciliationRulesPage(page);
-        await pom.expectVisible(pom.list, "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-01 pi pi-list on /matching-rules/settlement-reconciliation");
+        await pom.expectVisible(
+          pom.list,
+          "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-01 pi pi-list on /matching-rules/settlement-reconciliation",
+        );
       },
       "*****",
       "ready",
@@ -63,10 +70,13 @@ export class InspectSettlementReconciliationRulesPaginatorFirst extends TestPoin
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-02",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /matching-rules/settlement-reconciliation",
+      'Inspect "paginator:pi pi-angle-double-left" on /matching-rules/settlement-reconciliation',
       async (page) => {
         const pom = new SettlementReconciliationRulesPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-02 paginator:pi pi-angle-double-left on /matching-rules/settlement-reconciliation");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-02 paginator:pi pi-angle-double-left on /matching-rules/settlement-reconciliation",
+        );
       },
       "*****",
       "ready",
@@ -78,10 +88,13 @@ export class InspectSettlementReconciliationRulesPaginatorPrev extends TestPoint
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-03",
-      "Inspect \"paginator:pi pi-angle-left\" on /matching-rules/settlement-reconciliation",
+      'Inspect "paginator:pi pi-angle-left" on /matching-rules/settlement-reconciliation',
       async (page) => {
         const pom = new SettlementReconciliationRulesPage(page);
-        await pom.expectVisible(pom.paginatorPrev, "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-03 paginator:pi pi-angle-left on /matching-rules/settlement-reconciliation");
+        await pom.expectVisible(
+          pom.paginatorPrev,
+          "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-03 paginator:pi pi-angle-left on /matching-rules/settlement-reconciliation",
+        );
       },
       "*****",
       "ready",
@@ -93,10 +106,13 @@ export class InspectSettlementReconciliationRulesPaginatorPage1 extends TestPoin
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-04",
-      "Inspect \"paginator:1\" on /matching-rules/settlement-reconciliation",
+      'Inspect "paginator:1" on /matching-rules/settlement-reconciliation',
       async (page) => {
         const pom = new SettlementReconciliationRulesPage(page);
-        await pom.expectVisible(pom.paginatorPage1, "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-04 paginator:1 on /matching-rules/settlement-reconciliation");
+        await pom.expectVisible(
+          pom.paginatorPage1,
+          "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-04 paginator:1 on /matching-rules/settlement-reconciliation",
+        );
       },
       "*****",
       "ready",
@@ -108,10 +124,13 @@ export class InspectSettlementReconciliationRulesPaginatorNext extends TestPoint
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-05",
-      "Inspect \"paginator:pi pi-angle-right\" on /matching-rules/settlement-reconciliation",
+      'Inspect "paginator:pi pi-angle-right" on /matching-rules/settlement-reconciliation',
       async (page) => {
         const pom = new SettlementReconciliationRulesPage(page);
-        await pom.expectVisible(pom.paginatorNext, "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-05 paginator:pi pi-angle-right on /matching-rules/settlement-reconciliation");
+        await pom.expectVisible(
+          pom.paginatorNext,
+          "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-05 paginator:pi pi-angle-right on /matching-rules/settlement-reconciliation",
+        );
       },
       "*****",
       "ready",
@@ -123,14 +142,16 @@ export class InspectSettlementReconciliationRulesPaginatorLast extends TestPoint
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-06",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /matching-rules/settlement-reconciliation",
+      'Inspect "paginator:pi pi-angle-double-right" on /matching-rules/settlement-reconciliation',
       async (page) => {
         const pom = new SettlementReconciliationRulesPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-06 paginator:pi pi-angle-double-right on /matching-rules/settlement-reconciliation");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-MATCHING_RULES_SETTLEMENT_RECONCILIATION-06 paginator:pi pi-angle-double-right on /matching-rules/settlement-reconciliation",
+        );
       },
       "*****",
       "ready",
     );
   }
 }
-

@@ -57,9 +57,7 @@ test.describe("TestPoint", () => {
 test.describe("runTestPoints", () => {
   test("runs points in order", async () => {
     const order: string[] = [];
-    const points = ["A", "B", "C"].map(
-      (id) => new TestPoint(id, `point ${id}`, async () => void order.push(id)),
-    );
+    const points = ["A", "B", "C"].map((id) => new TestPoint(id, `point ${id}`, async () => void order.push(id)));
     await runTestPoints({} as never, points);
     expect(order).toEqual(["A", "B", "C"]);
     expect(points.every((point) => point.execution === "passed")).toBe(true);

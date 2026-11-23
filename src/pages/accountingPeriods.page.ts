@@ -17,8 +17,12 @@ export class AccountingPeriodsPage extends BasePage {
 
   constructor(page: Page) {
     super(page, AccountingPeriodsPage.path);
-    this.yearUp = this.page.getByRole("button", { name: /increment|year up/i }).or(this.page.locator("button.AccountingYearFilter-InputBtnUp"));
-    this.yearDown = this.page.getByRole("button", { name: /decrement|year down/i }).or(this.page.locator("button.AccountingYearFilter-InputBtnDown"));
+    this.yearUp = this.page
+      .getByRole("button", { name: /increment|year up/i })
+      .or(this.page.locator("button.AccountingYearFilter-InputBtnUp"));
+    this.yearDown = this.page
+      .getByRole("button", { name: /decrement|year down/i })
+      .or(this.page.locator("button.AccountingYearFilter-InputBtnDown"));
   }
 }
 
@@ -36,7 +40,7 @@ export class InspectAccountingPeriodsYearUp extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACCOUNTING_PERIODS-01",
-      "Inspect \"pi pi-angle-up\" on /accounting-periods",
+      'Inspect "pi pi-angle-up" on /accounting-periods',
       async (page) => {
         const pom = new AccountingPeriodsPage(page);
         await pom.expectVisible(pom.yearUp, "TP-BTN-ACCOUNTING_PERIODS-01 pi pi-angle-up on /accounting-periods");
@@ -51,7 +55,7 @@ export class InspectAccountingPeriodsYearDown extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACCOUNTING_PERIODS-02",
-      "Inspect \"pi pi-angle-down\" on /accounting-periods",
+      'Inspect "pi pi-angle-down" on /accounting-periods',
       async (page) => {
         const pom = new AccountingPeriodsPage(page);
         await pom.expectVisible(pom.yearDown, "TP-BTN-ACCOUNTING_PERIODS-02 pi pi-angle-down on /accounting-periods");
@@ -61,4 +65,3 @@ export class InspectAccountingPeriodsYearDown extends TestPoint {
     );
   }
 }
-

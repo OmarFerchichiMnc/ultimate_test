@@ -36,7 +36,7 @@ export class InspectAlertTypeAffiliationCopy extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERT_TYPE_AFFILIATION-01",
-      "Inspect \"pi pi-copy\" on /alert-type-affiliation",
+      'Inspect "pi pi-copy" on /alert-type-affiliation',
       async (page) => {
         const pom = new AlertTypeAffiliationPage(page);
         await pom.expectVisible(pom.copy, "TP-BTN-ALERT_TYPE_AFFILIATION-01 pi pi-copy on /alert-type-affiliation");
@@ -51,7 +51,7 @@ export class InspectAlertTypeAffiliationEdit extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERT_TYPE_AFFILIATION-02",
-      "Inspect \"pi pi-pencil\" on /alert-type-affiliation",
+      'Inspect "pi pi-pencil" on /alert-type-affiliation',
       async (page) => {
         const pom = new AlertTypeAffiliationPage(page);
         await pom.expectVisible(pom.edit, "TP-BTN-ALERT_TYPE_AFFILIATION-02 pi pi-pencil on /alert-type-affiliation");
@@ -61,4 +61,3 @@ export class InspectAlertTypeAffiliationEdit extends TestPoint {
     );
   }
 }
-

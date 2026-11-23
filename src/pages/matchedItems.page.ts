@@ -73,10 +73,13 @@ export class InspectMatchedItemsSettlementReconciliation extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-01",
-      "Inspect \"Settlement Reconciliation\" on /matched-items",
+      'Inspect "Settlement Reconciliation" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
-        await pom.expectVisible(pom.settlementReconciliation, "TP-BTN-MATCHED_ITEMS-01 Settlement Reconciliation on /matched-items");
+        await pom.expectVisible(
+          pom.settlementReconciliation,
+          "TP-BTN-MATCHED_ITEMS-01 Settlement Reconciliation on /matched-items",
+        );
       },
       "*****",
       "ready",
@@ -88,7 +91,7 @@ export class InspectMatchedItemsDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-02",
-      "Inspect \"pi pi-calendar\" on /matched-items",
+      'Inspect "pi pi-calendar" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-MATCHED_ITEMS-02 pi pi-calendar on /matched-items");
@@ -103,10 +106,13 @@ export class InspectMatchedItemsSelectMatchingStatus extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-03",
-      "Inspect (do not click) \"Select Matching Status\" on /matched-items",
+      'Inspect (do not click) "Select Matching Status" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
-        await pom.expectVisible(pom.selectMatchingStatus, "TP-BTN-MATCHED_ITEMS-03 Select Matching Status on /matched-items");
+        await pom.expectVisible(
+          pom.selectMatchingStatus,
+          "TP-BTN-MATCHED_ITEMS-03 Select Matching Status on /matched-items",
+        );
         logger.info(`Skipping click for destructive control TP-BTN-MATCHED_ITEMS-03: Select Matching Status`);
       },
       "*****",
@@ -119,10 +125,13 @@ export class InspectMatchedItemsSelectReconciliationStatus extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-04",
-      "Inspect \"Select Reconciliation Status\" on /matched-items",
+      'Inspect "Select Reconciliation Status" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
-        await pom.expectVisible(pom.selectReconciliationStatus, "TP-BTN-MATCHED_ITEMS-04 Select Reconciliation Status on /matched-items");
+        await pom.expectVisible(
+          pom.selectReconciliationStatus,
+          "TP-BTN-MATCHED_ITEMS-04 Select Reconciliation Status on /matched-items",
+        );
       },
       "*****",
       "ready",
@@ -134,7 +143,7 @@ export class InspectMatchedItemsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-05",
-      "Inspect \"Search\" on /matched-items",
+      'Inspect "Search" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-MATCHED_ITEMS-05 Search on /matched-items");
@@ -149,7 +158,7 @@ export class InspectMatchedItemsExportButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-06",
-      "Inspect \"Export\" on /matched-items",
+      'Inspect "Export" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
         await pom.expectVisible(pom.exportButton, "TP-BTN-MATCHED_ITEMS-06 Export on /matched-items");
@@ -164,7 +173,7 @@ export class InspectMatchedItemsCopy extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-07",
-      "Inspect \"pi pi-copy\" on /matched-items",
+      'Inspect "pi pi-copy" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
         await pom.expectVisible(pom.copy, "TP-BTN-MATCHED_ITEMS-07 pi pi-copy on /matched-items");
@@ -179,7 +188,7 @@ export class InspectMatchedItemsView extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-08",
-      "Inspect \"pi pi-eye\" on /matched-items",
+      'Inspect "pi pi-eye" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
         await pom.expectVisible(pom.view, "TP-BTN-MATCHED_ITEMS-08 pi pi-eye on /matched-items");
@@ -194,7 +203,7 @@ export class InspectMatchedItemsLoadMore extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-09",
-      "Inspect \"Load more\" on /matched-items",
+      'Inspect "Load more" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
         await pom.expectVisible(pom.loadMore, "TP-BTN-MATCHED_ITEMS-09 Load more on /matched-items");
@@ -209,10 +218,13 @@ export class InspectMatchedItemsPaginatorFirst extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-10",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /matched-items",
+      'Inspect "paginator:pi pi-angle-double-left" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-MATCHED_ITEMS-10 paginator:pi pi-angle-double-left on /matched-items");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-MATCHED_ITEMS-10 paginator:pi pi-angle-double-left on /matched-items",
+        );
       },
       "*****",
       "ready",
@@ -224,10 +236,13 @@ export class InspectMatchedItemsPaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-11",
-      "Inspect \"paginator:pi pi-angle-left\" on /matched-items",
+      'Inspect "paginator:pi pi-angle-left" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
-        await pom.expectVisible(pom.paginatorPrev, "TP-BTN-MATCHED_ITEMS-11 paginator:pi pi-angle-left on /matched-items");
+        await pom.expectVisible(
+          pom.paginatorPrev,
+          "TP-BTN-MATCHED_ITEMS-11 paginator:pi pi-angle-left on /matched-items",
+        );
       },
       "*****",
       "ready",
@@ -239,7 +254,7 @@ export class InspectMatchedItemsPaginatorPage1 extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-12",
-      "Inspect \"paginator:1\" on /matched-items",
+      'Inspect "paginator:1" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
         await pom.expectVisible(pom.paginatorPage1, "TP-BTN-MATCHED_ITEMS-12 paginator:1 on /matched-items");
@@ -254,10 +269,13 @@ export class InspectMatchedItemsPaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-13",
-      "Inspect \"paginator:pi pi-angle-right\" on /matched-items",
+      'Inspect "paginator:pi pi-angle-right" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
-        await pom.expectVisible(pom.paginatorNext, "TP-BTN-MATCHED_ITEMS-13 paginator:pi pi-angle-right on /matched-items");
+        await pom.expectVisible(
+          pom.paginatorNext,
+          "TP-BTN-MATCHED_ITEMS-13 paginator:pi pi-angle-right on /matched-items",
+        );
       },
       "*****",
       "ready",
@@ -269,10 +287,13 @@ export class InspectMatchedItemsPaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHED_ITEMS-14",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /matched-items",
+      'Inspect "paginator:pi pi-angle-double-right" on /matched-items',
       async (page) => {
         const pom = new MatchedItemsPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-MATCHED_ITEMS-14 paginator:pi pi-angle-double-right on /matched-items");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-MATCHED_ITEMS-14 paginator:pi pi-angle-double-right on /matched-items",
+        );
       },
       "*****",
       "ready",
@@ -300,14 +321,29 @@ export class MatchedItemsWaitForMatchedItem extends TestPoint {
     super("TP", "Check if file matching done correctly", async (page) => {
       const pom = new MatchedItemsPage(page);
       await pom.expectOnPage();
-      const grid = page.getByRole("table").filter({ has: page.getByRole("columnheader", { name: "Matched Item's ID" }) }).first();
+      const grid = page
+        .getByRole("table")
+        .filter({ has: page.getByRole("columnheader", { name: "Matched Item's ID" }) })
+        .first();
       const deadline = Date.now() + timeoutMs;
       for (let attempt = 1; ; attempt += 1) {
         await expect(grid).toBeVisible();
-        await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, { timeout: 30_000 });
-        const rows = await grid.getByRole("row").filter({ has: page.getByRole("cell") }).allInnerTexts();
-        rows.forEach((row, i) => logger.info(`Attempt ${attempt} row ${i + 1}: ${row.replace(/\s*[\t\n]+\s*/g, " | ")}`));
-        const found = rows.some((row) => row.split(/[\t\n]+/).map((cell) => cell.trim()).includes(expected));
+        await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, {
+          timeout: 30_000,
+        });
+        const rows = await grid
+          .getByRole("row")
+          .filter({ has: page.getByRole("cell") })
+          .allInnerTexts();
+        rows.forEach((row, i) =>
+          logger.info(`Attempt ${attempt} row ${i + 1}: ${row.replace(/\s*[\t\n]+\s*/g, " | ")}`),
+        );
+        const found = rows.some((row) =>
+          row
+            .split(/[\t\n]+/)
+            .map((cell) => cell.trim())
+            .includes(expected),
+        );
         if (found) {
           logger.info(`Found '${expected}' in matched items (attempt ${attempt})`);
           return;
@@ -317,6 +353,63 @@ export class MatchedItemsWaitForMatchedItem extends TestPoint {
         }
         await page.waitForTimeout(10_000);
         await pom.search.click();
+      }
+    });
+  }
+}
+
+/**
+ * Bank reconciliation: matching runs asynchronously after "Trigger Now". Re-runs Search until
+ * the matched-items grid has a molecule row for every payment order amount (e.g. "EUR 200.00").
+ */
+export class MatchedItemsWaitForBankMolecules extends TestPoint {
+  constructor(amounts: string[], currency: string, timeoutMs = 180_000) {
+    super("TP", `Check bank molecules for ${amounts.length} payment order(s)`, async (page) => {
+      const pom = new MatchedItemsPage(page);
+      await pom.expectOnPage();
+      const deadline = Date.now() + timeoutMs;
+      let missing = amounts;
+      for (let attempt = 1; ; attempt += 1) {
+        await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, {
+          timeout: 30_000,
+        });
+        const rows = (await pom.tableRows().allInnerTexts()).map((row) => row.replace(/\s*[\t\n]+\s*/g, " | "));
+        rows.forEach((row, i) => logger.info(`Attempt ${attempt} row ${i + 1}: ${row}`));
+        missing = amounts.filter((amount) => !rows.some((row) => row.includes(`${currency} ${amount}`)));
+        if (missing.length === 0) {
+          logger.info(`Found a bank molecule for every payment order (attempt ${attempt})`);
+          return;
+        }
+        if (Date.now() > deadline) {
+          throw new Error(
+            `No bank molecule for ${missing.map((a) => `${currency} ${a}`).join(", ")} after ${attempt} attempt(s)`,
+          );
+        }
+        await page.waitForTimeout(10_000);
+        await pom.search.click();
+      }
+    });
+  }
+}
+
+/**
+ * The molecule details dialog loads its atoms asynchronously (spinner first). Waits for the
+ * dialog's rows to render before checking them, then for the expected balance text.
+ */
+export class MatchedItemsWaitForMoleculeDetails extends TestPoint {
+  constructor(expectedBalance: string, timeoutMs = 60_000) {
+    super("TP-NEW-057", `Assert linked atoms and balance ${expectedBalance}`, async (page) => {
+      const detail = page.locator(".p-dialog, .p-sidebar").last();
+      await expect(detail).toBeVisible({ timeout: timeoutMs });
+      await expect(
+        detail.locator(".p-progress-spinner, .p-datatable-loading-overlay, .p-datatable-loading-icon"),
+      ).toHaveCount(0, { timeout: timeoutMs });
+      const rows = detail.getByRole("row").filter({ has: page.getByRole("cell") });
+      await expect(rows.first(), "Molecule details list no linked atoms").toBeVisible({ timeout: timeoutMs });
+      const texts = (await rows.allInnerTexts()).map((row) => row.replace(/\s*[\t\n]+\s*/g, " | "));
+      texts.forEach((row, i) => logger.info(`Molecule atom ${i + 1}: ${row}`));
+      if (expectedBalance) {
+        await expect(detail.getByText(expectedBalance, { exact: false }).first()).toBeVisible({ timeout: timeoutMs });
       }
     });
   }

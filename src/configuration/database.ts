@@ -74,10 +74,7 @@ export async function fetchRows(query: string, params: unknown[] = []): Promise<
   });
 }
 
-export function firstPopulated(
-  rows: Record<string, unknown>[],
-  field: string,
-): Record<string, unknown> | undefined {
+export function firstPopulated(rows: Record<string, unknown>[], field: string): Record<string, unknown> | undefined {
   return rows.find((row) => {
     const value = row[field];
     return value !== null && value !== undefined && String(value).trim() !== "";
@@ -256,18 +253,44 @@ export async function shiftCreationDate(table: CreationDateTable, id: string, cr
   ]);
 }
 
-export async function shiftSaleRefundCreatedDates(paymentId: string, daysAgo = 60): Promise<void> {
-  const cutoff = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000).toISOString();
+/**
+ * Moves the created_date of the sales with this payment id back by `days` days, relative to
+ * their current value: UPDATE "QA".sale SET created_date = created_date - interval '<days> day'.
+ */
+export async function shiftSaleRefundCreatedDates(paymentId: string, days: number): Promise<void> {
+  if (!Number.isInteger(days) || days < 0) {
+    throw new Error(`days must be a non-negative integer, got ${days}`);
+  }
   await fetchRows(
     `UPDATE "${schema}"."sale"
-     SET created_date = $1::timestamptz
+     SET created_date = created_date - ($1::int * interval '1 day')
      WHERE payment_id::text = $2`,
-    [cutoff, paymentId],
+    [days, paymentId],
   );
+}
+
+/**
+ * Moves the created_date of the sale rows (sales and refunds) with these document numbers back
+ * by `days` days: UPDATE "QA".sale SET created_date = created_date - interval '<days> day'.
+ */
+export async function shiftSaleCreatedDatesByDocument(documentNumbers: string[], days: number): Promise<number> {
+  if (!Number.isInteger(days) || days < 0) {
+    throw new Error(`days must be a non-negative integer, got ${days}`);
+  }
+  if (!documentNumbers.length) {
+    throw new Error("At least one document number is required");
+  }
+  const rows = await fetchRows(
+    `UPDATE "${schema}"."sale"
+     SET created_date = created_date - ($1::int * interval '1 day')
+     WHERE document_number = ANY($2::text[])
+     RETURNING id`,
+    [days, [...new Set(documentNumbers)]],
+  );
+  return rows.length;
 }
 
 export function dateRangeCovering(values: unknown[]): string {
   const times = values.map((value) => utcDay(value).getTime());
   return `${formatUiDate(new Date(Math.min(...times)))} - ${formatUiDate(new Date(Math.max(...times)))}`;
 }
-

@@ -287,10 +287,38 @@ function syntheticSaleNegatives(rows: Record<string, unknown>[], paymentDate: un
   const realFile = uniqueField(rows, "operation_id", 1)[0] ?? "";
   const realFop = uniqueField(rows, "form_of_payment_code", 1)[0] ?? "";
   return [
-    combo({ paymentDate, label: "wrong channel", channel: "DIRECT - DirectSale", country: realCountry, fileId: realFile, fopCode: realFop }),
-    combo({ paymentDate, label: "wrong country", channel: realChannel, country: "ZZ", fileId: realFile, fopCode: realFop }),
-    combo({ paymentDate, label: "wrong file id", channel: realChannel, country: realCountry, fileId: "does-not-exist", fopCode: realFop }),
-    combo({ paymentDate, label: "wrong fop code", channel: realChannel, country: realCountry, fileId: realFile, fopCode: "XX99" }),
+    combo({
+      paymentDate,
+      label: "wrong channel",
+      channel: "DIRECT - DirectSale",
+      country: realCountry,
+      fileId: realFile,
+      fopCode: realFop,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong country",
+      channel: realChannel,
+      country: "ZZ",
+      fileId: realFile,
+      fopCode: realFop,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong file id",
+      channel: realChannel,
+      country: realCountry,
+      fileId: "does-not-exist",
+      fopCode: realFop,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong fop code",
+      channel: realChannel,
+      country: realCountry,
+      fileId: realFile,
+      fopCode: "XX99",
+    }),
   ].filter((value) => !rows.some((row) => matchesSale(row, value)));
 }
 
@@ -300,9 +328,30 @@ function syntheticSettlementNegatives(rows: Record<string, unknown>[], paymentDa
   const realFile = uniqueField(rows, "operation_id", 1)[0] ?? "";
   const realFop = uniqueField(rows, "form_of_payment_code", 1)[0] ?? "";
   return [
-    combo({ paymentDate, label: "wrong acquirer", acquirer: "UNKNOWN_ACQUIRER", country: realCountry, fileId: realFile, fopCode: realFop }),
-    combo({ paymentDate, label: "wrong country", acquirer: realAcquirer, country: "ZZ", fileId: realFile, fopCode: realFop }),
-    combo({ paymentDate, label: "wrong file id", acquirer: realAcquirer, country: realCountry, fileId: "does-not-exist", fopCode: realFop }),
+    combo({
+      paymentDate,
+      label: "wrong acquirer",
+      acquirer: "UNKNOWN_ACQUIRER",
+      country: realCountry,
+      fileId: realFile,
+      fopCode: realFop,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong country",
+      acquirer: realAcquirer,
+      country: "ZZ",
+      fileId: realFile,
+      fopCode: realFop,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong file id",
+      acquirer: realAcquirer,
+      country: realCountry,
+      fileId: "does-not-exist",
+      fopCode: realFop,
+    }),
   ].filter((value) => !rows.some((row) => matchesSettlement(row, value)));
 }
 
@@ -312,11 +361,47 @@ function syntheticPaymentOrderNegatives(rows: Record<string, unknown>[], payment
   const realDeposit = uniqueField(rows, "bank_deposit_reference", 1)[0] ?? "";
   const realFile = uniqueField(rows, "operation_id", 1)[0] ?? "";
   return [
-    combo({ paymentDate, label: "wrong acquirer", acquirer: "UNKNOWN_ACQUIRER", paymentOrderReference: realReference, bankDepositReference: realDeposit, fileId: realFile }),
-    combo({ paymentDate, label: "wrong payment order reference", acquirer: realAcquirer, paymentOrderReference: "does-not-exist", bankDepositReference: realDeposit, fileId: realFile }),
-    combo({ paymentDate, label: "wrong bank deposit reference", acquirer: realAcquirer, paymentOrderReference: realReference, bankDepositReference: "does-not-exist", fileId: realFile }),
-    combo({ paymentDate, label: "wrong file id", acquirer: realAcquirer, paymentOrderReference: realReference, bankDepositReference: realDeposit, fileId: "does-not-exist" }),
-    combo({ paymentDate, label: "wrong banked status", acquirer: realAcquirer, paymentOrderReference: realReference, bankDepositReference: realDeposit, fileId: realFile, bankedStatus: "Deposited" }),
+    combo({
+      paymentDate,
+      label: "wrong acquirer",
+      acquirer: "UNKNOWN_ACQUIRER",
+      paymentOrderReference: realReference,
+      bankDepositReference: realDeposit,
+      fileId: realFile,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong payment order reference",
+      acquirer: realAcquirer,
+      paymentOrderReference: "does-not-exist",
+      bankDepositReference: realDeposit,
+      fileId: realFile,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong bank deposit reference",
+      acquirer: realAcquirer,
+      paymentOrderReference: realReference,
+      bankDepositReference: "does-not-exist",
+      fileId: realFile,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong file id",
+      acquirer: realAcquirer,
+      paymentOrderReference: realReference,
+      bankDepositReference: realDeposit,
+      fileId: "does-not-exist",
+    }),
+    combo({
+      paymentDate,
+      label: "wrong banked status",
+      acquirer: realAcquirer,
+      paymentOrderReference: realReference,
+      bankDepositReference: realDeposit,
+      fileId: realFile,
+      bankedStatus: "Deposited",
+    }),
   ].filter((value) => !rows.some((row) => matchesPaymentOrder(row, value)));
 }
 
@@ -326,10 +411,46 @@ function syntheticBankDepositNegatives(rows: Record<string, unknown>[], paymentD
   const realAccount = uniqueField(rows, "bank_account_number", 1)[0] ?? "";
   const realFile = uniqueField(rows, "operation_id", 1)[0] ?? "";
   return [
-    combo({ paymentDate, label: "wrong acquirer", acquirer: "UNKNOWN_ACQUIRER", bankDepositReference: realDeposit, bankAccountNumber: realAccount, fileId: realFile }),
-    combo({ paymentDate, label: "wrong bank deposit reference", acquirer: realAcquirer, bankDepositReference: "does-not-exist", bankAccountNumber: realAccount, fileId: realFile }),
-    combo({ paymentDate, label: "wrong bank account number", acquirer: realAcquirer, bankDepositReference: realDeposit, bankAccountNumber: "does-not-exist", fileId: realFile }),
-    combo({ paymentDate, label: "wrong file id", acquirer: realAcquirer, bankDepositReference: realDeposit, bankAccountNumber: realAccount, fileId: "does-not-exist" }),
-    combo({ paymentDate, label: "wrong banked status", acquirer: realAcquirer, bankDepositReference: realDeposit, bankAccountNumber: realAccount, fileId: realFile, bankedStatus: "Deposited" }),
+    combo({
+      paymentDate,
+      label: "wrong acquirer",
+      acquirer: "UNKNOWN_ACQUIRER",
+      bankDepositReference: realDeposit,
+      bankAccountNumber: realAccount,
+      fileId: realFile,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong bank deposit reference",
+      acquirer: realAcquirer,
+      bankDepositReference: "does-not-exist",
+      bankAccountNumber: realAccount,
+      fileId: realFile,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong bank account number",
+      acquirer: realAcquirer,
+      bankDepositReference: realDeposit,
+      bankAccountNumber: "does-not-exist",
+      fileId: realFile,
+    }),
+    combo({
+      paymentDate,
+      label: "wrong file id",
+      acquirer: realAcquirer,
+      bankDepositReference: realDeposit,
+      bankAccountNumber: realAccount,
+      fileId: "does-not-exist",
+    }),
+    combo({
+      paymentDate,
+      label: "wrong banked status",
+      acquirer: realAcquirer,
+      bankDepositReference: realDeposit,
+      bankAccountNumber: realAccount,
+      fileId: realFile,
+      bankedStatus: "Deposited",
+    }),
   ].filter((value) => !rows.some((row) => matchesBankDeposit(row, value)));
 }

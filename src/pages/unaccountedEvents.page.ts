@@ -72,7 +72,7 @@ export class InspectUnaccountedEventsDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-01",
-      "Inspect \"pi pi-calendar\" on /unaccounted-events",
+      'Inspect "pi pi-calendar" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-UNACCOUNTED_EVENTS-01 pi pi-calendar on /unaccounted-events");
@@ -87,7 +87,7 @@ export class InspectUnaccountedEventsSelectEvents extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-02",
-      "Inspect \"Select events\" on /unaccounted-events",
+      'Inspect "Select events" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
         await pom.expectVisible(pom.selectEvents, "TP-BTN-UNACCOUNTED_EVENTS-02 Select events on /unaccounted-events");
@@ -102,10 +102,13 @@ export class InspectUnaccountedEventsSelectFailureReason extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-03",
-      "Inspect \"Select failure reason\" on /unaccounted-events",
+      'Inspect "Select failure reason" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
-        await pom.expectVisible(pom.selectFailureReason, "TP-BTN-UNACCOUNTED_EVENTS-03 Select failure reason on /unaccounted-events");
+        await pom.expectVisible(
+          pom.selectFailureReason,
+          "TP-BTN-UNACCOUNTED_EVENTS-03 Select failure reason on /unaccounted-events",
+        );
       },
       "*****",
       "ready",
@@ -117,7 +120,7 @@ export class InspectUnaccountedEventsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-04",
-      "Inspect \"Search\" on /unaccounted-events",
+      'Inspect "Search" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-UNACCOUNTED_EVENTS-04 Search on /unaccounted-events");
@@ -132,10 +135,13 @@ export class InspectUnaccountedEventsSelectItemType extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-05",
-      "Inspect \"Select item type\" on /unaccounted-events",
+      'Inspect "Select item type" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
-        await pom.expectVisible(pom.selectItemType, "TP-BTN-UNACCOUNTED_EVENTS-05 Select item type on /unaccounted-events");
+        await pom.expectVisible(
+          pom.selectItemType,
+          "TP-BTN-UNACCOUNTED_EVENTS-05 Select item type on /unaccounted-events",
+        );
       },
       "*****",
       "ready",
@@ -147,10 +153,13 @@ export class InspectUnaccountedEventsOpenExternal extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-06",
-      "Inspect \"pi pi-external-link\" on /unaccounted-events",
+      'Inspect "pi pi-external-link" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
-        await pom.expectVisible(pom.openExternal, "TP-BTN-UNACCOUNTED_EVENTS-06 pi pi-external-link on /unaccounted-events");
+        await pom.expectVisible(
+          pom.openExternal,
+          "TP-BTN-UNACCOUNTED_EVENTS-06 pi pi-external-link on /unaccounted-events",
+        );
       },
       "*****",
       "ready",
@@ -162,7 +171,7 @@ export class InspectUnaccountedEventsExportButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-07",
-      "Inspect \"Export\" on /unaccounted-events",
+      'Inspect "Export" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
         await pom.expectVisible(pom.exportButton, "TP-BTN-UNACCOUNTED_EVENTS-07 Export on /unaccounted-events");
@@ -177,7 +186,7 @@ export class InspectUnaccountedEventsCopy extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-08",
-      "Inspect \"pi pi-copy\" on /unaccounted-events",
+      'Inspect "pi pi-copy" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
         await pom.expectVisible(pom.copy, "TP-BTN-UNACCOUNTED_EVENTS-08 pi pi-copy on /unaccounted-events");
@@ -192,7 +201,7 @@ export class InspectUnaccountedEventsLoadMore extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-09",
-      "Inspect \"Load more\" on /unaccounted-events",
+      'Inspect "Load more" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
         await pom.expectVisible(pom.loadMore, "TP-BTN-UNACCOUNTED_EVENTS-09 Load more on /unaccounted-events");
@@ -207,10 +216,13 @@ export class InspectUnaccountedEventsPaginatorFirst extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-10",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /unaccounted-events",
+      'Inspect "paginator:pi pi-angle-double-left" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-UNACCOUNTED_EVENTS-10 paginator:pi pi-angle-double-left on /unaccounted-events");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-UNACCOUNTED_EVENTS-10 paginator:pi pi-angle-double-left on /unaccounted-events",
+        );
       },
       "*****",
       "ready",
@@ -222,10 +234,13 @@ export class InspectUnaccountedEventsPaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-11",
-      "Inspect \"paginator:pi pi-angle-left\" on /unaccounted-events",
+      'Inspect "paginator:pi pi-angle-left" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
-        await pom.expectVisible(pom.paginatorPrev, "TP-BTN-UNACCOUNTED_EVENTS-11 paginator:pi pi-angle-left on /unaccounted-events");
+        await pom.expectVisible(
+          pom.paginatorPrev,
+          "TP-BTN-UNACCOUNTED_EVENTS-11 paginator:pi pi-angle-left on /unaccounted-events",
+        );
       },
       "*****",
       "ready",
@@ -237,7 +252,7 @@ export class InspectUnaccountedEventsPaginatorPage1 extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-12",
-      "Inspect \"paginator:1\" on /unaccounted-events",
+      'Inspect "paginator:1" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
         await pom.expectVisible(pom.paginatorPage1, "TP-BTN-UNACCOUNTED_EVENTS-12 paginator:1 on /unaccounted-events");
@@ -252,10 +267,13 @@ export class InspectUnaccountedEventsPaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-13",
-      "Inspect \"paginator:pi pi-angle-right\" on /unaccounted-events",
+      'Inspect "paginator:pi pi-angle-right" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
-        await pom.expectVisible(pom.paginatorNext, "TP-BTN-UNACCOUNTED_EVENTS-13 paginator:pi pi-angle-right on /unaccounted-events");
+        await pom.expectVisible(
+          pom.paginatorNext,
+          "TP-BTN-UNACCOUNTED_EVENTS-13 paginator:pi pi-angle-right on /unaccounted-events",
+        );
       },
       "*****",
       "ready",
@@ -267,14 +285,16 @@ export class InspectUnaccountedEventsPaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-UNACCOUNTED_EVENTS-14",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /unaccounted-events",
+      'Inspect "paginator:pi pi-angle-double-right" on /unaccounted-events',
       async (page) => {
         const pom = new UnaccountedEventsPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-UNACCOUNTED_EVENTS-14 paginator:pi pi-angle-double-right on /unaccounted-events");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-UNACCOUNTED_EVENTS-14 paginator:pi pi-angle-double-right on /unaccounted-events",
+        );
       },
       "*****",
       "ready",
     );
   }
 }
-

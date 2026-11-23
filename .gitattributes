@@ -1,0 +1,8 @@
+# Keep LF everywhere, also on Windows checkouts: Prettier, the scenario generator checksums and
+# shell scripts all expect LF.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pptx binary
+*.xlsx binary
+*.zip binary

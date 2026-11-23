@@ -60,7 +60,7 @@ export class InspectFormOfPaymentsSelectFopType extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FORM_OF_PAYMENTS-01",
-      "Inspect \"Select FOP Type\" on /form-of-payments",
+      'Inspect "Select FOP Type" on /form-of-payments',
       async (page) => {
         const pom = new FormOfPaymentsPage(page);
         await pom.expectVisible(pom.selectFopType, "TP-BTN-FORM_OF_PAYMENTS-01 Select FOP Type on /form-of-payments");
@@ -75,7 +75,7 @@ export class InspectFormOfPaymentsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FORM_OF_PAYMENTS-02",
-      "Inspect \"Search\" on /form-of-payments",
+      'Inspect "Search" on /form-of-payments',
       async (page) => {
         const pom = new FormOfPaymentsPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-FORM_OF_PAYMENTS-02 Search on /form-of-payments");
@@ -90,7 +90,7 @@ export class InspectFormOfPaymentsCreate extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FORM_OF_PAYMENTS-03",
-      "Inspect \"pi pi-plus\" on /form-of-payments",
+      'Inspect "pi pi-plus" on /form-of-payments',
       async (page) => {
         const pom = new FormOfPaymentsPage(page);
         await pom.expectVisible(pom.create, "TP-BTN-FORM_OF_PAYMENTS-03 pi pi-plus on /form-of-payments");
@@ -105,7 +105,7 @@ export class InspectFormOfPaymentsCopy extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FORM_OF_PAYMENTS-04",
-      "Inspect \"pi pi-copy\" on /form-of-payments",
+      'Inspect "pi pi-copy" on /form-of-payments',
       async (page) => {
         const pom = new FormOfPaymentsPage(page);
         await pom.expectVisible(pom.copy, "TP-BTN-FORM_OF_PAYMENTS-04 pi pi-copy on /form-of-payments");
@@ -120,7 +120,7 @@ export class InspectFormOfPaymentsEdit extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FORM_OF_PAYMENTS-05",
-      "Inspect \"pi pi-pencil\" on /form-of-payments",
+      'Inspect "pi pi-pencil" on /form-of-payments',
       async (page) => {
         const pom = new FormOfPaymentsPage(page);
         await pom.expectVisible(pom.edit, "TP-BTN-FORM_OF_PAYMENTS-05 pi pi-pencil on /form-of-payments");
@@ -135,10 +135,13 @@ export class InspectFormOfPaymentsPaginatorFirst extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FORM_OF_PAYMENTS-06",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /form-of-payments",
+      'Inspect "paginator:pi pi-angle-double-left" on /form-of-payments',
       async (page) => {
         const pom = new FormOfPaymentsPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-FORM_OF_PAYMENTS-06 paginator:pi pi-angle-double-left on /form-of-payments");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-FORM_OF_PAYMENTS-06 paginator:pi pi-angle-double-left on /form-of-payments",
+        );
       },
       "*****",
       "ready",
@@ -150,10 +153,13 @@ export class InspectFormOfPaymentsPaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FORM_OF_PAYMENTS-07",
-      "Inspect \"paginator:pi pi-angle-left\" on /form-of-payments",
+      'Inspect "paginator:pi pi-angle-left" on /form-of-payments',
       async (page) => {
         const pom = new FormOfPaymentsPage(page);
-        await pom.expectVisible(pom.paginatorPrev, "TP-BTN-FORM_OF_PAYMENTS-07 paginator:pi pi-angle-left on /form-of-payments");
+        await pom.expectVisible(
+          pom.paginatorPrev,
+          "TP-BTN-FORM_OF_PAYMENTS-07 paginator:pi pi-angle-left on /form-of-payments",
+        );
       },
       "*****",
       "ready",
@@ -165,7 +171,7 @@ export class InspectFormOfPaymentsPaginatorPage1 extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FORM_OF_PAYMENTS-08",
-      "Inspect \"paginator:1\" on /form-of-payments",
+      'Inspect "paginator:1" on /form-of-payments',
       async (page) => {
         const pom = new FormOfPaymentsPage(page);
         await pom.expectVisible(pom.paginatorPage1, "TP-BTN-FORM_OF_PAYMENTS-08 paginator:1 on /form-of-payments");
@@ -180,10 +186,13 @@ export class InspectFormOfPaymentsPaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FORM_OF_PAYMENTS-12",
-      "Inspect \"paginator:pi pi-angle-right\" on /form-of-payments",
+      'Inspect "paginator:pi pi-angle-right" on /form-of-payments',
       async (page) => {
         const pom = new FormOfPaymentsPage(page);
-        await pom.expectVisible(pom.paginatorNext, "TP-BTN-FORM_OF_PAYMENTS-12 paginator:pi pi-angle-right on /form-of-payments");
+        await pom.expectVisible(
+          pom.paginatorNext,
+          "TP-BTN-FORM_OF_PAYMENTS-12 paginator:pi pi-angle-right on /form-of-payments",
+        );
       },
       "*****",
       "ready",
@@ -195,14 +204,16 @@ export class InspectFormOfPaymentsPaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FORM_OF_PAYMENTS-13",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /form-of-payments",
+      'Inspect "paginator:pi pi-angle-double-right" on /form-of-payments',
       async (page) => {
         const pom = new FormOfPaymentsPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-FORM_OF_PAYMENTS-13 paginator:pi pi-angle-double-right on /form-of-payments");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-FORM_OF_PAYMENTS-13 paginator:pi pi-angle-double-right on /form-of-payments",
+        );
       },
       "*****",
       "ready",
     );
   }
 }
-

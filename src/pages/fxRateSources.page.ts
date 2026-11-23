@@ -51,7 +51,7 @@ export class InspectFxRateSourcesSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FX_RATE_SOURCES-01",
-      "Inspect \"Search\" on /fx-rate-sources",
+      'Inspect "Search" on /fx-rate-sources',
       async (page) => {
         const pom = new FxRateSourcesPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-FX_RATE_SOURCES-01 Search on /fx-rate-sources");
@@ -66,7 +66,7 @@ export class InspectFxRateSourcesView extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FX_RATE_SOURCES-02",
-      "Inspect \"pi pi-eye\" on /fx-rate-sources",
+      'Inspect "pi pi-eye" on /fx-rate-sources',
       async (page) => {
         const pom = new FxRateSourcesPage(page);
         await pom.expectVisible(pom.view, "TP-BTN-FX_RATE_SOURCES-02 pi pi-eye on /fx-rate-sources");
@@ -81,10 +81,13 @@ export class InspectFxRateSourcesPaginatorFirst extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FX_RATE_SOURCES-03",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /fx-rate-sources",
+      'Inspect "paginator:pi pi-angle-double-left" on /fx-rate-sources',
       async (page) => {
         const pom = new FxRateSourcesPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-FX_RATE_SOURCES-03 paginator:pi pi-angle-double-left on /fx-rate-sources");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-FX_RATE_SOURCES-03 paginator:pi pi-angle-double-left on /fx-rate-sources",
+        );
       },
       "*****",
       "ready",
@@ -96,10 +99,13 @@ export class InspectFxRateSourcesPaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FX_RATE_SOURCES-04",
-      "Inspect \"paginator:pi pi-angle-left\" on /fx-rate-sources",
+      'Inspect "paginator:pi pi-angle-left" on /fx-rate-sources',
       async (page) => {
         const pom = new FxRateSourcesPage(page);
-        await pom.expectVisible(pom.paginatorPrev, "TP-BTN-FX_RATE_SOURCES-04 paginator:pi pi-angle-left on /fx-rate-sources");
+        await pom.expectVisible(
+          pom.paginatorPrev,
+          "TP-BTN-FX_RATE_SOURCES-04 paginator:pi pi-angle-left on /fx-rate-sources",
+        );
       },
       "*****",
       "ready",
@@ -111,7 +117,7 @@ export class InspectFxRateSourcesPaginatorPage1 extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FX_RATE_SOURCES-05",
-      "Inspect \"paginator:1\" on /fx-rate-sources",
+      'Inspect "paginator:1" on /fx-rate-sources',
       async (page) => {
         const pom = new FxRateSourcesPage(page);
         await pom.expectVisible(pom.paginatorPage1, "TP-BTN-FX_RATE_SOURCES-05 paginator:1 on /fx-rate-sources");
@@ -126,10 +132,13 @@ export class InspectFxRateSourcesPaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FX_RATE_SOURCES-06",
-      "Inspect \"paginator:pi pi-angle-right\" on /fx-rate-sources",
+      'Inspect "paginator:pi pi-angle-right" on /fx-rate-sources',
       async (page) => {
         const pom = new FxRateSourcesPage(page);
-        await pom.expectVisible(pom.paginatorNext, "TP-BTN-FX_RATE_SOURCES-06 paginator:pi pi-angle-right on /fx-rate-sources");
+        await pom.expectVisible(
+          pom.paginatorNext,
+          "TP-BTN-FX_RATE_SOURCES-06 paginator:pi pi-angle-right on /fx-rate-sources",
+        );
       },
       "*****",
       "ready",
@@ -141,14 +150,16 @@ export class InspectFxRateSourcesPaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-FX_RATE_SOURCES-07",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /fx-rate-sources",
+      'Inspect "paginator:pi pi-angle-double-right" on /fx-rate-sources',
       async (page) => {
         const pom = new FxRateSourcesPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-FX_RATE_SOURCES-07 paginator:pi pi-angle-double-right on /fx-rate-sources");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-FX_RATE_SOURCES-07 paginator:pi pi-angle-double-right on /fx-rate-sources",
+        );
       },
       "*****",
       "ready",
     );
   }
 }
-

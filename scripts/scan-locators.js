@@ -31,7 +31,11 @@ async function login(page) {
   await page.goto(BASE, { waitUntil: "domcontentloaded" });
   const usernameField = page.locator("#username");
   const appRoot = page.locator("app-root");
-  if ((await appRoot.count()) && (await appRoot.first().isVisible()) && !(await usernameField.isVisible().catch(() => false))) {
+  if (
+    (await appRoot.count()) &&
+    (await appRoot.first().isVisible()) &&
+    !(await usernameField.isVisible().catch(() => false))
+  ) {
     return;
   }
   await usernameField.waitFor({ state: "visible", timeout: 30_000 });
@@ -52,7 +56,15 @@ async function dump(page, root) {
     const radio = scope.getByRole("radio").nth(i);
     radios.push({
       name: await radio.getAttribute("aria-label").catch(() => null),
-      accessible: (await radio.evaluate((el) => el.getAttribute("aria-label") || el.labels?.[0]?.innerText || el.parentElement?.innerText || "").catch(() => "")).replace(/\s+/g, " ").trim(),
+      accessible: (
+        await radio
+          .evaluate(
+            (el) => el.getAttribute("aria-label") || el.labels?.[0]?.innerText || el.parentElement?.innerText || "",
+          )
+          .catch(() => "")
+      )
+        .replace(/\s+/g, " ")
+        .trim(),
       visible: await radio.isVisible().catch(() => false),
     });
   }
@@ -87,7 +99,9 @@ async function dump(page, root) {
         return style.display !== "none" && style.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
       })
       .map((el) => ({
-        name: (el.innerText || el.getAttribute("aria-label") || el.getAttribute("title") || "").replace(/\s+/g, " ").trim(),
+        name: (el.innerText || el.getAttribute("aria-label") || el.getAttribute("title") || "")
+          .replace(/\s+/g, " ")
+          .trim(),
         aria: el.getAttribute("aria-label") || "",
         title: el.getAttribute("title") || "",
         className: (el.getAttribute("class") || "").slice(0, 160),
@@ -131,13 +145,19 @@ async function clickFilterIfPresent(page, host) {
   const root = host ? page.locator(host).first() : page;
   const extra = root.getByRole("button").filter({ has: page.locator(".pi-filter") });
   if (await extra.count()) {
-    await extra.first().click({ timeout: 5_000 }).catch(() => undefined);
+    await extra
+      .first()
+      .click({ timeout: 5_000 })
+      .catch(() => undefined);
     await page.waitForTimeout(500);
     return true;
   }
   const css = root.locator("button.field, button:has(.pi-filter)");
   if (await css.count()) {
-    await css.first().click({ timeout: 5_000 }).catch(() => undefined);
+    await css
+      .first()
+      .click({ timeout: 5_000 })
+      .catch(() => undefined);
     await page.waitForTimeout(500);
     return true;
   }
@@ -164,14 +184,22 @@ async function clickFilterIfPresent(page, host) {
       }
       entry.url = page.url();
       const hostLocator = spec.host ? page.locator(spec.host.split(",")[0].trim()).first() : page.locator("body");
-      const hostVisible = spec.host ? await page.locator(spec.host).first().isVisible().catch(() => false) : true;
+      const hostVisible = spec.host
+        ? await page
+            .locator(spec.host)
+            .first()
+            .isVisible()
+            .catch(() => false)
+        : true;
       entry.hostVisible = hostVisible;
       const root = hostVisible ? hostLocator : page;
       entry.before = await dump(page, root);
       const clicked = await clickFilterIfPresent(page, spec.host ? spec.host.split(",")[0].trim() : null);
       entry.extraFiltersClicked = clicked;
       if (clicked) entry.afterExtra = await dump(page, root);
-      console.log(`OK ${spec.name} host=${hostVisible} extra=${clicked} radios=${entry.before.radioLabels.length} placeholders=${entry.before.placeholders.length}`);
+      console.log(
+        `OK ${spec.name} host=${hostVisible} extra=${clicked} radios=${entry.before.radioLabels.length} placeholders=${entry.before.placeholders.length}`,
+      );
     } catch (error) {
       entry.error = String(error.message || error);
       console.log(`FAIL ${spec.name}: ${entry.error}`);

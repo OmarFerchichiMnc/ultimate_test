@@ -4,7 +4,12 @@ const path = require("path");
 const catalog = JSON.parse(fs.readFileSync("reports/button-catalog.json", "utf8"));
 
 function pathSlug(path) {
-  return path.replace(/^\//, "").replace(/[^a-zA-Z0-9]+/g, "_").toUpperCase() || "ROOT";
+  return (
+    path
+      .replace(/^\//, "")
+      .replace(/[^a-zA-Z0-9]+/g, "_")
+      .toUpperCase() || "ROOT"
+  );
 }
 
 const HAND_MAINTAINED = new Set([
@@ -27,7 +32,10 @@ const PAGE_META = {
   "/audit-track/sale": { file: "saleAuditTrack.page.ts", className: "SaleAuditTrackPage" },
   "/audit-track/settlement": { file: "settlementAuditTrack.page.ts", className: "SettlementAuditTrackPage" },
   "/pending-items": { file: "pendingItems.page.ts", className: "PendingItemsPage" },
-  "/provisional-mismatched-items": { file: "provisionalMismatchedItems.page.ts", className: "ProvisionalMismatchedItemsPage" },
+  "/provisional-mismatched-items": {
+    file: "provisionalMismatchedItems.page.ts",
+    className: "ProvisionalMismatchedItemsPage",
+  },
   "/installments": { file: "installments.page.ts", className: "InstallmentsPage" },
   "/matched-items": { file: "matchedItems.page.ts", className: "MatchedItemsPage" },
   "/matched-items/exceptions": { file: "matchedItemsExceptions.page.ts", className: "MatchedItemsExceptionsPage" },
@@ -40,10 +48,22 @@ const PAGE_META = {
   "/post-to-ledger": { file: "postToLedger.page.ts", className: "PostToLedgerPage" },
   "/alert-type-affiliation": { file: "alertTypeAffiliation.page.ts", className: "AlertTypeAffiliationPage" },
   "/settings/file": { file: "fileSettings.page.ts", className: "FileSettingsPage" },
-  "/matching-rules/settlement-reconciliation": { file: "settlementReconciliationRules.page.ts", className: "SettlementReconciliationRulesPage" },
-  "/matching-rules/bank-reconciliation": { file: "bankReconciliationRules.page.ts", className: "BankReconciliationRulesPage" },
-  "/settlement-reconciliation-settings": { file: "settlementReconciliationSettings.page.ts", className: "SettlementReconciliationSettingsPage" },
-  "/bank-reconciliation-settings": { file: "bankReconciliationSettings.page.ts", className: "BankReconciliationSettingsPage" },
+  "/matching-rules/settlement-reconciliation": {
+    file: "settlementReconciliationRules.page.ts",
+    className: "SettlementReconciliationRulesPage",
+  },
+  "/matching-rules/bank-reconciliation": {
+    file: "bankReconciliationRules.page.ts",
+    className: "BankReconciliationRulesPage",
+  },
+  "/settlement-reconciliation-settings": {
+    file: "settlementReconciliationSettings.page.ts",
+    className: "SettlementReconciliationSettingsPage",
+  },
+  "/bank-reconciliation-settings": {
+    file: "bankReconciliationSettings.page.ts",
+    className: "BankReconciliationSettingsPage",
+  },
   "/accounting-rules": { file: "accountingRules.page.ts", className: "AccountingRulesPage" },
   "/accounting-periods": { file: "accountingPeriods.page.ts", className: "AccountingPeriodsPage" },
   "/chart-accounts": { file: "chartAccounts.page.ts", className: "ChartAccountsPage" },
@@ -54,7 +74,10 @@ const PAGE_META = {
   "/fx-rate-sources": { file: "fxRateSources.page.ts", className: "FxRateSourcesPage" },
   "/form-of-payments": { file: "formOfPayments.page.ts", className: "FormOfPaymentsPage" },
   "/point-of-sales": { file: "pointOfSales.page.ts", className: "PointOfSalesPage" },
-  "/point-of-sales-merchant-mapping": { file: "pointOfSalesMerchantMapping.page.ts", className: "PointOfSalesMerchantMappingPage" },
+  "/point-of-sales-merchant-mapping": {
+    file: "pointOfSalesMerchantMapping.page.ts",
+    className: "PointOfSalesMerchantMappingPage",
+  },
   "/acquirers": { file: "acquirers.page.ts", className: "AcquirersPage" },
   "/acquirer-merchants": { file: "acquirerMerchants.page.ts", className: "AcquirerMerchantsPage" },
   "/sale-sources": { file: "saleSources.page.ts", className: "SaleSourcesPage" },
@@ -62,8 +85,14 @@ const PAGE_META = {
   "/secondary-matching": { file: "secondaryMatching.page.ts", className: "SecondaryMatchingPage" },
   "/gl-details": { file: "glDetails.page.ts", className: "GlDetailsPage" },
   "/settings/transaction": { file: "transactionSettings.page.ts", className: "TransactionSettingsPage" },
-  "/matching-rules/secondary-matching": { file: "secondaryMatchingRules.page.ts", className: "SecondaryMatchingRulesPage" },
-  "/secondary-matching-settings": { file: "secondaryMatchingSettings.page.ts", className: "SecondaryMatchingSettingsPage" },
+  "/matching-rules/secondary-matching": {
+    file: "secondaryMatchingRules.page.ts",
+    className: "SecondaryMatchingRulesPage",
+  },
+  "/secondary-matching-settings": {
+    file: "secondaryMatchingSettings.page.ts",
+    className: "SecondaryMatchingSettingsPage",
+  },
   "/reports": { file: "reports.page.ts", className: "ReportsPage" },
 };
 
@@ -100,8 +129,20 @@ const ALIASES = {
 };
 
 const RESERVED = new Set([
-  "export", "class", "new", "delete", "default", "import", "from", "page", "path", "goto",
-  "constructor", "name", "length", "then",
+  "export",
+  "class",
+  "new",
+  "delete",
+  "default",
+  "import",
+  "from",
+  "page",
+  "path",
+  "goto",
+  "constructor",
+  "name",
+  "length",
+  "then",
 ]);
 
 function isStable(button) {
@@ -111,13 +152,20 @@ function isStable(button) {
 }
 
 function camel(name) {
-  const words = name.replace(/^pi pi-/, "").replace(/[^a-zA-Z0-9]+/g, " ").trim().split(/\s+/).filter(Boolean);
+  const words = name
+    .replace(/^pi pi-/, "")
+    .replace(/[^a-zA-Z0-9]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
   if (!words.length) return "control";
-  const raw = words.map((word, i) => {
-    const lower = word.toLowerCase();
-    if (i === 0) return lower;
-    return lower.charAt(0).toUpperCase() + lower.slice(1);
-  }).join("");
+  const raw = words
+    .map((word, i) => {
+      const lower = word.toLowerCase();
+      if (i === 0) return lower;
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    })
+    .join("");
   return raw;
 }
 
@@ -154,8 +202,10 @@ function locatorExpr(button, prop, searchIndex) {
   if (n === "Save") return `this.findNamedButton("Save")`;
   if (n === "Refresh") return `this.findNamedButton("Refresh")`;
   if (n === "Replay") return `this.findNamedButton("Replay")`;
-  if (n === "Check now") return `this.page.locator("button.AccountingScheduledJobsActions-JournalEntriesBalanceCheckBtn")`;
-  if (n === "Calculate now") return `this.page.locator("button.AccountingScheduledJobsActions-ClosedAccountingPeriodBalanceCalculationBtn")`;
+  if (n === "Check now")
+    return `this.page.locator("button.AccountingScheduledJobsActions-JournalEntriesBalanceCheckBtn")`;
+  if (n === "Calculate now")
+    return `this.page.locator("button.AccountingScheduledJobsActions-ClosedAccountingPeriodBalanceCalculationBtn")`;
   if (n === "Upload") return `this.page.locator(".p-fileupload-choose").first()`;
   if (n === "paginator:pi pi-angle-double-left") return `this.findPaginatorFirst()`;
   if (n === "paginator:pi pi-angle-left") return `this.findPaginatorPrev()`;
@@ -185,7 +235,12 @@ function pascal(name) {
 }
 
 function openId(routePath) {
-  return `TP-OPEN-${routePath.replace(/^\//, "").replace(/[^a-zA-Z0-9]+/g, "_").toUpperCase() || "ROOT"}`;
+  return `TP-OPEN-${
+    routePath
+      .replace(/^\//, "")
+      .replace(/[^a-zA-Z0-9]+/g, "_")
+      .toUpperCase() || "ROOT"
+  }`;
 }
 
 const generated = [];
@@ -202,7 +257,13 @@ for (const [routePath, items] of Object.entries(catalog)) {
     if (button.name === "Search") searchIndex += 1;
     const locator = locatorExpr(button, prop, currentSearch);
     const testPointId = button.testPointId || `TP-BTN-${pathSlug(routePath)}-${String(index + 1).padStart(2, "0")}`;
-    return { ...button, testPointId, prop, locator, inspectClass: `Inspect${meta.className.replace(/Page$/, "")}${pascal(prop)}` };
+    return {
+      ...button,
+      testPointId,
+      prop,
+      locator,
+      inspectClass: `Inspect${meta.className.replace(/Page$/, "")}${pascal(prop)}`,
+    };
   });
 
   generated.push({ routePath, ...meta, className: meta.className, controls: controls.length });
@@ -281,4 +342,6 @@ ${inspectClasses}
   fs.writeFileSync(path.join("src/pages", meta.file), content);
 }
 
-console.log(JSON.stringify({ pages: generated.length, files: generated.map((g) => `${g.file} (${g.controls})`) }, null, 2));
+console.log(
+  JSON.stringify({ pages: generated.length, files: generated.map((g) => `${g.file} (${g.controls})`) }, null, 2),
+);

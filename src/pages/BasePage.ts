@@ -16,9 +16,7 @@ function assertMaxOneMonth(start: Date, end: Date): void {
   const limit = new Date(start);
   limit.setMonth(limit.getMonth() + 1);
   if (end > limit) {
-    throw new Error(
-      `Date range cannot exceed 1 month: ${start.toDateString()} - ${end.toDateString()}`,
-    );
+    throw new Error(`Date range cannot exceed 1 month: ${start.toDateString()} - ${end.toDateString()}`);
   }
 }
 
@@ -59,7 +57,10 @@ export class BasePage {
   }
 
   protected findExtraFilters(): Locator {
-    return this.page.getByRole("button").filter({ has: this.page.locator(".pi-filter") }).first();
+    return this.page
+      .getByRole("button")
+      .filter({ has: this.page.locator(".pi-filter") })
+      .first();
   }
 
   gridExportButton(): Locator {
@@ -75,7 +76,10 @@ export class BasePage {
   }
 
   protected findIconButton(iconClass: string, index = 0): Locator {
-    return this.page.getByRole("button").filter({ has: this.page.locator(`.${iconClass}`) }).nth(index);
+    return this.page
+      .getByRole("button")
+      .filter({ has: this.page.locator(`.${iconClass}`) })
+      .nth(index);
   }
 
   protected findDropdown(label: string, index = 0): Locator {
@@ -171,8 +175,18 @@ export class BasePage {
 
   private async pickCalendarDay(panel: Locator, date: Date): Promise<void> {
     const months = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December",
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
     ];
     const targetMonth = months[date.getMonth()];
     const targetYear = String(date.getFullYear());
@@ -185,9 +199,17 @@ export class BasePage {
       const current = currentYear * 12 + Math.max(currentMonth, 0);
       const target = date.getFullYear() * 12 + date.getMonth();
       if (current <= target) {
-        await panel.getByRole("button", { name: /next month/i }).or(panel.locator("button.p-datepicker-next")).first().click();
+        await panel
+          .getByRole("button", { name: /next month/i })
+          .or(panel.locator("button.p-datepicker-next"))
+          .first()
+          .click();
       } else {
-        await panel.getByRole("button", { name: /previous month/i }).or(panel.locator("button.p-datepicker-prev")).first().click();
+        await panel
+          .getByRole("button", { name: /previous month/i })
+          .or(panel.locator("button.p-datepicker-prev"))
+          .first()
+          .click();
       }
     }
     await panel

@@ -110,7 +110,7 @@ export class InspectSaleAuditTrackSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SALE-01",
-      "Inspect \"Search\" on /audit-track/sale",
+      'Inspect "Search" on /audit-track/sale',
       async (page) => {
         const pom = new SaleAuditTrackPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-AUDIT_TRACK_SALE-01 Search on /audit-track/sale");
@@ -125,7 +125,7 @@ export class InspectSaleAuditTrackDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SALE-02",
-      "Inspect \"pi pi-calendar\" on /audit-track/sale",
+      'Inspect "pi pi-calendar" on /audit-track/sale',
       async (page) => {
         const pom = new SaleAuditTrackPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-AUDIT_TRACK_SALE-02 pi pi-calendar on /audit-track/sale");
@@ -140,10 +140,13 @@ export class InspectSaleAuditTrackSelectAChannelType extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SALE-03",
-      "Inspect \"Select a channel type\" on /audit-track/sale",
+      'Inspect "Select a channel type" on /audit-track/sale',
       async (page) => {
         const pom = new SaleAuditTrackPage(page);
-        await pom.expectVisible(pom.selectAChannelType, "TP-BTN-AUDIT_TRACK_SALE-03 Select a channel type on /audit-track/sale");
+        await pom.expectVisible(
+          pom.selectAChannelType,
+          "TP-BTN-AUDIT_TRACK_SALE-03 Select a channel type on /audit-track/sale",
+        );
       },
       "*****",
       "ready",
@@ -155,7 +158,7 @@ export class InspectSaleAuditTrackExtraFiltersButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SALE-04",
-      "Inspect \"pi pi-filter\" on /audit-track/sale",
+      'Inspect "pi pi-filter" on /audit-track/sale',
       async (page) => {
         const pom = new SaleAuditTrackPage(page);
         await pom.expectVisible(pom.extraFiltersButton, "TP-BTN-AUDIT_TRACK_SALE-04 pi pi-filter on /audit-track/sale");
@@ -170,7 +173,7 @@ export class InspectSaleAuditTrackSalesTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SALE-05",
-      "Inspect \"Sales\" on /audit-track/sale",
+      'Inspect "Sales" on /audit-track/sale',
       async (page) => {
         const pom = new SaleAuditTrackPage(page);
         await pom.expectVisible(pom.salesTab, "TP-BTN-AUDIT_TRACK_SALE-05 Sales on /audit-track/sale");
@@ -185,7 +188,7 @@ export class InspectSaleAuditTrackRefundedSalesTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SALE-06",
-      "Inspect \"Refunded Sales\" on /audit-track/sale",
+      'Inspect "Refunded Sales" on /audit-track/sale',
       async (page) => {
         const pom = new SaleAuditTrackPage(page);
         await pom.expectVisible(pom.refundedSalesTab, "TP-BTN-AUDIT_TRACK_SALE-06 Refunded Sales on /audit-track/sale");
@@ -200,7 +203,7 @@ export class InspectSaleAuditTrackDeletedSalesTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SALE-07",
-      "Inspect (do not click) \"Deleted Sales\" on /audit-track/sale",
+      'Inspect (do not click) "Deleted Sales" on /audit-track/sale',
       async (page) => {
         const pom = new SaleAuditTrackPage(page);
         await pom.expectVisible(pom.deletedSalesTab, "TP-BTN-AUDIT_TRACK_SALE-07 Deleted Sales on /audit-track/sale");
@@ -216,7 +219,7 @@ export class InspectSaleAuditTrackDeletedSales extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SALE-08",
-      "Inspect (do not click) \"Deleted Sales\" on /audit-track/sale",
+      'Inspect (do not click) "Deleted Sales" on /audit-track/sale',
       async (page) => {
         const pom = new SaleAuditTrackPage(page);
         await pom.expectVisible(pom.deletedSales, "TP-BTN-AUDIT_TRACK_SALE-08 Deleted Sales on /audit-track/sale");
@@ -232,7 +235,7 @@ export class InspectSaleAuditTrackRefundedSales extends TestPoint {
   constructor() {
     super(
       "TP-BTN-AUDIT_TRACK_SALE-09",
-      "Inspect \"Refunded Sales\" on /audit-track/sale",
+      'Inspect "Refunded Sales" on /audit-track/sale',
       async (page) => {
         const pom = new SaleAuditTrackPage(page);
         await pom.expectVisible(pom.refundedSales, "TP-BTN-AUDIT_TRACK_SALE-09 Refunded Sales on /audit-track/sale");
@@ -537,10 +540,24 @@ export class SaleUICheckIfSaleTableHasDocument extends TestPoint {
   constructor(documentNumber: string, timeoutMs = 60_000) {
     super("TP", `Check if sale table contains document ${documentNumber}`, async (page) => {
       const pom = new SaleAuditTrackPage(page);
-      await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, { timeout: timeoutMs });
+      await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, {
+        timeout: timeoutMs,
+      });
       const row = pom.tableRows().filter({ hasText: documentNumber }).first();
       await expect(row, `No sale row with document number ${documentNumber}`).toBeVisible({ timeout: timeoutMs });
       logger.info(`Sale row found: ${((await row.innerText()) || "").replace(/\s*[\t\n]+\s*/g, " | ")}`);
+    });
+  }
+}
+
+/** Switches the sale audit grid to the "Refunded Sales" tab (sales that have a refund, and the refunds). */
+export class SaleUIOpenRefundedSalesTab extends TestPoint {
+  constructor() {
+    super("TP", "Open Refunded Sales tab", async (page) => {
+      const pom = new SaleAuditTrackPage(page);
+      await expect(pom.refundedSalesTab).toBeVisible();
+      await pom.refundedSalesTab.click();
+      logger.info("Opened Refunded Sales tab");
     });
   }
 }

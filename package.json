@@ -13,20 +13,38 @@
     "test:testpoints": "playwright test tests/testpoints",
     "test:scenarios": "playwright test tests/scenarios",
     "test:generator": "playwright test tests/framework/fileGenerator.spec.ts",
-    "scenarios:generate": "npx -y tsx scripts/split-scenarios.ts",
+    "test:framework": "playwright test tests/framework tests/testpoints/registry.spec.ts",
+    "scenarios:generate": "tsx scripts/split-scenarios.ts",
+    "scenarios:check": "tsx scripts/split-scenarios.ts --check",
     "report": "playwright show-report reports/latest/html",
     "pack:execution": "node scripts/pack-execution.js",
-    "codegen": "playwright codegen"
+    "codegen": "playwright codegen",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "verify": "npm run typecheck && npm run lint && npm run format:check && npm run scenarios:check && npm run test:framework"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
     "@playwright/test": "^1.55.0",
     "@types/node": "^22.13.10",
     "@types/pg": "^8.11.11",
     "@types/ssh2-sftp-client": "^9.0.4",
     "dotenv": "^16.4.7",
+    "eslint": "^9.39.5",
+    "eslint-plugin-playwright": "^2.12.2",
+    "globals": "^17.14.0",
     "pg": "^8.13.3",
+    "prettier": "^3.10.1",
     "ssh2-sftp-client": "^11.0.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.8.2",
+    "typescript-eslint": "^8.73.0",
     "yaml": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

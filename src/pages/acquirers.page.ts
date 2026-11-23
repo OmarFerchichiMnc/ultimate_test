@@ -57,7 +57,7 @@ export class InspectAcquirersSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACQUIRERS-01",
-      "Inspect \"Search\" on /acquirers",
+      'Inspect "Search" on /acquirers',
       async (page) => {
         const pom = new AcquirersPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-ACQUIRERS-01 Search on /acquirers");
@@ -72,7 +72,7 @@ export class InspectAcquirersCreate extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACQUIRERS-02",
-      "Inspect \"pi pi-plus\" on /acquirers",
+      'Inspect "pi pi-plus" on /acquirers',
       async (page) => {
         const pom = new AcquirersPage(page);
         await pom.expectVisible(pom.create, "TP-BTN-ACQUIRERS-02 pi pi-plus on /acquirers");
@@ -87,7 +87,7 @@ export class InspectAcquirersCopy extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACQUIRERS-03",
-      "Inspect \"pi pi-copy\" on /acquirers",
+      'Inspect "pi pi-copy" on /acquirers',
       async (page) => {
         const pom = new AcquirersPage(page);
         await pom.expectVisible(pom.copy, "TP-BTN-ACQUIRERS-03 pi pi-copy on /acquirers");
@@ -102,7 +102,7 @@ export class InspectAcquirersEdit extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACQUIRERS-04",
-      "Inspect \"pi pi-pencil\" on /acquirers",
+      'Inspect "pi pi-pencil" on /acquirers',
       async (page) => {
         const pom = new AcquirersPage(page);
         await pom.expectVisible(pom.edit, "TP-BTN-ACQUIRERS-04 pi pi-pencil on /acquirers");
@@ -117,10 +117,13 @@ export class InspectAcquirersPaginatorFirst extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACQUIRERS-05",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /acquirers",
+      'Inspect "paginator:pi pi-angle-double-left" on /acquirers',
       async (page) => {
         const pom = new AcquirersPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-ACQUIRERS-05 paginator:pi pi-angle-double-left on /acquirers");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-ACQUIRERS-05 paginator:pi pi-angle-double-left on /acquirers",
+        );
       },
       "*****",
       "ready",
@@ -132,7 +135,7 @@ export class InspectAcquirersPaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACQUIRERS-06",
-      "Inspect \"paginator:pi pi-angle-left\" on /acquirers",
+      'Inspect "paginator:pi pi-angle-left" on /acquirers',
       async (page) => {
         const pom = new AcquirersPage(page);
         await pom.expectVisible(pom.paginatorPrev, "TP-BTN-ACQUIRERS-06 paginator:pi pi-angle-left on /acquirers");
@@ -147,7 +150,7 @@ export class InspectAcquirersPaginatorPage1 extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACQUIRERS-07",
-      "Inspect \"paginator:1\" on /acquirers",
+      'Inspect "paginator:1" on /acquirers',
       async (page) => {
         const pom = new AcquirersPage(page);
         await pom.expectVisible(pom.paginatorPage1, "TP-BTN-ACQUIRERS-07 paginator:1 on /acquirers");
@@ -162,7 +165,7 @@ export class InspectAcquirersPaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACQUIRERS-12",
-      "Inspect \"paginator:pi pi-angle-right\" on /acquirers",
+      'Inspect "paginator:pi pi-angle-right" on /acquirers',
       async (page) => {
         const pom = new AcquirersPage(page);
         await pom.expectVisible(pom.paginatorNext, "TP-BTN-ACQUIRERS-12 paginator:pi pi-angle-right on /acquirers");
@@ -177,14 +180,16 @@ export class InspectAcquirersPaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACQUIRERS-13",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /acquirers",
+      'Inspect "paginator:pi pi-angle-double-right" on /acquirers',
       async (page) => {
         const pom = new AcquirersPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-ACQUIRERS-13 paginator:pi pi-angle-double-right on /acquirers");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-ACQUIRERS-13 paginator:pi pi-angle-double-right on /acquirers",
+        );
       },
       "*****",
       "ready",
     );
   }
 }
-

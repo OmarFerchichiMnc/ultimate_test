@@ -161,12 +161,13 @@ export const TestPointNavigateToBusinesssRulesAlertTypeAffiliationByLink = navig
   description: "Navigate to Alert Type Affiliation page",
 });
 
-export const TestPointNavigateToBusinesssRulesReconciliationMachingRulesSettlementReconciliationByLink =
-  navigateByLink({
+export const TestPointNavigateToBusinesssRulesReconciliationMachingRulesSettlementReconciliationByLink = navigateByLink(
+  {
     id: "TP0022",
     path: "/matching-rules/settlement-reconciliation",
     description: "Navigate to settlement reconciliation matching page",
-  });
+  },
+);
 
 export const TestPointNavigateToBusinesssRulesReconciliationMachingRulesBankReconciliationByLink = navigateByLink({
   id: "TP0023",

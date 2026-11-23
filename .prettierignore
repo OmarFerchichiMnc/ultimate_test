@@ -1,0 +1,9 @@
+node_modules/
+reports/
+playwright-report/
+test-results/
+playwright/.auth/
+docs/
+package-lock.json
+# Written by scripts/split-scenarios.ts: formatting them would break the checksum that protects hand edits.
+tests/scenarios/*.spec.ts

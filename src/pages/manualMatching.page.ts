@@ -59,10 +59,19 @@ export class ManualMatchingPage extends BasePage {
     this.selectCustomerAcquirer = this.findDropdown("Select Customer/Acquirer");
     this.salePnrRadio = this.findRadio("PNR/Order Reference", this.page.locator("adad-frontend-sales-list"));
     this.salePnrInput = this.page.locator("adad-frontend-sales-list").getByRole("textbox").first();
-    this.saleQuickSearch = this.page.locator("adad-frontend-sales-list").getByRole("button", { name: "Search" }).first();
-    this.settlementPnrRadio = this.findRadio("PNR/Order Reference", this.page.locator("adad-frontend-settlements-list"));
+    this.saleQuickSearch = this.page
+      .locator("adad-frontend-sales-list")
+      .getByRole("button", { name: "Search" })
+      .first();
+    this.settlementPnrRadio = this.findRadio(
+      "PNR/Order Reference",
+      this.page.locator("adad-frontend-settlements-list"),
+    );
     this.settlementPnrInput = this.page.locator("adad-frontend-settlements-list").getByRole("textbox").first();
-    this.settlementQuickSearch = this.page.locator("adad-frontend-settlements-list").getByRole("button", { name: "Search" }).first();
+    this.settlementQuickSearch = this.page
+      .locator("adad-frontend-settlements-list")
+      .getByRole("button", { name: "Search" })
+      .first();
     this.saleCheckbox = this.page.locator("adad-frontend-sales-list").getByRole("checkbox").first();
     this.settlementCheckbox = this.page.locator("adad-frontend-settlements-list").getByRole("checkbox").first();
     this.matchDialogButton = this.page.getByRole("dialog").getByRole("button").last();
@@ -84,10 +93,13 @@ export class InspectManualMatchingSettlementReconciliation extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-01",
-      "Inspect \"Settlement Reconciliation\" on /manual-matching",
+      'Inspect "Settlement Reconciliation" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
-        await pom.expectVisible(pom.settlementReconciliation, "TP-BTN-MANUAL_MATCHING-01 Settlement Reconciliation on /manual-matching");
+        await pom.expectVisible(
+          pom.settlementReconciliation,
+          "TP-BTN-MANUAL_MATCHING-01 Settlement Reconciliation on /manual-matching",
+        );
       },
       "*****",
       "ready",
@@ -99,10 +111,13 @@ export class InspectManualMatchingPaymentCurrencyTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-02",
-      "Inspect \"Payment Currency\" on /manual-matching",
+      'Inspect "Payment Currency" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
-        await pom.expectVisible(pom.paymentCurrencyTab, "TP-BTN-MANUAL_MATCHING-02 Payment Currency on /manual-matching");
+        await pom.expectVisible(
+          pom.paymentCurrencyTab,
+          "TP-BTN-MANUAL_MATCHING-02 Payment Currency on /manual-matching",
+        );
       },
       "*****",
       "ready",
@@ -114,10 +129,13 @@ export class InspectManualMatchingAccountingCurrencyTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-03",
-      "Inspect \"Accounting Currency\" on /manual-matching",
+      'Inspect "Accounting Currency" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
-        await pom.expectVisible(pom.accountingCurrencyTab, "TP-BTN-MANUAL_MATCHING-03 Accounting Currency on /manual-matching");
+        await pom.expectVisible(
+          pom.accountingCurrencyTab,
+          "TP-BTN-MANUAL_MATCHING-03 Accounting Currency on /manual-matching",
+        );
       },
       "*****",
       "ready",
@@ -129,7 +147,7 @@ export class InspectManualMatchingConfirm extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-04",
-      "Inspect (do not click) \"Confirm\" on /manual-matching",
+      'Inspect (do not click) "Confirm" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
         await pom.expectVisible(pom.confirm, "TP-BTN-MANUAL_MATCHING-04 Confirm on /manual-matching");
@@ -145,7 +163,7 @@ export class InspectManualMatchingResetAll extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-05",
-      "Inspect \"Reset All\" on /manual-matching",
+      'Inspect "Reset All" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
         await pom.expectVisible(pom.resetAll, "TP-BTN-MANUAL_MATCHING-05 Reset All on /manual-matching");
@@ -160,7 +178,7 @@ export class InspectManualMatchingSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-06",
-      "Inspect \"Search\" on /manual-matching",
+      'Inspect "Search" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-MANUAL_MATCHING-06 Search on /manual-matching");
@@ -175,7 +193,7 @@ export class InspectManualMatchingDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-07",
-      "Inspect \"pi pi-calendar\" on /manual-matching",
+      'Inspect "pi pi-calendar" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-MANUAL_MATCHING-07 pi pi-calendar on /manual-matching");
@@ -190,10 +208,13 @@ export class InspectManualMatchingSelectAChannelType extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-08",
-      "Inspect \"Select a channel type\" on /manual-matching",
+      'Inspect "Select a channel type" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
-        await pom.expectVisible(pom.selectAChannelType, "TP-BTN-MANUAL_MATCHING-08 Select a channel type on /manual-matching");
+        await pom.expectVisible(
+          pom.selectAChannelType,
+          "TP-BTN-MANUAL_MATCHING-08 Select a channel type on /manual-matching",
+        );
       },
       "*****",
       "ready",
@@ -205,7 +226,7 @@ export class InspectManualMatchingExtraFiltersButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-09",
-      "Inspect \"pi pi-filter\" on /manual-matching",
+      'Inspect "pi pi-filter" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
         await pom.expectVisible(pom.extraFiltersButton, "TP-BTN-MANUAL_MATCHING-09 pi pi-filter on /manual-matching");
@@ -220,7 +241,7 @@ export class InspectManualMatchingSearchAdvanced extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-10",
-      "Inspect \"Search\" on /manual-matching",
+      'Inspect "Search" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
         await pom.expectVisible(pom.searchAdvanced, "TP-BTN-MANUAL_MATCHING-10 Search on /manual-matching");
@@ -235,10 +256,13 @@ export class InspectManualMatchingSelectCustomerAcquirer extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MANUAL_MATCHING-11",
-      "Inspect \"Select Customer/Acquirer\" on /manual-matching",
+      'Inspect "Select Customer/Acquirer" on /manual-matching',
       async (page) => {
         const pom = new ManualMatchingPage(page);
-        await pom.expectVisible(pom.selectCustomerAcquirer, "TP-BTN-MANUAL_MATCHING-11 Select Customer/Acquirer on /manual-matching");
+        await pom.expectVisible(
+          pom.selectCustomerAcquirer,
+          "TP-BTN-MANUAL_MATCHING-11 Select Customer/Acquirer on /manual-matching",
+        );
       },
       "*****",
       "ready",

@@ -48,7 +48,7 @@ export class InspectAccountingJournalSaleSource extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACCOUNTING_JOURNAL-01",
-      "Inspect \"Sale Source\" on /accounting-journal",
+      'Inspect "Sale Source" on /accounting-journal',
       async (page) => {
         const pom = new AccountingJournalPage(page);
         await pom.expectVisible(pom.saleSource, "TP-BTN-ACCOUNTING_JOURNAL-01 Sale Source on /accounting-journal");
@@ -63,7 +63,7 @@ export class InspectAccountingJournalSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACCOUNTING_JOURNAL-02",
-      "Inspect \"Search\" on /accounting-journal",
+      'Inspect "Search" on /accounting-journal',
       async (page) => {
         const pom = new AccountingJournalPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-ACCOUNTING_JOURNAL-02 Search on /accounting-journal");
@@ -78,7 +78,7 @@ export class InspectAccountingJournalDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACCOUNTING_JOURNAL-03",
-      "Inspect \"pi pi-calendar\" on /accounting-journal",
+      'Inspect "pi pi-calendar" on /accounting-journal',
       async (page) => {
         const pom = new AccountingJournalPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-ACCOUNTING_JOURNAL-03 pi pi-calendar on /accounting-journal");
@@ -93,10 +93,13 @@ export class InspectAccountingJournalSelectAChannelType extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACCOUNTING_JOURNAL-04",
-      "Inspect \"Select a channel type\" on /accounting-journal",
+      'Inspect "Select a channel type" on /accounting-journal',
       async (page) => {
         const pom = new AccountingJournalPage(page);
-        await pom.expectVisible(pom.selectAChannelType, "TP-BTN-ACCOUNTING_JOURNAL-04 Select a channel type on /accounting-journal");
+        await pom.expectVisible(
+          pom.selectAChannelType,
+          "TP-BTN-ACCOUNTING_JOURNAL-04 Select a channel type on /accounting-journal",
+        );
       },
       "*****",
       "ready",
@@ -108,10 +111,13 @@ export class InspectAccountingJournalExtraFiltersButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACCOUNTING_JOURNAL-05",
-      "Inspect \"pi pi-filter\" on /accounting-journal",
+      'Inspect "pi pi-filter" on /accounting-journal',
       async (page) => {
         const pom = new AccountingJournalPage(page);
-        await pom.expectVisible(pom.extraFiltersButton, "TP-BTN-ACCOUNTING_JOURNAL-05 pi pi-filter on /accounting-journal");
+        await pom.expectVisible(
+          pom.extraFiltersButton,
+          "TP-BTN-ACCOUNTING_JOURNAL-05 pi pi-filter on /accounting-journal",
+        );
       },
       "*****",
       "ready",
@@ -123,7 +129,7 @@ export class InspectAccountingJournalSearchAdvanced extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ACCOUNTING_JOURNAL-06",
-      "Inspect \"Search\" on /accounting-journal",
+      'Inspect "Search" on /accounting-journal',
       async (page) => {
         const pom = new AccountingJournalPage(page);
         await pom.expectVisible(pom.searchAdvanced, "TP-BTN-ACCOUNTING_JOURNAL-06 Search on /accounting-journal");
@@ -133,4 +139,3 @@ export class InspectAccountingJournalSearchAdvanced extends TestPoint {
     );
   }
 }
-

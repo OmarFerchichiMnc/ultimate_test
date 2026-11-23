@@ -57,7 +57,7 @@ export class InspectSaleSourcesSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SALE_SOURCES-01",
-      "Inspect \"Search\" on /sale-sources",
+      'Inspect "Search" on /sale-sources',
       async (page) => {
         const pom = new SaleSourcesPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-SALE_SOURCES-01 Search on /sale-sources");
@@ -72,7 +72,7 @@ export class InspectSaleSourcesCreate extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SALE_SOURCES-02",
-      "Inspect \"pi pi-plus\" on /sale-sources",
+      'Inspect "pi pi-plus" on /sale-sources',
       async (page) => {
         const pom = new SaleSourcesPage(page);
         await pom.expectVisible(pom.create, "TP-BTN-SALE_SOURCES-02 pi pi-plus on /sale-sources");
@@ -87,7 +87,7 @@ export class InspectSaleSourcesCopy extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SALE_SOURCES-03",
-      "Inspect \"pi pi-copy\" on /sale-sources",
+      'Inspect "pi pi-copy" on /sale-sources',
       async (page) => {
         const pom = new SaleSourcesPage(page);
         await pom.expectVisible(pom.copy, "TP-BTN-SALE_SOURCES-03 pi pi-copy on /sale-sources");
@@ -102,7 +102,7 @@ export class InspectSaleSourcesEdit extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SALE_SOURCES-04",
-      "Inspect \"pi pi-pencil\" on /sale-sources",
+      'Inspect "pi pi-pencil" on /sale-sources',
       async (page) => {
         const pom = new SaleSourcesPage(page);
         await pom.expectVisible(pom.edit, "TP-BTN-SALE_SOURCES-04 pi pi-pencil on /sale-sources");
@@ -117,10 +117,13 @@ export class InspectSaleSourcesPaginatorFirst extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SALE_SOURCES-05",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /sale-sources",
+      'Inspect "paginator:pi pi-angle-double-left" on /sale-sources',
       async (page) => {
         const pom = new SaleSourcesPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-SALE_SOURCES-05 paginator:pi pi-angle-double-left on /sale-sources");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-SALE_SOURCES-05 paginator:pi pi-angle-double-left on /sale-sources",
+        );
       },
       "*****",
       "ready",
@@ -132,10 +135,13 @@ export class InspectSaleSourcesPaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SALE_SOURCES-06",
-      "Inspect \"paginator:pi pi-angle-left\" on /sale-sources",
+      'Inspect "paginator:pi pi-angle-left" on /sale-sources',
       async (page) => {
         const pom = new SaleSourcesPage(page);
-        await pom.expectVisible(pom.paginatorPrev, "TP-BTN-SALE_SOURCES-06 paginator:pi pi-angle-left on /sale-sources");
+        await pom.expectVisible(
+          pom.paginatorPrev,
+          "TP-BTN-SALE_SOURCES-06 paginator:pi pi-angle-left on /sale-sources",
+        );
       },
       "*****",
       "ready",
@@ -147,7 +153,7 @@ export class InspectSaleSourcesPaginatorPage1 extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SALE_SOURCES-07",
-      "Inspect \"paginator:1\" on /sale-sources",
+      'Inspect "paginator:1" on /sale-sources',
       async (page) => {
         const pom = new SaleSourcesPage(page);
         await pom.expectVisible(pom.paginatorPage1, "TP-BTN-SALE_SOURCES-07 paginator:1 on /sale-sources");
@@ -162,10 +168,13 @@ export class InspectSaleSourcesPaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SALE_SOURCES-09",
-      "Inspect \"paginator:pi pi-angle-right\" on /sale-sources",
+      'Inspect "paginator:pi pi-angle-right" on /sale-sources',
       async (page) => {
         const pom = new SaleSourcesPage(page);
-        await pom.expectVisible(pom.paginatorNext, "TP-BTN-SALE_SOURCES-09 paginator:pi pi-angle-right on /sale-sources");
+        await pom.expectVisible(
+          pom.paginatorNext,
+          "TP-BTN-SALE_SOURCES-09 paginator:pi pi-angle-right on /sale-sources",
+        );
       },
       "*****",
       "ready",
@@ -177,14 +186,16 @@ export class InspectSaleSourcesPaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SALE_SOURCES-10",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /sale-sources",
+      'Inspect "paginator:pi pi-angle-double-right" on /sale-sources',
       async (page) => {
         const pom = new SaleSourcesPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-SALE_SOURCES-10 paginator:pi pi-angle-double-right on /sale-sources");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-SALE_SOURCES-10 paginator:pi pi-angle-double-right on /sale-sources",
+        );
       },
       "*****",
       "ready",
     );
   }
 }
-

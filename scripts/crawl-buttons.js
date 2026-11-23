@@ -78,7 +78,9 @@ async function login(page) {
 }
 
 async function expandSidebar(page) {
-  const toggles = page.locator("adad-frontend-sidebar a, adad-frontend-sidebar button, adad-frontend-sidebar .p-ripple");
+  const toggles = page.locator(
+    "adad-frontend-sidebar a, adad-frontend-sidebar button, adad-frontend-sidebar .p-ripple",
+  );
   const count = await toggles.count();
   for (let i = 0; i < Math.min(count, 80); i += 1) {
     const el = toggles.nth(i);
@@ -113,7 +115,8 @@ async function collectInternalHrefs(page) {
 
 async function extractClickables(page) {
   return page.evaluate(() => {
-    const destructive = /trigger|delete|remove|save|submit|confirm|match|post to|post-to|create|upload|generate|apply|yes|ok$/i;
+    const destructive =
+      /trigger|delete|remove|save|submit|confirm|match|post to|post-to|create|upload|generate|apply|yes|ok$/i;
     const isVisible = (el) => {
       const style = window.getComputedStyle(el);
       const rect = el.getBoundingClientRect();
@@ -169,12 +172,15 @@ async function extractClickables(page) {
       if (seen.has(key)) continue;
       seen.add(key);
 
-      const region =
-        el.closest("adad-frontend-sidebar") ? "sidebar" :
-        el.closest("adad-frontend-toolbar > div > div:first-child, .layout-topbar, adad-frontend-topbar, header") ? "navbar" :
-        el.closest("p-dialog, p-confirmdialog, p-dynamicdialog, [role='dialog']") ? "modal" :
-        el.closest("p-dropdown, p-overlaypanel, p-menu, .p-dropdown-panel") ? "dropdown" :
-        "page";
+      const region = el.closest("adad-frontend-sidebar")
+        ? "sidebar"
+        : el.closest("adad-frontend-toolbar > div > div:first-child, .layout-topbar, adad-frontend-topbar, header")
+          ? "navbar"
+          : el.closest("p-dialog, p-confirmdialog, p-dynamicdialog, [role='dialog']")
+            ? "modal"
+            : el.closest("p-dropdown, p-overlaypanel, p-menu, .p-dropdown-panel")
+              ? "dropdown"
+              : "page";
 
       items.push({
         text: name,

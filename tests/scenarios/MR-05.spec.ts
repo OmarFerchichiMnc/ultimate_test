@@ -1,43 +1,50 @@
 import { test } from "../../src/fixtures/auth";
 import { runTestPoints } from "../runTestPoints";
 import { config } from "../../src/configuration/config";
-import { PrepareIngestionFixture, OpenFileDashboardPage, FileDashboardFilterUploadedFile, FileDashboardUIFilterClickSearch, CheckIfFileIngested, FileDashboardAssertIngestionStatus, FileDashboardAssertTotalTransactions, DbShiftCreationDate, OpenSecondaryMatchingSettingsPage, SecondaryMatchingClickTriggerNow, OpenSecondaryMatchingPage, SecondaryMatchingAssertMolecule, OpenSaleAuditTrackPage, SaleUIFilterDocumentNumber, SaleUIClickSearchQuickFilter, SaleUICheckIfSaleTableNotEmpty, SaleAuditTrackAssertLifecycleEvents } from "../../src/pages";
-import { BastionSsmForward, PrepareUpload, ExecuteUpload, WaitForFileInjection } from "../../src/configuration/fileInjection";
+import { GenerateScenarioFiles, scenarioDataset } from "../../src/generation";
+import { PrepareIngestionFixture, OpenFileDashboardPage, FileDashboardFilterUploadedFile, FileDashboardUIFilterClickSearch, FileDashboardWaitForFile, FileDashboardAssertIngestionStatus, FileDashboardAssertTotalTransactions, DbShiftSaleCreatedDatesByDocument, OpenSecondaryMatchingSettingsPage, SecondaryMatchingClickTriggerNow, OpenSecondaryMatchingPage, SecondaryMatchingWaitForSaleRefundPairs, OpenSaleAuditTrackPage, SaleUIFilterDocumentNumber, SaleUIClickSearchQuickFilter, SaleUIOpenRefundedSalesTab, SaleUICheckIfSaleTableHasDocument, SaleAuditTrackAssertLifecycleEvents } from "../../src/pages";
+import { BastionSsmForward, PrepareUpload, ExecuteUpload, WaitForFileInjection, WaitForThirtySeconds } from "../../src/configuration/fileInjection";
 
 test.describe("Matching & Reconciliation", () => {
   test("MR-05 Secondary matching: sale and refund", async ({ loggedInPage }) => {
-    test.setTimeout(600_000);
+    test.setTimeout(1000_000);
+    // Sale file holds each SALE row and its REFUND row (same document number).
+    const data = scenarioDataset("MR-05", { strategy: "documentNumberAndFop", withRefunds: true });
+    const documentNumbers = data.sales.map((sale) => sale.documentNumber);
     await runTestPoints(loggedInPage, [
-      new PrepareIngestionFixture(config.files.salePath),
+      new GenerateScenarioFiles(data),
+      new PrepareIngestionFixture(data.dir),
+
       new BastionSsmForward(),
-      new PrepareUpload(config.files.salePath, config.adadPaths.sales, config.files.saleFileName),
-      new ExecuteUpload(config.files.salePath, config.adadPaths.sales, config.files.saleFileName),
+      new PrepareUpload(data.dir, config.adadPaths.sales, data.sale.fileName),
+      new ExecuteUpload(data.dir, config.adadPaths.sales, data.sale.fileName),
+
       new WaitForFileInjection(),
+
       new OpenFileDashboardPage(),
-      new FileDashboardFilterUploadedFile(config.files.saleFileName),
+      new FileDashboardFilterUploadedFile(data.sale.fileName),
       new FileDashboardUIFilterClickSearch(),
-      new CheckIfFileIngested(config.files.saleFileName),
+      new FileDashboardWaitForFile(data.sale.fileName),
       new FileDashboardAssertIngestionStatus("Accepted"),
-      new FileDashboardAssertTotalTransactions(20),
-      new BastionSsmForward(),
-      new PrepareUpload(config.files.salePath, config.adadPaths.sales, config.files.saleFileName),
-      new ExecuteUpload(config.files.salePath, config.adadPaths.sales, config.files.saleFileName),
-      new WaitForFileInjection(),
-      new OpenFileDashboardPage(),
-      new FileDashboardFilterUploadedFile(config.files.saleFileName),
-      new FileDashboardUIFilterClickSearch(),
-      new CheckIfFileIngested(config.files.saleFileName),
-      new FileDashboardAssertIngestionStatus("Accepted"),
-      new FileDashboardAssertTotalTransactions(20),
-      new DbShiftCreationDate("sale", "1", "2026-01-16T00:00:00Z"),
+      new FileDashboardAssertTotalTransactions(data.sale.count, data.sale.eligible),
+
+      // created_date = created_date - interval '61 day' for this run's sales and refunds
+      new DbShiftSaleCreatedDatesByDocument(documentNumbers, 61),
+
       new OpenSecondaryMatchingSettingsPage(),
+      new WaitForThirtySeconds(),
       new SecondaryMatchingClickTriggerNow(),
       new OpenSecondaryMatchingPage(),
-      new SecondaryMatchingAssertMolecule("Q8E3G2"),
+      new WaitForThirtySeconds(),
+      // The grid shows amounts, not document numbers: one balanced molecule per sale amount.
+      new SecondaryMatchingWaitForSaleRefundPairs(data.sales.map((sale) => sale.amount), data.currency),
+
       new OpenSaleAuditTrackPage(),
-      new SaleUIFilterDocumentNumber("2129690954587"),
+      new SaleUIFilterDocumentNumber(data.documentNumber),
       new SaleUIClickSearchQuickFilter(),
-      new SaleUICheckIfSaleTableNotEmpty(),
+      // Sales that were refunded (and their refunds) are listed under "Refunded Sales", not "Sales".
+      new SaleUIOpenRefundedSalesTab(),
+      new SaleUICheckIfSaleTableHasDocument(data.documentNumber),
       new SaleAuditTrackAssertLifecycleEvents([]),
     ]);
   });

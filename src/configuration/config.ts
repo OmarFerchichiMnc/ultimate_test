@@ -96,5 +96,6 @@ export const config = {
   adadPaths: {
     sales: yamlConfig.adad_paths.sales as string,
     settlement: yamlConfig.adad_paths.settlement_global as string,
+    bankDeposit: (yamlConfig.adad_paths.bank_deposit_global as string | undefined) ?? "/adad/QA/BankDeposit/GLOBAL",
   },
 };

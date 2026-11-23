@@ -71,7 +71,7 @@ export class InspectFileDashboardDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-01",
-      "Inspect \"pi pi-calendar\" on /etl-files",
+      'Inspect "pi pi-calendar" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-ETL_FILES-01 pi pi-calendar on /etl-files");
@@ -86,7 +86,7 @@ export class InspectFileDashboardExtraFiltersButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-02",
-      "Inspect \"pi pi-filter\" on /etl-files",
+      'Inspect "pi pi-filter" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
         await pom.expectVisible(pom.extraFiltersButton, "TP-BTN-ETL_FILES-02 pi pi-filter on /etl-files");
@@ -101,7 +101,7 @@ export class InspectFileDashboardSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-03",
-      "Inspect \"Search\" on /etl-files",
+      'Inspect "Search" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-ETL_FILES-03 Search on /etl-files");
@@ -116,7 +116,7 @@ export class InspectFileDashboardExportButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-04",
-      "Inspect \"Export\" on /etl-files",
+      'Inspect "Export" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
         await pom.expectVisible(pom.exportButton, "TP-BTN-ETL_FILES-04 Export on /etl-files");
@@ -131,7 +131,7 @@ export class InspectFileDashboardCopy extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-05",
-      "Inspect \"pi pi-copy\" on /etl-files",
+      'Inspect "pi pi-copy" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
         await pom.expectVisible(pom.copy, "TP-BTN-ETL_FILES-05 pi pi-copy on /etl-files");
@@ -146,7 +146,7 @@ export class InspectFileDashboardLoadMore extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-06",
-      "Inspect \"Load more\" on /etl-files",
+      'Inspect "Load more" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
         await pom.expectVisible(pom.loadMore, "TP-BTN-ETL_FILES-06 Load more on /etl-files");
@@ -161,10 +161,13 @@ export class InspectFileDashboardPaginatorFirst extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-07",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /etl-files",
+      'Inspect "paginator:pi pi-angle-double-left" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-ETL_FILES-07 paginator:pi pi-angle-double-left on /etl-files");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-ETL_FILES-07 paginator:pi pi-angle-double-left on /etl-files",
+        );
       },
       "*****",
       "ready",
@@ -176,7 +179,7 @@ export class InspectFileDashboardPaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-08",
-      "Inspect \"paginator:pi pi-angle-left\" on /etl-files",
+      'Inspect "paginator:pi pi-angle-left" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
         await pom.expectVisible(pom.paginatorPrev, "TP-BTN-ETL_FILES-08 paginator:pi pi-angle-left on /etl-files");
@@ -191,7 +194,7 @@ export class InspectFileDashboardPaginatorPage1 extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-09",
-      "Inspect \"paginator:1\" on /etl-files",
+      'Inspect "paginator:1" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
         await pom.expectVisible(pom.paginatorPage1, "TP-BTN-ETL_FILES-09 paginator:1 on /etl-files");
@@ -206,7 +209,7 @@ export class InspectFileDashboardPaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-10",
-      "Inspect \"paginator:pi pi-angle-right\" on /etl-files",
+      'Inspect "paginator:pi pi-angle-right" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
         await pom.expectVisible(pom.paginatorNext, "TP-BTN-ETL_FILES-10 paginator:pi pi-angle-right on /etl-files");
@@ -221,10 +224,13 @@ export class InspectFileDashboardPaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ETL_FILES-11",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /etl-files",
+      'Inspect "paginator:pi pi-angle-double-right" on /etl-files',
       async (page) => {
         const pom = new FileDashboardPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-ETL_FILES-11 paginator:pi pi-angle-double-right on /etl-files");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-ETL_FILES-11 paginator:pi pi-angle-double-right on /etl-files",
+        );
       },
       "*****",
       "ready",
@@ -312,7 +318,9 @@ export class FileDashboardWaitForFile extends TestPoint {
     super("TP0510", "Check if file ingested within file dashboard page", async (page) => {
       const pom = new FileDashboardPage(page);
       await pom.expectOnPage();
-      await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, { timeout: timeoutMs });
+      await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, {
+        timeout: timeoutMs,
+      });
       const row = pom.tableRows().filter({ hasText: fileName }).first();
       await expect(row, `No file dashboard row for ${fileName}`).toBeVisible({ timeout: timeoutMs });
       logger.info(`File row found: ${((await row.innerText()) || "").replace(/\s*[\t\n]+\s*/g, " | ")}`);

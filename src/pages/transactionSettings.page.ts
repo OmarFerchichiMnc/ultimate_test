@@ -63,7 +63,7 @@ export class InspectTransactionSettingsAcquirer extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-01",
-      "Inspect \"Acquirer\" on /settings/transaction",
+      'Inspect "Acquirer" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
         await pom.expectVisible(pom.acquirer, "TP-BTN-SETTINGS_TRANSACTION-01 Acquirer on /settings/transaction");
@@ -78,7 +78,7 @@ export class InspectTransactionSettingsAdyen extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-02",
-      "Inspect \"adyen\" on /settings/transaction",
+      'Inspect "adyen" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
         await pom.expectVisible(pom.adyen, "TP-BTN-SETTINGS_TRANSACTION-02 adyen on /settings/transaction");
@@ -93,10 +93,13 @@ export class InspectTransactionSettingsSelectAMarket extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-03",
-      "Inspect \"Select a market\" on /settings/transaction",
+      'Inspect "Select a market" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
-        await pom.expectVisible(pom.selectAMarket, "TP-BTN-SETTINGS_TRANSACTION-03 Select a market on /settings/transaction");
+        await pom.expectVisible(
+          pom.selectAMarket,
+          "TP-BTN-SETTINGS_TRANSACTION-03 Select a market on /settings/transaction",
+        );
       },
       "*****",
       "ready",
@@ -108,7 +111,7 @@ export class InspectTransactionSettingsCopy extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-04",
-      "Inspect \"pi pi-copy\" on /settings/transaction",
+      'Inspect "pi pi-copy" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
         await pom.expectVisible(pom.copy, "TP-BTN-SETTINGS_TRANSACTION-04 pi pi-copy on /settings/transaction");
@@ -123,7 +126,7 @@ export class InspectTransactionSettingsEdit extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-05",
-      "Inspect \"pi pi-pencil\" on /settings/transaction",
+      'Inspect "pi pi-pencil" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
         await pom.expectVisible(pom.edit, "TP-BTN-SETTINGS_TRANSACTION-05 pi pi-pencil on /settings/transaction");
@@ -138,10 +141,13 @@ export class InspectTransactionSettingsPaginatorFirst extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-06",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /settings/transaction",
+      'Inspect "paginator:pi pi-angle-double-left" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-SETTINGS_TRANSACTION-06 paginator:pi pi-angle-double-left on /settings/transaction");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-SETTINGS_TRANSACTION-06 paginator:pi pi-angle-double-left on /settings/transaction",
+        );
       },
       "*****",
       "ready",
@@ -153,10 +159,13 @@ export class InspectTransactionSettingsPaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-07",
-      "Inspect \"paginator:pi pi-angle-left\" on /settings/transaction",
+      'Inspect "paginator:pi pi-angle-left" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
-        await pom.expectVisible(pom.paginatorPrev, "TP-BTN-SETTINGS_TRANSACTION-07 paginator:pi pi-angle-left on /settings/transaction");
+        await pom.expectVisible(
+          pom.paginatorPrev,
+          "TP-BTN-SETTINGS_TRANSACTION-07 paginator:pi pi-angle-left on /settings/transaction",
+        );
       },
       "*****",
       "ready",
@@ -168,10 +177,13 @@ export class InspectTransactionSettingsPaginatorPage1 extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-08",
-      "Inspect \"paginator:1\" on /settings/transaction",
+      'Inspect "paginator:1" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
-        await pom.expectVisible(pom.paginatorPage1, "TP-BTN-SETTINGS_TRANSACTION-08 paginator:1 on /settings/transaction");
+        await pom.expectVisible(
+          pom.paginatorPage1,
+          "TP-BTN-SETTINGS_TRANSACTION-08 paginator:1 on /settings/transaction",
+        );
       },
       "*****",
       "ready",
@@ -183,10 +195,13 @@ export class InspectTransactionSettingsPaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-09",
-      "Inspect \"paginator:pi pi-angle-right\" on /settings/transaction",
+      'Inspect "paginator:pi pi-angle-right" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
-        await pom.expectVisible(pom.paginatorNext, "TP-BTN-SETTINGS_TRANSACTION-09 paginator:pi pi-angle-right on /settings/transaction");
+        await pom.expectVisible(
+          pom.paginatorNext,
+          "TP-BTN-SETTINGS_TRANSACTION-09 paginator:pi pi-angle-right on /settings/transaction",
+        );
       },
       "*****",
       "ready",
@@ -198,10 +213,13 @@ export class InspectTransactionSettingsPaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-10",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /settings/transaction",
+      'Inspect "paginator:pi pi-angle-double-right" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-SETTINGS_TRANSACTION-10 paginator:pi pi-angle-double-right on /settings/transaction");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-SETTINGS_TRANSACTION-10 paginator:pi pi-angle-double-right on /settings/transaction",
+        );
       },
       "*****",
       "ready",
@@ -213,7 +231,7 @@ export class InspectTransactionSettingsCreate extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SETTINGS_TRANSACTION-12",
-      "Inspect \"pi pi-plus\" on /settings/transaction",
+      'Inspect "pi pi-plus" on /settings/transaction',
       async (page) => {
         const pom = new TransactionSettingsPage(page);
         await pom.expectVisible(pom.create, "TP-BTN-SETTINGS_TRANSACTION-12 pi pi-plus on /settings/transaction");
@@ -223,4 +241,3 @@ export class InspectTransactionSettingsCreate extends TestPoint {
     );
   }
 }
-

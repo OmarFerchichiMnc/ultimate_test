@@ -43,10 +43,13 @@ export class InspectSecondaryMatchingMatchedSalesAndRefunds extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SECONDARY_MATCHING-01",
-      "Inspect (do not click) \"Matched Sales and Refunds\" on /secondary-matching",
+      'Inspect (do not click) "Matched Sales and Refunds" on /secondary-matching',
       async (page) => {
         const pom = new SecondaryMatchingPage(page);
-        await pom.expectVisible(pom.matchedSalesAndRefunds, "TP-BTN-SECONDARY_MATCHING-01 Matched Sales and Refunds on /secondary-matching");
+        await pom.expectVisible(
+          pom.matchedSalesAndRefunds,
+          "TP-BTN-SECONDARY_MATCHING-01 Matched Sales and Refunds on /secondary-matching",
+        );
         logger.info(`Skipping click for destructive control TP-BTN-SECONDARY_MATCHING-01: Matched Sales and Refunds`);
       },
       "*****",
@@ -59,7 +62,7 @@ export class InspectSecondaryMatchingDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SECONDARY_MATCHING-02",
-      "Inspect \"pi pi-calendar\" on /secondary-matching",
+      'Inspect "pi pi-calendar" on /secondary-matching',
       async (page) => {
         const pom = new SecondaryMatchingPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-SECONDARY_MATCHING-02 pi pi-calendar on /secondary-matching");
@@ -74,10 +77,13 @@ export class InspectSecondaryMatchingSelectReconciliationStatus extends TestPoin
   constructor() {
     super(
       "TP-BTN-SECONDARY_MATCHING-03",
-      "Inspect \"Select Reconciliation Status\" on /secondary-matching",
+      'Inspect "Select Reconciliation Status" on /secondary-matching',
       async (page) => {
         const pom = new SecondaryMatchingPage(page);
-        await pom.expectVisible(pom.selectReconciliationStatus, "TP-BTN-SECONDARY_MATCHING-03 Select Reconciliation Status on /secondary-matching");
+        await pom.expectVisible(
+          pom.selectReconciliationStatus,
+          "TP-BTN-SECONDARY_MATCHING-03 Select Reconciliation Status on /secondary-matching",
+        );
       },
       "*****",
       "ready",
@@ -89,7 +95,7 @@ export class InspectSecondaryMatchingSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-SECONDARY_MATCHING-04",
-      "Inspect \"Search\" on /secondary-matching",
+      'Inspect "Search" on /secondary-matching',
       async (page) => {
         const pom = new SecondaryMatchingPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-SECONDARY_MATCHING-04 Search on /secondary-matching");
@@ -99,4 +105,3 @@ export class InspectSecondaryMatchingSearch extends TestPoint {
     );
   }
 }
-

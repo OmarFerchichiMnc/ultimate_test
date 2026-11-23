@@ -5,10 +5,7 @@ import { TestPoint } from "../testpoint/TestPoint";
 export class BankReconciliationRulesPage extends BasePage {
   static readonly path = "/matching-rules/bank-reconciliation";
   static testPoints(): TestPoint[] {
-    return [
-      new OpenBankReconciliationRulesPage(),
-      new InspectBankReconciliationRulesList(),
-    ];
+    return [new OpenBankReconciliationRulesPage(), new InspectBankReconciliationRulesList()];
   }
 
   readonly list: Locator;
@@ -33,14 +30,16 @@ export class InspectBankReconciliationRulesList extends TestPoint {
   constructor() {
     super(
       "TP-BTN-MATCHING_RULES_BANK_RECONCILIATION-01",
-      "Inspect \"pi pi-list\" on /matching-rules/bank-reconciliation",
+      'Inspect "pi pi-list" on /matching-rules/bank-reconciliation',
       async (page) => {
         const pom = new BankReconciliationRulesPage(page);
-        await pom.expectVisible(pom.list, "TP-BTN-MATCHING_RULES_BANK_RECONCILIATION-01 pi pi-list on /matching-rules/bank-reconciliation");
+        await pom.expectVisible(
+          pom.list,
+          "TP-BTN-MATCHING_RULES_BANK_RECONCILIATION-01 pi pi-list on /matching-rules/bank-reconciliation",
+        );
       },
       "*****",
       "ready",
     );
   }
 }
-

@@ -218,3 +218,18 @@ export class PaymentOrderUICheckIfTableEmpty extends TestPoint {
     });
   }
 }
+
+/** Waits for the grid to finish loading, then for a row carrying the searched reference. */
+export class PaymentOrderUICheckIfTableHasReference extends TestPoint {
+  constructor(reference: string, timeoutMs = 60_000) {
+    super("TP", `Check if payment order table contains ${reference}`, async (page) => {
+      const pom = new PaymentOrderAuditTrackPage(page);
+      await expect(page.locator(".p-datatable-loading-overlay, .p-datatable-loading-icon")).toHaveCount(0, {
+        timeout: timeoutMs,
+      });
+      const row = pom.tableRows(pom.host).filter({ hasText: reference }).first();
+      await expect(row, `No payment order row for ${reference}`).toBeVisible({ timeout: timeoutMs });
+      logger.info(`payment order row found: ${((await row.innerText()) || "").replace(/\s*[\t\n]+\s*/g, " | ")}`);
+    });
+  }
+}

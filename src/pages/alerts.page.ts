@@ -60,7 +60,7 @@ export class InspectAlertsDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERTS-01",
-      "Inspect \"pi pi-calendar\" on /alerts",
+      'Inspect "pi pi-calendar" on /alerts',
       async (page) => {
         const pom = new AlertsPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-ALERTS-01 pi pi-calendar on /alerts");
@@ -75,7 +75,7 @@ export class InspectAlertsSelectCategory extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERTS-02",
-      "Inspect \"Select category\" on /alerts",
+      'Inspect "Select category" on /alerts',
       async (page) => {
         const pom = new AlertsPage(page);
         await pom.expectVisible(pom.selectCategory, "TP-BTN-ALERTS-02 Select category on /alerts");
@@ -90,7 +90,7 @@ export class InspectAlertsSelectType extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERTS-03",
-      "Inspect \"Select type\" on /alerts",
+      'Inspect "Select type" on /alerts',
       async (page) => {
         const pom = new AlertsPage(page);
         await pom.expectVisible(pom.selectType, "TP-BTN-ALERTS-03 Select type on /alerts");
@@ -105,7 +105,7 @@ export class InspectAlertsAssignedAvailable extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERTS-04",
-      "Inspect \"Assigned, Available\" on /alerts",
+      'Inspect "Assigned, Available" on /alerts',
       async (page) => {
         const pom = new AlertsPage(page);
         await pom.expectVisible(pom.assignedAvailable, "TP-BTN-ALERTS-04 Assigned, Available on /alerts");
@@ -120,7 +120,7 @@ export class InspectAlertsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERTS-05",
-      "Inspect \"Search\" on /alerts",
+      'Inspect "Search" on /alerts',
       async (page) => {
         const pom = new AlertsPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-ALERTS-05 Search on /alerts");
@@ -135,7 +135,7 @@ export class InspectAlertsActionAlertsTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERTS-06",
-      "Inspect \"Action Alerts\" on /alerts",
+      'Inspect "Action Alerts" on /alerts',
       async (page) => {
         const pom = new AlertsPage(page);
         await pom.expectVisible(pom.actionAlertsTab, "TP-BTN-ALERTS-06 Action Alerts on /alerts");
@@ -150,7 +150,7 @@ export class InspectAlertsNotificationAlertsTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERTS-07",
-      "Inspect \"Notification Alerts\" on /alerts",
+      'Inspect "Notification Alerts" on /alerts',
       async (page) => {
         const pom = new AlertsPage(page);
         await pom.expectVisible(pom.notificationAlertsTab, "TP-BTN-ALERTS-07 Notification Alerts on /alerts");
@@ -165,7 +165,7 @@ export class InspectAlertsTeamInboxTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERTS-08",
-      "Inspect \"Team Inbox\" on /alerts",
+      'Inspect "Team Inbox" on /alerts',
       async (page) => {
         const pom = new AlertsPage(page);
         await pom.expectVisible(pom.teamInboxTab, "TP-BTN-ALERTS-08 Team Inbox on /alerts");
@@ -180,7 +180,7 @@ export class InspectAlertsAssignedToMeTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERTS-09",
-      "Inspect \"Assigned to me\" on /alerts",
+      'Inspect "Assigned to me" on /alerts',
       async (page) => {
         const pom = new AlertsPage(page);
         await pom.expectVisible(pom.assignedToMeTab, "TP-BTN-ALERTS-09 Assigned to me on /alerts");
@@ -195,7 +195,7 @@ export class InspectAlertsResolvedTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ALERTS-10",
-      "Inspect \"Resolved\" on /alerts",
+      'Inspect "Resolved" on /alerts',
       async (page) => {
         const pom = new AlertsPage(page);
         await pom.expectVisible(pom.resolvedTab, "TP-BTN-ALERTS-10 Resolved on /alerts");
@@ -205,4 +205,3 @@ export class InspectAlertsResolvedTab extends TestPoint {
     );
   }
 }
-

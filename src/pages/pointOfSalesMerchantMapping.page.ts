@@ -57,10 +57,13 @@ export class InspectPointOfSalesMerchantMappingSelectSaleSource extends TestPoin
   constructor() {
     super(
       "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-01",
-      "Inspect \"Select sale source\" on /point-of-sales-merchant-mapping",
+      'Inspect "Select sale source" on /point-of-sales-merchant-mapping',
       async (page) => {
         const pom = new PointOfSalesMerchantMappingPage(page);
-        await pom.expectVisible(pom.selectSaleSource, "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-01 Select sale source on /point-of-sales-merchant-mapping");
+        await pom.expectVisible(
+          pom.selectSaleSource,
+          "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-01 Select sale source on /point-of-sales-merchant-mapping",
+        );
       },
       "*****",
       "ready",
@@ -72,10 +75,13 @@ export class InspectPointOfSalesMerchantMappingSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-02",
-      "Inspect \"Search\" on /point-of-sales-merchant-mapping",
+      'Inspect "Search" on /point-of-sales-merchant-mapping',
       async (page) => {
         const pom = new PointOfSalesMerchantMappingPage(page);
-        await pom.expectVisible(pom.search, "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-02 Search on /point-of-sales-merchant-mapping");
+        await pom.expectVisible(
+          pom.search,
+          "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-02 Search on /point-of-sales-merchant-mapping",
+        );
       },
       "*****",
       "ready",
@@ -87,10 +93,13 @@ export class InspectPointOfSalesMerchantMappingCreate extends TestPoint {
   constructor() {
     super(
       "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-03",
-      "Inspect \"pi pi-plus\" on /point-of-sales-merchant-mapping",
+      'Inspect "pi pi-plus" on /point-of-sales-merchant-mapping',
       async (page) => {
         const pom = new PointOfSalesMerchantMappingPage(page);
-        await pom.expectVisible(pom.create, "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-03 pi pi-plus on /point-of-sales-merchant-mapping");
+        await pom.expectVisible(
+          pom.create,
+          "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-03 pi pi-plus on /point-of-sales-merchant-mapping",
+        );
       },
       "*****",
       "ready",
@@ -102,10 +111,13 @@ export class InspectPointOfSalesMerchantMappingLoadMore extends TestPoint {
   constructor() {
     super(
       "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-04",
-      "Inspect \"Load more\" on /point-of-sales-merchant-mapping",
+      'Inspect "Load more" on /point-of-sales-merchant-mapping',
       async (page) => {
         const pom = new PointOfSalesMerchantMappingPage(page);
-        await pom.expectVisible(pom.loadMore, "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-04 Load more on /point-of-sales-merchant-mapping");
+        await pom.expectVisible(
+          pom.loadMore,
+          "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-04 Load more on /point-of-sales-merchant-mapping",
+        );
       },
       "*****",
       "ready",
@@ -117,10 +129,13 @@ export class InspectPointOfSalesMerchantMappingPaginatorFirst extends TestPoint 
   constructor() {
     super(
       "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-05",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /point-of-sales-merchant-mapping",
+      'Inspect "paginator:pi pi-angle-double-left" on /point-of-sales-merchant-mapping',
       async (page) => {
         const pom = new PointOfSalesMerchantMappingPage(page);
-        await pom.expectVisible(pom.paginatorFirst, "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-05 paginator:pi pi-angle-double-left on /point-of-sales-merchant-mapping");
+        await pom.expectVisible(
+          pom.paginatorFirst,
+          "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-05 paginator:pi pi-angle-double-left on /point-of-sales-merchant-mapping",
+        );
       },
       "*****",
       "ready",
@@ -132,10 +147,13 @@ export class InspectPointOfSalesMerchantMappingPaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-06",
-      "Inspect \"paginator:pi pi-angle-left\" on /point-of-sales-merchant-mapping",
+      'Inspect "paginator:pi pi-angle-left" on /point-of-sales-merchant-mapping',
       async (page) => {
         const pom = new PointOfSalesMerchantMappingPage(page);
-        await pom.expectVisible(pom.paginatorPrev, "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-06 paginator:pi pi-angle-left on /point-of-sales-merchant-mapping");
+        await pom.expectVisible(
+          pom.paginatorPrev,
+          "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-06 paginator:pi pi-angle-left on /point-of-sales-merchant-mapping",
+        );
       },
       "*****",
       "ready",
@@ -147,10 +165,13 @@ export class InspectPointOfSalesMerchantMappingPaginatorPage1 extends TestPoint 
   constructor() {
     super(
       "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-07",
-      "Inspect \"paginator:1\" on /point-of-sales-merchant-mapping",
+      'Inspect "paginator:1" on /point-of-sales-merchant-mapping',
       async (page) => {
         const pom = new PointOfSalesMerchantMappingPage(page);
-        await pom.expectVisible(pom.paginatorPage1, "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-07 paginator:1 on /point-of-sales-merchant-mapping");
+        await pom.expectVisible(
+          pom.paginatorPage1,
+          "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-07 paginator:1 on /point-of-sales-merchant-mapping",
+        );
       },
       "*****",
       "ready",
@@ -162,10 +183,13 @@ export class InspectPointOfSalesMerchantMappingPaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-08",
-      "Inspect \"paginator:pi pi-angle-right\" on /point-of-sales-merchant-mapping",
+      'Inspect "paginator:pi pi-angle-right" on /point-of-sales-merchant-mapping',
       async (page) => {
         const pom = new PointOfSalesMerchantMappingPage(page);
-        await pom.expectVisible(pom.paginatorNext, "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-08 paginator:pi pi-angle-right on /point-of-sales-merchant-mapping");
+        await pom.expectVisible(
+          pom.paginatorNext,
+          "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-08 paginator:pi pi-angle-right on /point-of-sales-merchant-mapping",
+        );
       },
       "*****",
       "ready",
@@ -177,14 +201,16 @@ export class InspectPointOfSalesMerchantMappingPaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-09",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /point-of-sales-merchant-mapping",
+      'Inspect "paginator:pi pi-angle-double-right" on /point-of-sales-merchant-mapping',
       async (page) => {
         const pom = new PointOfSalesMerchantMappingPage(page);
-        await pom.expectVisible(pom.paginatorLast, "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-09 paginator:pi pi-angle-double-right on /point-of-sales-merchant-mapping");
+        await pom.expectVisible(
+          pom.paginatorLast,
+          "TP-BTN-POINT_OF_SALES_MERCHANT_MAPPING-09 paginator:pi pi-angle-double-right on /point-of-sales-merchant-mapping",
+        );
       },
       "*****",
       "ready",
     );
   }
 }
-

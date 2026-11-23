@@ -58,7 +58,7 @@ export class InspectPendingItemsSaleSource extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PENDING_ITEMS-01",
-      "Inspect \"Sale Source\" on /pending-items",
+      'Inspect "Sale Source" on /pending-items',
       async (page) => {
         const pom = new PendingItemsPage(page);
         await pom.expectVisible(pom.saleSource, "TP-BTN-PENDING_ITEMS-01 Sale Source on /pending-items");
@@ -73,7 +73,7 @@ export class InspectPendingItemsSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PENDING_ITEMS-02",
-      "Inspect \"Search\" on /pending-items",
+      'Inspect "Search" on /pending-items',
       async (page) => {
         const pom = new PendingItemsPage(page);
         await pom.expectVisible(pom.search, "TP-BTN-PENDING_ITEMS-02 Search on /pending-items");
@@ -88,7 +88,7 @@ export class InspectPendingItemsDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PENDING_ITEMS-03",
-      "Inspect \"pi pi-calendar\" on /pending-items",
+      'Inspect "pi pi-calendar" on /pending-items',
       async (page) => {
         const pom = new PendingItemsPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-PENDING_ITEMS-03 pi pi-calendar on /pending-items");
@@ -103,10 +103,13 @@ export class InspectPendingItemsSelectAChannelType extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PENDING_ITEMS-04",
-      "Inspect \"Select a channel type\" on /pending-items",
+      'Inspect "Select a channel type" on /pending-items',
       async (page) => {
         const pom = new PendingItemsPage(page);
-        await pom.expectVisible(pom.selectAChannelType, "TP-BTN-PENDING_ITEMS-04 Select a channel type on /pending-items");
+        await pom.expectVisible(
+          pom.selectAChannelType,
+          "TP-BTN-PENDING_ITEMS-04 Select a channel type on /pending-items",
+        );
       },
       "*****",
       "ready",
@@ -118,7 +121,7 @@ export class InspectPendingItemsExtraFiltersButton extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PENDING_ITEMS-05",
-      "Inspect \"pi pi-filter\" on /pending-items",
+      'Inspect "pi pi-filter" on /pending-items',
       async (page) => {
         const pom = new PendingItemsPage(page);
         await pom.expectVisible(pom.extraFiltersButton, "TP-BTN-PENDING_ITEMS-05 pi pi-filter on /pending-items");
@@ -133,7 +136,7 @@ export class InspectPendingItemsSearchAdvanced extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PENDING_ITEMS-06",
-      "Inspect \"Search\" on /pending-items",
+      'Inspect "Search" on /pending-items',
       async (page) => {
         const pom = new PendingItemsPage(page);
         await pom.expectVisible(pom.searchAdvanced, "TP-BTN-PENDING_ITEMS-06 Search on /pending-items");
@@ -148,7 +151,7 @@ export class InspectPendingItemsPendingTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PENDING_ITEMS-07",
-      "Inspect \"Pending\" on /pending-items",
+      'Inspect "Pending" on /pending-items',
       async (page) => {
         const pom = new PendingItemsPage(page);
         await pom.expectVisible(pom.pendingTab, "TP-BTN-PENDING_ITEMS-07 Pending on /pending-items");
@@ -163,7 +166,7 @@ export class InspectPendingItemsExpiredTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PENDING_ITEMS-08",
-      "Inspect \"Expired\" on /pending-items",
+      'Inspect "Expired" on /pending-items',
       async (page) => {
         const pom = new PendingItemsPage(page);
         await pom.expectVisible(pom.expiredTab, "TP-BTN-PENDING_ITEMS-08 Expired on /pending-items");
@@ -178,7 +181,7 @@ export class InspectPendingItemsDeletedTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-PENDING_ITEMS-09",
-      "Inspect (do not click) \"Deleted\" on /pending-items",
+      'Inspect (do not click) "Deleted" on /pending-items',
       async (page) => {
         const pom = new PendingItemsPage(page);
         await pom.expectVisible(pom.deletedTab, "TP-BTN-PENDING_ITEMS-09 Deleted on /pending-items");
@@ -189,4 +192,3 @@ export class InspectPendingItemsDeletedTab extends TestPoint {
     );
   }
 }
-

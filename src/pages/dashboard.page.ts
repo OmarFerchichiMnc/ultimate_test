@@ -5,11 +5,7 @@ import { TestPoint } from "../testpoint/TestPoint";
 export class DashboardPage extends BasePage {
   static readonly path = "/dashboard";
   static testPoints(): TestPoint[] {
-    return [
-      new OpenDashboardPage(),
-      new InspectDashboardDateRange(),
-      new InspectDashboardDownload(),
-    ];
+    return [new OpenDashboardPage(), new InspectDashboardDateRange(), new InspectDashboardDownload()];
   }
 
   readonly dateRange: Locator;
@@ -38,7 +34,7 @@ export class InspectDashboardDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-DASHBOARD-01",
-      "Inspect \"pi pi-calendar\" on /dashboard",
+      'Inspect "pi pi-calendar" on /dashboard',
       async (page) => {
         const pom = new DashboardPage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-DASHBOARD-01 pi pi-calendar on /dashboard");
@@ -53,7 +49,7 @@ export class InspectDashboardDownload extends TestPoint {
   constructor() {
     super(
       "TP-BTN-DASHBOARD-02",
-      "Inspect \"pi pi-download\" on /dashboard",
+      'Inspect "pi pi-download" on /dashboard',
       async (page) => {
         const pom = new DashboardPage(page);
         await pom.expectVisible(pom.download, "TP-BTN-DASHBOARD-02 pi pi-download on /dashboard");

@@ -18,7 +18,12 @@ const zip = spawnSync("zip", ["-r", "-q", out, ".", "-x", "html/*"], { cwd: runD
 if (zip.error || zip.status) {
   const py = spawnSync(
     "python3",
-    ["-c", "import shutil, sys; shutil.make_archive(sys.argv[1], 'zip', sys.argv[2])", out.replace(/\.zip$/, ""), runDir],
+    [
+      "-c",
+      "import shutil, sys; shutil.make_archive(sys.argv[1], 'zip', sys.argv[2])",
+      out.replace(/\.zip$/, ""),
+      runDir,
+    ],
     { stdio: "inherit" },
   );
   if (py.error || py.status) {

@@ -57,7 +57,7 @@ export class InspectRoeDateRange extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ROE-01",
-      "Inspect \"pi pi-calendar\" on /roe",
+      'Inspect "pi pi-calendar" on /roe',
       async (page) => {
         const pom = new RoePage(page);
         await pom.expectVisible(pom.dateRange, "TP-BTN-ROE-01 pi pi-calendar on /roe");
@@ -72,7 +72,7 @@ export class InspectRoeFromGlobalCurrencyTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ROE-02",
-      "Inspect \"From global currency\" on /roe",
+      'Inspect "From global currency" on /roe',
       async (page) => {
         const pom = new RoePage(page);
         await pom.expectVisible(pom.fromGlobalCurrencyTab, "TP-BTN-ROE-02 From global currency on /roe");
@@ -87,7 +87,7 @@ export class InspectRoeToGlobalCurrencyTab extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ROE-03",
-      "Inspect \"To global currency\" on /roe",
+      'Inspect "To global currency" on /roe',
       async (page) => {
         const pom = new RoePage(page);
         await pom.expectVisible(pom.toGlobalCurrencyTab, "TP-BTN-ROE-03 To global currency on /roe");
@@ -102,7 +102,7 @@ export class InspectRoeSearch extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ROE-04",
-      "Inspect \"Search\" on /roe",
+      'Inspect "Search" on /roe',
       async (page) => {
         const pom = new RoePage(page);
         await pom.expectVisible(pom.search, "TP-BTN-ROE-04 Search on /roe");
@@ -117,7 +117,7 @@ export class InspectRoePaginatorFirst extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ROE-05",
-      "Inspect \"paginator:pi pi-angle-double-left\" on /roe",
+      'Inspect "paginator:pi pi-angle-double-left" on /roe',
       async (page) => {
         const pom = new RoePage(page);
         await pom.expectVisible(pom.paginatorFirst, "TP-BTN-ROE-05 paginator:pi pi-angle-double-left on /roe");
@@ -132,7 +132,7 @@ export class InspectRoePaginatorPrev extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ROE-06",
-      "Inspect \"paginator:pi pi-angle-left\" on /roe",
+      'Inspect "paginator:pi pi-angle-left" on /roe',
       async (page) => {
         const pom = new RoePage(page);
         await pom.expectVisible(pom.paginatorPrev, "TP-BTN-ROE-06 paginator:pi pi-angle-left on /roe");
@@ -147,7 +147,7 @@ export class InspectRoePaginatorPage1 extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ROE-07",
-      "Inspect \"paginator:1\" on /roe",
+      'Inspect "paginator:1" on /roe',
       async (page) => {
         const pom = new RoePage(page);
         await pom.expectVisible(pom.paginatorPage1, "TP-BTN-ROE-07 paginator:1 on /roe");
@@ -162,7 +162,7 @@ export class InspectRoePaginatorNext extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ROE-11",
-      "Inspect \"paginator:pi pi-angle-right\" on /roe",
+      'Inspect "paginator:pi pi-angle-right" on /roe',
       async (page) => {
         const pom = new RoePage(page);
         await pom.expectVisible(pom.paginatorNext, "TP-BTN-ROE-11 paginator:pi pi-angle-right on /roe");
@@ -177,7 +177,7 @@ export class InspectRoePaginatorLast extends TestPoint {
   constructor() {
     super(
       "TP-BTN-ROE-12",
-      "Inspect \"paginator:pi pi-angle-double-right\" on /roe",
+      'Inspect "paginator:pi pi-angle-double-right" on /roe',
       async (page) => {
         const pom = new RoePage(page);
         await pom.expectVisible(pom.paginatorLast, "TP-BTN-ROE-12 paginator:pi pi-angle-double-right on /roe");
@@ -187,4 +187,3 @@ export class InspectRoePaginatorLast extends TestPoint {
     );
   }
 }
-
